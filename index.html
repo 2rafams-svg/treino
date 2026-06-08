@@ -621,10 +621,12 @@ function toggleTimer(seid,def){
   const t=exTimers[seid];
   if(t.running){
     clearInterval(t.interval);t.running=false;
+    releaseWakeLock();
     const btn=document.getElementById(`tb-${seid}`);
     if(btn){btn.textContent='▶ Timer';btn.classList.remove('running');}
   }else{
     t.running=true;
+    requestWakeLock();
     const btn=document.getElementById(`tb-${seid}`);
     if(btn){btn.textContent='Pausar';btn.classList.add('running');}
     t.interval=setInterval(()=>{
@@ -638,6 +640,7 @@ function toggleTimer(seid,def){
 
 function resetTimer(seid,def){
   if(exTimers[seid])clearInterval(exTimers[seid].interval);
+  releaseWakeLock();
   exTimers[seid]={secs:def,running:false,interval:null};
   const td=document.getElementById(`td-${seid}`);if(td)td.textContent=formatDur(def);
   const btn=document.getElementById(`tb-${seid}`);if(btn){btn.textContent='▶ Timer';btn.classList.remove('running');}
@@ -673,8 +676,24 @@ function toggleSound(){
   }
 }
 
+let wakeLock=null;
+
+async function requestWakeLock(){
+  try{
+    if('wakeLock' in navigator){
+      wakeLock=await navigator.wakeLock.request('screen');
+    }
+  }catch(e){}
+}
+
+async function releaseWakeLock(){
+  try{
+    if(wakeLock){await wakeLock.release();wakeLock=null;}
+  }catch(e){}
+}
+
 async function playBeep(){
-  if(!soundEnabled) return;
+  if(!soundEnabled){ releaseWakeLock(); return; }
   try{
     const ctx=getAudioCtx();
     await ctx.resume();
@@ -687,7 +706,8 @@ async function playBeep(){
       o.start(ctx.currentTime+delay/1000);
       o.stop(ctx.currentTime+delay/1000+0.25);
     });
-  }catch(e){}
+    setTimeout(releaseWakeLock, 800);
+  }catch(e){ releaseWakeLock(); }
 }
 
 function showRestSplash(){
