@@ -644,6 +644,19 @@ function resetTimer(seid,def){
 }
 
 let soundEnabled=true;
+let audioCtx=null;
+
+function getAudioCtx(){
+  if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  if(audioCtx.state==='suspended') audioCtx.resume();
+  return audioCtx;
+}
+
+// Inicializa o AudioContext no primeiro toque do usuário
+document.addEventListener('touchstart',()=>{
+  if(!audioCtx) audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  if(audioCtx.state==='suspended') audioCtx.resume();
+},{once:false,passive:true});
 
 function toggleSound(){
   soundEnabled=!soundEnabled;
@@ -661,8 +674,19 @@ function toggleSound(){
 }
 
 function playBeep(){
-  if(!soundEnabled)return;
-  try{const ctx=new(window.AudioContext||window.webkitAudioContext)();[0,150,300].forEach(delay=>{const o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.value=880;o.type='sine';g.gain.setValueAtTime(0.3,ctx.currentTime+delay/1000);g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+delay/1000+0.2);o.start(ctx.currentTime+delay/1000);o.stop(ctx.currentTime+delay/1000+0.2);});}catch(e){}
+  if(!soundEnabled) return;
+  try{
+    const ctx=getAudioCtx();
+    [0,150,300].forEach(delay=>{
+      const o=ctx.createOscillator(),g=ctx.createGain();
+      o.connect(g);g.connect(ctx.destination);
+      o.frequency.value=880;o.type='sine';
+      g.gain.setValueAtTime(0.3,ctx.currentTime+delay/1000);
+      g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+delay/1000+0.25);
+      o.start(ctx.currentTime+delay/1000);
+      o.stop(ctx.currentTime+delay/1000+0.25);
+    });
+  }catch(e){}
 }
 
 async function sairSessao(){
