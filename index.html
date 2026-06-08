@@ -78,6 +78,10 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 .sessao-info{flex:1}
 .sessao-nome{font-family:'DM Serif Display',serif;font-size:18px}
 .sessao-timer-top{font-size:12px;color:var(--text3);font-variant-numeric:tabular-nums}
+.sound-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;transition:all .2s}
+.sound-btn svg{width:16px;height:16px;stroke:var(--accent)}
+.sound-btn.muted{border-color:var(--border)}
+.sound-btn.muted svg{stroke:var(--text3)}
 .sessao-content{flex:1;overflow-y:auto;padding:12px 20px calc(100px + var(--safe-bot));-webkit-overflow-scrolling:touch}
 
 /* EXERCÍCIO CARD */
@@ -271,6 +275,9 @@ select.form-input{cursor:pointer}
     <div class="sessao-info">
       <div class="sessao-nome" id="sessao-nome">Treino</div>
       <div class="sessao-timer-top" id="sessao-timer-top">00:00</div>
+    </div>
+    <div class="sound-btn" id="sound-btn" onclick="toggleSound()" title="Som do timer">
+      <svg id="sound-icon" viewBox="0 0 24 24" fill="none" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07"/></svg>
     </div>
   </div>
   <div class="sessao-content" id="sessao-content"></div>
@@ -512,6 +519,7 @@ async function iniciarTreino(){
   sessaoAtiva={id:sessaoId,treino_id:selectedTreinoId,treino_nome:treino.nome,iniciado_em:agora};
   sessaoSecs=0;
   exTimers={};
+  soundEnabled=true;
   abrirTela();
 }
 
@@ -529,6 +537,7 @@ async function continuarSessao(s){
   sessaoSecs=Math.floor((Date.now()-inicio.getTime())/1000);
   sessaoAtiva={id:s.id,treino_id:s.treino_id,treino_nome:treino?.nome||'Treino',iniciado_em:s.iniciado_em};
   exTimers={};
+  soundEnabled=true;
   abrirTela();
 }
 
@@ -634,7 +643,25 @@ function resetTimer(seid,def){
   const btn=document.getElementById(`tb-${seid}`);if(btn){btn.textContent='▶ Timer';btn.classList.remove('running');}
 }
 
+let soundEnabled=true;
+
+function toggleSound(){
+  soundEnabled=!soundEnabled;
+  const btn=document.getElementById('sound-btn');
+  const icon=document.getElementById('sound-icon');
+  if(soundEnabled){
+    btn.classList.remove('muted');
+    icon.innerHTML='<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07"/>';
+    showToast('Som ativado','success');
+  }else{
+    btn.classList.add('muted');
+    icon.innerHTML='<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
+    showToast('Som desativado','');
+  }
+}
+
 function playBeep(){
+  if(!soundEnabled)return;
   try{const ctx=new(window.AudioContext||window.webkitAudioContext)();[0,150,300].forEach(delay=>{const o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.value=880;o.type='sine';g.gain.setValueAtTime(0.3,ctx.currentTime+delay/1000);g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+delay/1000+0.2);o.start(ctx.currentTime+delay/1000);o.stop(ctx.currentTime+delay/1000+0.2);});}catch(e){}
 }
 
