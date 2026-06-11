@@ -34,7 +34,7 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 .pin-key{aspect-ratio:1;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:'DM Sans',sans-serif;font-size:22px;font-weight:500;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center}
 .pin-key:active{background:var(--surface2);transform:scale(.93)}
 .pin-key.del{font-size:18px;color:var(--text2)}
-.pin-key.empty{border:none;background:transparent;pointer-events:none}
+.pin-key.blank{border:none;background:transparent;pointer-events:none}
 .pin-error{margin-top:20px;font-size:13px;color:var(--red);min-height:20px;text-align:center}
 
 /* APP */
@@ -185,6 +185,10 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 .hist-timing-item{background:var(--surface2);border-radius:8px;padding:8px;text-align:center}
 .hist-timing-label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
 .hist-timing-val{font-size:13px;font-weight:600}
+.hist-actions{display:flex;gap:8px;margin-top:14px}
+.hist-action-btn{flex:1;padding:10px;border-radius:10px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s}
+.hist-action-btn:active{background:var(--border)}
+.hist-action-btn.danger{color:var(--red);border-color:#f8717133}
 
 /* GERENCIAR */
 #gerenciar-screen{display:none;flex-direction:column;height:100vh;background:var(--bg)}
@@ -207,6 +211,22 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 .ger-add-btn{width:100%;padding:12px;border-radius:10px;border:1px dashed var(--border);background:transparent;color:var(--text3);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
 .grupo-ativo-badge{font-size:11px;padding:2px 8px;border-radius:100px;background:#a78bfa22;color:var(--accent);border:1px solid #a78bfa44;margin-left:8px}
 .ger-treino-block{margin-left:16px;margin-bottom:4px}
+
+/* TUTORIAL */
+.tut-section{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 16px;margin-bottom:14px}
+.tut-section-title{font-family:'DM Serif Display',serif;font-size:17px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.tut-section-title .tut-emoji{font-size:20px}
+.tut-text{font-size:14px;color:var(--text2);line-height:1.65;margin-bottom:8px}
+.tut-text:last-child{margin-bottom:0}
+.tut-text strong{color:var(--text)}
+.tut-text .tut-accent{color:var(--accent);font-weight:500}
+.tut-text .tut-green{color:var(--green);font-weight:500}
+.tut-text .tut-orange{color:var(--orange);font-weight:500}
+.tut-tip{background:#a78bfa11;border:1px solid #a78bfa33;border-radius:10px;padding:10px 12px;font-size:13px;color:var(--accent);margin-top:10px;line-height:1.5}
+.tut-step{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start}
+.tut-step-num{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#0a0a0a;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.tut-step-text{font-size:14px;color:var(--text2);line-height:1.55;flex:1}
+.tut-step-text strong{color:var(--text)}
 
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:400;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
@@ -259,7 +279,7 @@ select.form-input{cursor:pointer}
     <button class="pin-key" onclick="pinInput('7')">7</button>
     <button class="pin-key" onclick="pinInput('8')">8</button>
     <button class="pin-key" onclick="pinInput('9')">9</button>
-    <button class="pin-key empty"></button>
+    <button class="pin-key blank"></button>
     <button class="pin-key" onclick="pinInput('0')">0</button>
     <button class="pin-key del" onclick="pinDel()">⌫</button>
   </div>
@@ -270,8 +290,13 @@ select.form-input{cursor:pointer}
 <div id="app">
   <div class="header">
     <div class="header-title">Treino<span>Log</span></div>
+    <div style="display:flex;gap:8px">
+    <div class="icon-btn" onclick="showTutorial()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    </div>
     <div class="icon-btn" onclick="showGerenciar()">
       <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+    </div>
     </div>
   </div>
   <div class="tabs">
@@ -319,6 +344,17 @@ select.form-input{cursor:pointer}
     <div style="font-family:'DM Serif Display',serif;font-size:18px">Resultado</div>
   </div>
   <div class="resultado-content" id="resultado-content"></div>
+</div>
+
+<!-- TUTORIAL -->
+<div id="tutorial-screen" style="display:none;flex-direction:column;height:100vh;background:var(--bg)">
+  <div class="ger-header">
+    <div class="ger-back" onclick="hideTutorial()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
+    <div class="ger-title">Como usar o TreinoLog</div>
+  </div>
+  <div class="ger-content" id="tutorial-content"></div>
 </div>
 
 <!-- GERENCIAR -->
@@ -397,7 +433,7 @@ let exAtualId=null;
 let globalTimer={secs:0,running:false,interval:null,fresh:true};
 
 function showApp(){const a=document.getElementById('app');a.style.display='flex';a.style.flexDirection='column';}
-function hideAll(){['app','sessao-screen','resultado-screen','gerenciar-screen'].forEach(id=>{const el=document.getElementById(id);el.style.display='none';});}
+function hideAll(){['app','sessao-screen','resultado-screen','gerenciar-screen','tutorial-screen'].forEach(id=>{const el=document.getElementById(id);el.style.display='none';});}
 
 // ===================== INIT =====================
 async function init(){
@@ -684,7 +720,8 @@ function setupSwipeCards(){
         wrap.classList.toggle('show-left',dx<-30);
       }
     },{passive:false});
-    card.addEventListener('touchend',()=>{
+    card.addEventListener('touchend',e=>{
+      if(e.target.closest('button,input')){locked=false;moved=false;return;}
       card.style.transition='transform .25s ease';
       const wrap=card.parentElement;
       if(locked==='h'&&Math.abs(dx)>80){
@@ -1032,12 +1069,76 @@ async function renderHistorico(el){
               <div class="hist-timing-item"><div class="hist-timing-label">Duração</div><div class="hist-timing-val">${dur}</div></div>
             </div>
             ${exRows}
+            <div class="hist-actions" onclick="event.stopPropagation()">
+              <button class="hist-action-btn" onclick="abrirEditarSessao('${s.id}')">✏️ Editar</button>
+              <button class="hist-action-btn danger" onclick="excluirSessao('${s.id}')">🗑 Excluir</button>
+            </div>
           </div>
         </div>
       </div>`;
     }
     el.innerHTML=html;
   }catch(e){el.innerHTML=`<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-text">Erro ao carregar histórico.</div></div>`;}
+}
+
+async function excluirSessao(sessaoId){
+  if(!confirm('Excluir este treino do histórico? Esta ação não pode ser desfeita.')) return;
+  try{
+    await api.deleteSessaoExsBySessao(sessaoId);
+    await api.deleteSessao(sessaoId);
+    showToast('Treino excluído.','success');
+    render();
+  }catch{ showToast('Erro ao excluir.','error'); }
+}
+
+async function abrirEditarSessao(sessaoId){
+  const exs=await api.getSessaoExs(sessaoId);
+  if(!exs||!exs.length){ showToast('Sessão sem exercícios.','error'); return; }
+  const statusOpts=[['feito','✓ Feito'],['pulei','⏭ Pulei'],['pendente','– Não marcado']];
+  openModal(`<div class="modal-title">Editar Treino Realizado</div>
+    ${exs.map(e=>`
+      <div class="month-adj-item">
+        <div class="month-adj-name">${e.nome_snapshot}</div>
+        <div class="form-row" style="margin-bottom:8px">
+          <div>
+            <label class="form-label">Status</label>
+            <select class="form-input" id="edit-status-${e.id}">
+              ${statusOpts.map(([v,l])=>`<option value="${v}"${e.status===v?' selected':''}>${l}</option>`).join('')}
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Séries feitas</label>
+            <input class="form-input" id="edit-series-${e.id}" type="number" inputmode="numeric" value="${e.series_feitas||0}" min="0"/>
+          </div>
+        </div>
+        <div>
+          <label class="form-label">Carga (kg)</label>
+          <input class="form-input" id="edit-carga-${e.id}" type="number" inputmode="decimal" value="${e.carga_usada||''}" placeholder="opcional"/>
+        </div>
+      </div>`).join('')}
+    <button class="btn-primary" id="btn-save-edit" onclick="salvarEdicaoSessao('${sessaoId}')">Salvar Alterações</button>
+    <button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`);
+  // Guarda os exs no escopo global temporário
+  window._editandoExs=exs;
+}
+
+async function salvarEdicaoSessao(sessaoId){
+  const exs=window._editandoExs||[];
+  const btn=document.getElementById('btn-save-edit');
+  btn.disabled=true;btn.textContent='Salvando...';
+  try{
+    for(const e of exs){
+      const status=document.getElementById(`edit-status-${e.id}`).value;
+      const series=parseInt(document.getElementById(`edit-series-${e.id}`).value)||0;
+      const cargaVal=document.getElementById(`edit-carga-${e.id}`).value;
+      const carga=cargaVal?parseFloat(cargaVal):null;
+      await api.updateSessaoEx(e.id,{status,series_feitas:series,carga_usada:carga});
+    }
+    window._editandoExs=null;
+    _closeModal();
+    showToast('Treino atualizado!','success');
+    render();
+  }catch{ showToast('Erro ao salvar.','error'); btn.disabled=false; btn.textContent='Salvar Alterações'; }
 }
 
 function toggleHistorico(sid){
@@ -1047,6 +1148,76 @@ function toggleHistorico(sid){
   const isOpen=body.classList.contains('open');
   body.classList.toggle('open',!isOpen);
   chev.classList.toggle('open',!isOpen);
+}
+
+// ===================== TUTORIAL =====================
+function showTutorial(){
+  hideAll();
+  const ts=document.getElementById('tutorial-screen');
+  ts.style.display='flex';ts.style.flexDirection='column';
+  renderTutorial();
+}
+
+function hideTutorial(){
+  hideAll();
+  const a=document.getElementById('app');a.style.display='flex';a.style.flexDirection='column';
+}
+
+function renderTutorial(){
+  document.getElementById('tutorial-content').innerHTML=`
+  <div class="tut-section">
+    <div class="tut-section-title"><span class="tut-emoji">\ud83c\udfe0</span> Tela Inicial (Hoje)</div>
+    <div class="tut-text">Aqui voc\u00ea v\u00ea todos os treinos do seu <strong>grupo ativo</strong>. Cada card mostra quando o treino foi feito pela \u00faltima vez e quantas vezes j\u00e1 foi realizado.</div>
+    <div class="tut-text">O app sugere automaticamente o treino que est\u00e1 h\u00e1 mais tempo sem ser feito \u2014 \u00e9 o card com a etiqueta <span class="tut-accent">\u2726 Sugerido</span>.</div>
+    <div class="tut-text">Toque em um card para selecion\u00e1-lo e depois em <strong>Iniciar Treino</strong>.</div>
+    <div class="tut-tip">\ud83d\udca1 S\u00f3 existe 1 treino por dia. Se voc\u00ea sair no meio, pode voltar e continuar de onde parou. Se iniciar um treino diferente no mesmo dia, o anterior \u00e9 descartado.</div>
+  </div>
+
+  <div class="tut-section">
+    <div class="tut-section-title"><span class="tut-emoji">\ud83c\udfcb\ufe0f</span> Durante o Treino</div>
+    <div class="tut-text">Os exerc\u00edcios aparecem <strong>agrupados por categoria</strong> (Peito, Costas, Perna...). Conclu\u00eddos descem para o final da lista.</div>
+    <div class="tut-step"><div class="tut-step-num">1</div><div class="tut-step-text"><strong>Toque em um exerc\u00edcio</strong> para defini-lo como atual \u2014 ele ganha borda roxa e o timer do rodap\u00e9 passa a corresponder a ele.</div></div>
+    <div class="tut-step"><div class="tut-step-num">2</div><div class="tut-step-text">Fa\u00e7a sua s\u00e9rie e aperte o <strong>\u25b6 no rodap\u00e9</strong> para iniciar o descanso. Cada vez que o timer inicia do zero, <strong>+1 s\u00e9rie \u00e9 contada</strong> automaticamente.</div></div>
+    <div class="tut-step"><div class="tut-step-num">3</div><div class="tut-step-text">Quando o timer zera: toca um <strong>bip</strong>, aparece a tela "Descanso conclu\u00eddo" e o timer j\u00e1 reseta sozinho para a pr\u00f3xima s\u00e9rie.</div></div>
+    <div class="tut-step"><div class="tut-step-num">4</div><div class="tut-step-text">Ao completar todas as s\u00e9ries (ex: 3/3), o exerc\u00edcio \u00e9 <span class="tut-green">marcado como Feito automaticamente</span> e o pr\u00f3ximo pendente vira o atual.</div></div>
+    <div class="tut-tip">\ud83d\udd14 O sino no topo liga/desliga o som do timer. \u26a0\ufe0f O som n\u00e3o toca com a tela apagada ou no modo silencioso do iPhone \u2014 o app mant\u00e9m a tela acesa durante o descanso para evitar isso.</div>
+  </div>
+
+  <div class="tut-section">
+    <div class="tut-section-title"><span class="tut-emoji">\ud83d\udc46</span> Gestos nos Exerc\u00edcios</div>
+    <div class="tut-text">\u27a1\ufe0f Arraste o card para a <span class="tut-green">direita</span> para marcar como <strong>Feito</strong>.</div>
+    <div class="tut-text">\u2b05\ufe0f Arraste para a <span class="tut-orange">esquerda</span> para <strong>Pular</strong> o exerc\u00edcio hoje.</div>
+    <div class="tut-text">Voc\u00ea tamb\u00e9m pode tocar no bot\u00e3o de status no canto do card para alternar entre Feito \u2192 Pulei \u2192 N\u00e3o marcado.</div>
+    <div class="tut-text">Os botões <strong>+ e \u2212</strong> ajustam as s\u00e9ries manualmente, e o campo <strong>Carga</strong> registra o peso usado \u2014 na pr\u00f3xima vez que fizer esse treino, a \u00faltima carga j\u00e1 vem preenchida.</div>
+  </div>
+
+  <div class="tut-section">
+    <div class="tut-section-title"><span class="tut-emoji">\u2705</span> Concluir Treino</div>
+    <div class="tut-text">Ao finalizar, toque em <strong>Concluir Treino</strong>. Voc\u00ea ver\u00e1 a tela de resultado com dura\u00e7\u00e3o, hor\u00e1rios de in\u00edcio/fim e o status de cada exerc\u00edcio.</div>
+    <div class="tut-text">Se sair sem concluir e voltar em <strong>outro dia</strong>, o treino antigo \u00e9 encerrado automaticamente com dura\u00e7\u00e3o de 1 hora.</div>
+  </div>
+
+  <div class="tut-section">
+    <div class="tut-section-title"><span class="tut-emoji">\ud83d\udcc5</span> Hist\u00f3rico</div>
+    <div class="tut-text">A aba Hist\u00f3rico lista todos os treinos conclu\u00eddos. <strong>Toque em um card para expandir</strong> e ver os detalhes completos: hor\u00e1rios, dura\u00e7\u00e3o e cada exerc\u00edcio com s\u00e9ries e cargas.</div>
+    <div class="tut-text">Dentro do card expandido voc\u00ea pode <strong>\u270f\ufe0f Editar</strong> (status, s\u00e9ries e carga de cada exerc\u00edcio) ou <strong>\ud83d\uddd1 Excluir</strong> o registro.</div>
+  </div>
+
+  <div class="tut-section">
+    <div class="tut-section-title"><span class="tut-emoji">\u2699\ufe0f</span> Gerenciar</div>
+    <div class="tut-text">A engrenagem no topo abre a \u00e1rea de gerenciamento, organizada em 3 n\u00edveis:</div>
+    <div class="tut-step"><div class="tut-step-num">1</div><div class="tut-step-text"><strong>Grupos</strong> \u2014 o guarda-chuva dos seus treinos (ex: "Semana A"). Apenas um grupo fica ativo por vez; \u00e9 ele que aparece na home.</div></div>
+    <div class="tut-step"><div class="tut-step-num">2</div><div class="tut-step-text"><strong>Treinos</strong> \u2014 dentro de cada grupo (ex: "Treino A \u2014 Peito e Tr\u00edceps"). Use o + do grupo para adicionar.</div></div>
+    <div class="tut-step"><div class="tut-step-num">3</div><div class="tut-step-text"><strong>Exerc\u00edcios</strong> \u2014 dentro de cada treino, com categoria, s\u00e9ries, repeti\u00e7\u00f5es, carga e tempo de descanso. Use o + do treino para adicionar.</div></div>
+  </div>
+
+  <div class="tut-section">
+    <div class="tut-section-title"><span class="tut-emoji">\ud83d\udd10</span> Seguran\u00e7a</div>
+    <div class="tut-text">O app pede um <strong>PIN de 4 d\u00edgitos</strong> ao abrir. Seus dados ficam salvos na nuvem \u2014 pode trocar de aparelho ou limpar o navegador sem perder nada.</div>
+  </div>
+
+  <button class="btn-primary" onclick="hideTutorial()" style="margin-top:4px">Entendi! Voltar ao app</button>
+  <div style="height:20px"></div>`;
 }
 
 // ===================== GERENCIAR =====================
