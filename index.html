@@ -148,7 +148,7 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 .concluir-btn{width:100%;padding:15px;border-radius:14px;border:none;background:var(--green);color:var(--bg);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer}
 
 /* MODO FOCO */
-#foco-screen{display:none;position:fixed;inset:0;background:var(--bg);z-index:1100;flex-direction:column;padding:calc(var(--safe-top)+16px) 24px calc(24px + var(--safe-bot))}
+#foco-screen{display:none;position:fixed;inset:0;background:var(--bg);z-index:1100;flex-direction:column;padding:calc(var(--safe-top) + 16px) 24px calc(24px + var(--safe-bot))}
 .foco-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .foco-close{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer}
 .foco-close svg{width:17px;height:17px;stroke:var(--text2)}
@@ -171,7 +171,7 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 
 /* RESULTADO */
 #resultado-screen{display:none;flex-direction:column;height:100vh;background:var(--bg)}
-.resultado-header{padding:calc(var(--safe-top)+14px) 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:var(--bg)}
+.resultado-header{padding:calc(var(--safe-top) + 14px) 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:var(--bg)}
 .resultado-content{flex:1;overflow-y:auto;padding:20px 20px calc(60px + var(--safe-bot))}
 .resultado-hero{text-align:center;padding:20px 0 26px}
 .resultado-icon{font-size:46px;margin-bottom:10px}
@@ -223,7 +223,7 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 
 /* GERENCIAR */
 #gerenciar-screen,#tutorial-screen{display:none;flex-direction:column;height:100vh;background:var(--bg)}
-.ger-header{padding:calc(var(--safe-top)+12px) 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:var(--bg);position:sticky;top:0;z-index:100}
+.ger-header{padding:calc(var(--safe-top) + 12px) 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:var(--bg);position:sticky;top:0;z-index:100}
 .ger-back{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer}
 .ger-back svg{width:16px;height:16px;stroke:var(--text2)}
 .ger-title{font-family:'DM Serif Display',serif;font-size:18px;flex:1}
@@ -574,7 +574,7 @@ const dateKey=iso=>{const d=new Date(iso);return `${d.getFullYear()}-${String(d.
 let grupos=[],grupoAtivo=null,treinos=[],currentTab='home',selectedTreinoId=null;
 let sessaoAtiva=null,sessaoExs=[],sessaoTimer=null,sessaoSecs=0;
 let exAtualId=null;
-let globalTimer={secs:0,def:60,running:false,interval:null,fresh:true};
+let globalTimer={secs:0,def:60,running:false,interval:null,fresh:true,endsAt:null};
 let cargaHist={};      // exercicio_id -> [{carga,data}] desc
 let prAntes={};        // exercicio_id -> max carga histórica (antes desta sessão)
 let prsDaSessao=[];    // PRs batidos nesta sessão
@@ -722,7 +722,7 @@ async function iniciarTreino(){
   }
   sessaoAtiva={id:sessaoId,treino_id:selectedTreinoId,treino_nome:treino.nome,iniciado_em:agora};
   sessaoSecs=0;prsDaSessao=[];prAvisado={};
-  exAtualId=null;globalTimer={secs:0,def:60,running:false,interval:null,fresh:true};
+  exAtualId=null;globalTimer={secs:0,def:60,running:false,interval:null,fresh:true,endsAt:null};
   soundEnabled=true;
   abrirTela();
 }
@@ -739,7 +739,7 @@ async function continuarSessao(s){
   sessaoSecs=Math.floor((Date.now()-new Date(s.iniciado_em).getTime())/1000);
   sessaoAtiva={id:s.id,treino_id:s.treino_id,treino_nome:treino?.nome||'Treino',iniciado_em:s.iniciado_em};
   prsDaSessao=[];prAvisado={};
-  exAtualId=null;globalTimer={secs:0,def:60,running:false,interval:null,fresh:true};
+  exAtualId=null;globalTimer={secs:0,def:60,running:false,interval:null,fresh:true,endsAt:null};
   soundEnabled=true;
   abrirTela();
 }
@@ -773,7 +773,7 @@ function abrirTela(){
     globalTimer.fresh=true;
   }
   renderSessao();
-  sessaoTimer=setInterval(()=>{sessaoSecs++;const el=document.getElementById('sessao-timer-top');if(el)el.textContent=formatDur(sessaoSecs);},1000);
+  sessaoTimer=setInterval(()=>{sessaoSecs=Math.floor((Date.now()-new Date(sessaoAtiva.iniciado_em).getTime())/1000);const el=document.getElementById('sessao-timer-top');if(el)el.textContent=formatDur(sessaoSecs);},1000);
 }
 
 function getAtual(){return sessaoExs.find(se=>se.id===exAtualId)||null;}
@@ -989,6 +989,9 @@ function toggleGlobalTimer(){
   if(globalTimer.running){
     clearInterval(globalTimer.interval);
     globalTimer.running=false;
+    // congela o tempo restante
+    globalTimer.secs=Math.max(0,Math.ceil((globalTimer.endsAt-Date.now())/1000));
+    globalTimer.endsAt=null;
     releaseWakeLock();
     updateTimerUI();
     return;
@@ -999,22 +1002,37 @@ function toggleGlobalTimer(){
   }
   if(Notification&&Notification.permission==='default'){try{Notification.requestPermission();}catch(e){}}
   globalTimer.running=true;
+  globalTimer.endsAt=Date.now()+globalTimer.secs*1000;
   requestWakeLock();
   updateTimerUI();
-  globalTimer.interval=setInterval(()=>{
-    globalTimer.secs--;
-    if(globalTimer.secs<=0){
-      clearInterval(globalTimer.interval);
-      globalTimer.running=false;
-      playBeep();
-      notifyRestDone();
-      showRestSplash();
-      globalTimer.secs=globalTimer.def;
-      globalTimer.fresh=true;
-    }
-    updateTimerUI();
-  },1000);
+  globalTimer.interval=setInterval(timerTick,250);
 }
+
+function timerTick(){
+  if(!globalTimer.running)return;
+  const restante=Math.ceil((globalTimer.endsAt-Date.now())/1000);
+  if(restante<=0){
+    clearInterval(globalTimer.interval);
+    globalTimer.running=false;
+    globalTimer.endsAt=null;
+    playBeep();
+    notifyRestDone();
+    showRestSplash();
+    globalTimer.secs=globalTimer.def;
+    globalTimer.fresh=true;
+  }else{
+    globalTimer.secs=restante;
+  }
+  updateTimerUI();
+}
+
+// Ao voltar pro app, recalcula imediatamente (iOS congela JS em segundo plano)
+document.addEventListener('visibilitychange',()=>{
+  if(!document.hidden){
+    if(globalTimer.running)timerTick();
+    if(sessaoAtiva){sessaoSecs=Math.floor((Date.now()-new Date(sessaoAtiva.iniciado_em).getTime())/1000);const el=document.getElementById('sessao-timer-top');if(el)el.textContent=formatDur(sessaoSecs);}
+  }
+});
 
 function incrementSerieAtual(){
   const se=getAtual();
@@ -1827,6 +1845,33 @@ document.addEventListener('touchend',e=>{
   if(now-lastTap<300)e.preventDefault();
   lastTap=now;
 },{passive:false});
+
+// ===================== VOLTAR POR GESTO (swipe da borda esquerda) =====================
+let edgeSwipe=null;
+document.addEventListener('touchstart',e=>{
+  if(e.touches.length===1&&e.touches[0].clientX<=28)edgeSwipe={x:e.touches[0].clientX,y:e.touches[0].clientY,t:Date.now()};
+  else edgeSwipe=null;
+},{passive:true});
+document.addEventListener('touchend',e=>{
+  if(!edgeSwipe)return;
+  const dx=e.changedTouches[0].clientX-edgeSwipe.x;
+  const dy=Math.abs(e.changedTouches[0].clientY-edgeSwipe.y);
+  const dt=Date.now()-edgeSwipe.t;
+  edgeSwipe=null;
+  if(dx>70&&dy<70&&dt<700)goBack();
+},{passive:true});
+
+function isVisible(id){const el=document.getElementById(id);return el&&el.style.display&&el.style.display!=='none';}
+function goBack(){
+  // prioridade: camadas mais altas primeiro
+  const splash=document.getElementById('rest-splash');
+  if(splash){splash.remove();return;}
+  if(document.getElementById('modal-overlay').classList.contains('open')){_closeModal();return;}
+  if(focoAberto){fecharFoco();return;}
+  if(isVisible('tutorial-screen')||isVisible('gerenciar-screen')){hideOverlayScreen();return;}
+  if(isVisible('resultado-screen')){voltarParaHome();return;}
+  if(isVisible('sessao-screen')){sairSessao();return;}
+}
 </script>
 </body>
 </html>
