@@ -85,7 +85,15 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 .sessao-content{flex:1;overflow-y:auto;padding:12px 20px calc(100px + var(--safe-bot));-webkit-overflow-scrolling:touch}
 
 /* EXERCÍCIO CARD */
-.exercicio-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:12px;transition:border-color .2s}
+.ex-group-title{font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:.6px;font-weight:600;margin:14px 0 8px;padding-left:2px}
+.ex-group-title:first-child{margin-top:2px}
+.exercicio-swipe-wrap{position:relative;margin-bottom:12px;border-radius:14px;overflow:hidden}
+.swipe-bg{position:absolute;inset:0;display:flex;align-items:center;font-size:14px;font-weight:600;opacity:0;transition:opacity .15s;border-radius:14px}
+.swipe-bg-left{background:#fb923c22;color:var(--orange);justify-content:flex-end;padding-right:24px}
+.swipe-bg-right{background:#4ade8022;color:var(--green);justify-content:flex-start;padding-left:24px}
+.exercicio-swipe-wrap.show-left .swipe-bg-left{opacity:1}
+.exercicio-swipe-wrap.show-right .swipe-bg-right{opacity:1}
+.exercicio-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:0;transition:border-color .2s;position:relative;z-index:1}
 .exercicio-card.feito{border-color:#4ade8044}
 .exercicio-card.pulei{border-color:#fb923c33;opacity:.7}
 .ex-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
@@ -385,7 +393,7 @@ const uid=()=>Math.random().toString(36).slice(2,9);
 const todayStr=()=>new Date().toISOString().split('T')[0];
 let grupos=[],grupoAtivo=null,treinos=[],currentTab='home',selectedTreinoId=null;
 let sessaoAtiva=null,sessaoExs=[],sessaoTimer=null,sessaoSecs=0;
-let exAtualIdx=null;
+let exAtualId=null;
 let globalTimer={secs:0,running:false,interval:null,fresh:true};
 
 function showApp(){const a=document.getElementById('app');a.style.display='flex';a.style.flexDirection='column';}
@@ -539,7 +547,7 @@ async function iniciarTreino(){
 
   sessaoAtiva={id:sessaoId,treino_id:selectedTreinoId,treino_nome:treino.nome,iniciado_em:agora};
   sessaoSecs=0;
-  exAtualIdx=null;globalTimer={secs:0,running:false,interval:null,fresh:true};
+  exAtualId=null;globalTimer={secs:0,running:false,interval:null,fresh:true};
   soundEnabled=true;
   abrirTela();
 }
@@ -557,7 +565,7 @@ async function continuarSessao(s){
   const inicio=new Date(s.iniciado_em);
   sessaoSecs=Math.floor((Date.now()-inicio.getTime())/1000);
   sessaoAtiva={id:s.id,treino_id:s.treino_id,treino_nome:treino?.nome||'Treino',iniciado_em:s.iniciado_em};
-  exAtualIdx=null;globalTimer={secs:0,running:false,interval:null,fresh:true};
+  exAtualId=null;globalTimer={secs:0,running:false,interval:null,fresh:true};
   soundEnabled=true;
   abrirTela();
 }
@@ -568,86 +576,193 @@ function abrirTela(){
   document.getElementById('sessao-timer-top').textContent=formatDur(sessaoSecs);
   hideAll();
   const ss=document.getElementById('sessao-screen');ss.style.display='flex';ss.style.flexDirection='column';
-  // Seleciona automaticamente o primeiro exercício pendente
-  const firstPending=sessaoExs.findIndex(se=>se.status==='pendente');
-  exAtualIdx=firstPending>=0?firstPending:(sessaoExs.length?0:null);
-  if(exAtualIdx!==null){
-    globalTimer.secs=sessaoExs[exAtualIdx]._ex.descanso_segundos||60;
+  // Seleciona automaticamente o primeiro exercicio pendente
+  const firstPending=sessaoExs.find(se=>se.status==='pendente');
+  exAtualId=firstPending?firstPending.id:(sessaoExs.length?sessaoExs[0].id:null);
+  if(exAtualId!==null){
+    const se=getAtual();
+    globalTimer.secs=se._ex.descanso_segundos||60;
     globalTimer.fresh=true;
   }
   renderSessao();
   sessaoTimer=setInterval(()=>{sessaoSecs++;document.getElementById('sessao-timer-top').textContent=formatDur(sessaoSecs);},1000);
 }
 
+function getAtual(){
+  return sessaoExs.find(se=>se.id===exAtualId)||null;
+}
+
+function orderedSessaoExs(){
+  // Pendentes agrupados por categoria (na ordem de CATEGORIAS), concluidos (feito/pulei) ao final
+  const pendentes=sessaoExs.filter(se=>se.status==='pendente');
+  const concluidos=sessaoExs.filter(se=>se.status!=='pendente');
+  const groups=[];
+  CATEGORIAS.forEach(cat=>{
+    const items=pendentes.filter(se=>(se._ex.categoria||'')===cat);
+    if(items.length)groups.push({titulo:cat,items});
+  });
+  // Categorias fora da lista padrao
+  const outras=pendentes.filter(se=>!CATEGORIAS.includes(se._ex.categoria||''));
+  if(outras.length)groups.push({titulo:'Outros',items:outras});
+  return {groups,concluidos};
+}
+
 function renderSessao(){
-  document.getElementById('sessao-content').innerHTML=sessaoExs.map((se,i)=>buildExCard(se,i)).join('');
+  const {groups,concluidos}=orderedSessaoExs();
+  let html='';
+  groups.forEach(g=>{
+    html+=`<div class="ex-group-title">${g.titulo}</div>`;
+    html+=g.items.map(se=>buildExCard(se)).join('');
+  });
+  if(concluidos.length){
+    html+=`<div class="ex-group-title" style="margin-top:18px">Concluidos</div>`;
+    html+=concluidos.map(se=>buildExCard(se)).join('');
+  }
+  if(!html)html='<div class="empty"><div class="empty-text">Nenhum exercicio.</div></div>';
+  document.getElementById('sessao-content').innerHTML=html;
+  setupSwipeCards();
   updateFooterTimer();
 }
 
-function buildExCard(se,i){
+function buildExCard(se){
   const ex=se._ex;
-  const labels={pendente:'Marcar',feito:'✓ Feito',pulei:'⏭ Pulei'};
-  const isAtual=exAtualIdx===i;
-  return `<div class="exercicio-card ${se.status}${isAtual?' atual':''}" id="excard-${se.id}" onclick="setExAtual(${i})">
-    <div class="ex-top">
-      <div><div class="ex-name">${se.nome_snapshot}</div><div class="ex-cat">${ex.categoria||''}${isAtual?' · <span style="color:var(--accent)">atual</span>':''}</div></div>
-      <button class="ex-status-btn ${se.status}" onclick="event.stopPropagation();cycleStatus(${i})">${labels[se.status]}</button>
-    </div>
-    <div class="ex-details">
-      ${ex.series?`<div class="ex-detail"><div class="ex-detail-label">Séries</div><div class="ex-detail-val">${ex.series}</div></div>`:''}
-      ${ex.repeticoes?`<div class="ex-detail"><div class="ex-detail-label">Reps</div><div class="ex-detail-val">${ex.repeticoes}</div></div>`:''}
-      <div class="ex-detail"><div class="ex-detail-label">Descanso</div><div class="ex-detail-val">${ex.descanso_segundos||60}s</div></div>
-    </div>
-    ${ex.series?`<div class="ex-series-row">
-      <div class="ex-series-label">Séries feitas</div>
-      <div class="series-counter">
-        <button class="series-btn" onclick="event.stopPropagation();changeSeries(${i},-1)">−</button>
-        <div class="series-count" id="sc-${se.id}">${se.series_feitas} / ${ex.series}</div>
-        <button class="series-btn" onclick="event.stopPropagation();changeSeries(${i},1)">+</button>
+  const labels={pendente:'Marcar',feito:'\u2713 Feito',pulei:'\u23ed Pulei'};
+  const isAtual=exAtualId===se.id;
+  return `<div class="exercicio-swipe-wrap" id="exwrap-${se.id}">
+    <div class="swipe-bg swipe-bg-left">\u23ed Pular</div>
+    <div class="swipe-bg swipe-bg-right">\u2713 Feito</div>
+    <div class="exercicio-card ${se.status}${isAtual?' atual':''}" id="excard-${se.id}" data-id="${se.id}">
+      <div class="ex-top">
+        <div><div class="ex-name">${se.nome_snapshot}</div><div class="ex-cat">${ex.categoria||''}${isAtual?' \u00b7 <span style="color:var(--accent)">atual</span>':''}</div></div>
+        <button class="ex-status-btn ${se.status}" onclick="event.stopPropagation();cycleStatusById('${se.id}')">${labels[se.status]}</button>
       </div>
-    </div>`:''}
-    <div class="ex-carga-row" onclick="event.stopPropagation()">
-      <span style="font-size:12px;color:var(--text2);white-space:nowrap">Carga (kg)</span>
-      <input class="form-input" type="number" inputmode="decimal" placeholder="opcional" value="${se.carga_usada||''}" oninput="updateCarga(${i},this.value)" style="padding:8px 12px;font-size:14px"/>
+      <div class="ex-details">
+        ${ex.series?`<div class="ex-detail"><div class="ex-detail-label">Series</div><div class="ex-detail-val">${ex.series}</div></div>`:''}
+        ${ex.repeticoes?`<div class="ex-detail"><div class="ex-detail-label">Reps</div><div class="ex-detail-val">${ex.repeticoes}</div></div>`:''}
+        <div class="ex-detail"><div class="ex-detail-label">Descanso</div><div class="ex-detail-val">${ex.descanso_segundos||60}s</div></div>
+      </div>
+      ${ex.series?`<div class="ex-series-row">
+        <div class="ex-series-label">Series feitas</div>
+        <div class="series-counter">
+          <button class="series-btn" onclick="event.stopPropagation();changeSeriesById('${se.id}',-1)">\u2212</button>
+          <div class="series-count" id="sc-${se.id}">${se.series_feitas} / ${ex.series}</div>
+          <button class="series-btn" onclick="event.stopPropagation();changeSeriesById('${se.id}',1)">+</button>
+        </div>
+      </div>`:''}
+      <div class="ex-carga-row" onclick="event.stopPropagation()">
+        <span style="font-size:12px;color:var(--text2);white-space:nowrap">Carga (kg)</span>
+        <input class="form-input" type="number" inputmode="decimal" placeholder="opcional" value="${se.carga_usada||''}" oninput="updateCargaById('${se.id}',this.value)" style="padding:8px 12px;font-size:14px"/>
+      </div>
     </div>
   </div>`;
 }
 
-function setExAtual(i){
-  if(globalTimer.running){ showToast('Pause o timer antes de trocar de exercício.','error'); return; }
-  exAtualIdx=i;
-  const se=sessaoExs[i];
+// ===== SWIPE NOS CARDS =====
+function setupSwipeCards(){
+  document.querySelectorAll('.exercicio-card').forEach(card=>{
+    let startX=0,startY=0,dx=0,locked=false,moved=false;
+    card.addEventListener('touchstart',e=>{
+      if(e.target.closest('button,input'))return;
+      startX=e.touches[0].clientX;startY=e.touches[0].clientY;
+      dx=0;locked=false;moved=false;
+      card.style.transition='none';
+    },{passive:true});
+    card.addEventListener('touchmove',e=>{
+      if(e.target.closest('button,input'))return;
+      dx=e.touches[0].clientX-startX;
+      const dy=e.touches[0].clientY-startY;
+      if(!locked){
+        if(Math.abs(dx)>12&&Math.abs(dx)>Math.abs(dy))locked='h';
+        else if(Math.abs(dy)>12)locked='v';
+      }
+      if(locked==='h'){
+        e.preventDefault();
+        moved=true;
+        card.style.transform=`translateX(${dx}px)`;
+        const wrap=card.parentElement;
+        wrap.classList.toggle('show-right',dx>30);
+        wrap.classList.toggle('show-left',dx<-30);
+      }
+    },{passive:false});
+    card.addEventListener('touchend',()=>{
+      card.style.transition='transform .25s ease';
+      const wrap=card.parentElement;
+      if(locked==='h'&&Math.abs(dx)>80){
+        const id=card.dataset.id;
+        const dir=dx>0?'feito':'pulei';
+        card.style.transform=`translateX(${dx>0?'110%':'-110%'})`;
+        setTimeout(()=>setStatusById(id,dir),200);
+      }else{
+        card.style.transform='translateX(0)';
+        wrap.classList.remove('show-left','show-right');
+        // Tap: define atual (so se nao moveu)
+        if(!moved&&locked!=='v'){
+          const id=card.dataset.id;
+          setExAtualById(id);
+        }
+      }
+    });
+  });
+}
+
+function setExAtualById(id){
+  if(globalTimer.running){ showToast('Pause o timer antes de trocar de exercicio.','error'); return; }
+  exAtualId=id;
+  const se=getAtual();
+  if(!se)return;
   globalTimer.secs=se._ex.descanso_segundos||60;
   globalTimer.fresh=true;
-  document.querySelectorAll('.exercicio-card').forEach((c,j)=>{c.classList.toggle('atual',j===i);});
   renderSessao();
+}
+
+function setStatusById(id,status){
+  const se=sessaoExs.find(s=>s.id===id);
+  if(!se)return;
+  se.status=status;
+  api.updateSessaoEx(se.id,{status}).catch(()=>{});
+  if(status==='feito')showToast(`${se.nome_snapshot} concluido! \ud83d\udcaa`,'success');
+  else if(status==='pulei')showToast(`${se.nome_snapshot} pulado.`,'');
+  // Se era o atual e foi concluido, seleciona proximo pendente
+  if(exAtualId===id&&status!=='pendente'){
+    const next=sessaoExs.find(s=>s.status==='pendente');
+    exAtualId=next?next.id:null;
+    if(next){globalTimer.secs=next._ex.descanso_segundos||60;globalTimer.fresh=true;}
+  }
+  renderSessao();
+}
+
+function cycleStatusById(id){
+  const se=sessaoExs.find(s=>s.id===id);
+  if(!se)return;
+  const cycle={pendente:'feito',feito:'pulei',pulei:'pendente'};
+  setStatusById(id,cycle[se.status]);
 }
 
 function updateFooterTimer(){
   const nameEl=document.getElementById('footer-ex-name');
   const dispEl=document.getElementById('footer-timer-display');
   const btnEl=document.getElementById('footer-timer-btn');
-  if(exAtualIdx===null||!sessaoExs[exAtualIdx]){
-    nameEl.textContent='Selecione um exercício';
+  const se=getAtual();
+  if(!se){
+    nameEl.textContent='Selecione um exercicio';
     dispEl.textContent='--:--';
     btnEl.disabled=true;
+    btnEl.classList.remove('running');
     return;
   }
-  const se=sessaoExs[exAtualIdx];
   nameEl.textContent=se.nome_snapshot;
   dispEl.textContent=formatDur(globalTimer.secs);
   btnEl.disabled=false;
-  btnEl.textContent=globalTimer.running?'⏸':'▶';
+  btnEl.textContent=globalTimer.running?'\u23f8':'\u25b6';
   btnEl.classList.toggle('running',globalTimer.running);
 }
 
 function toggleGlobalTimer(){
-  if(exAtualIdx===null) return;
-  const se=sessaoExs[exAtualIdx];
+  const se=getAtual();
+  if(!se) return;
   const def=se._ex.descanso_segundos||60;
 
   if(globalTimer.running){
-    // Pausa
     clearInterval(globalTimer.interval);
     globalTimer.running=false;
     releaseWakeLock();
@@ -655,7 +770,6 @@ function toggleGlobalTimer(){
     return;
   }
 
-  // Iniciando: se é um start "fresh" (timer cheio), conta uma série
   if(globalTimer.fresh){
     incrementSerieAtual();
     globalTimer.fresh=false;
@@ -673,7 +787,6 @@ function toggleGlobalTimer(){
       globalTimer.running=false;
       playBeep();
       showRestSplash();
-      // Reset automático
       globalTimer.secs=def;
       globalTimer.fresh=true;
       updateFooterTimer();
@@ -682,56 +795,38 @@ function toggleGlobalTimer(){
 }
 
 function incrementSerieAtual(){
-  const se=sessaoExs[exAtualIdx];
-  if(!se._ex.series) return;
+  const se=getAtual();
+  if(!se||!se._ex.series) return;
   const max=se._ex.series;
   if(se.series_feitas<max){
     se.series_feitas++;
     api.updateSessaoEx(se.id,{series_feitas:se.series_feitas}).catch(()=>{});
     const el=document.getElementById(`sc-${se.id}`);
     if(el)el.textContent=`${se.series_feitas} / ${max}`;
-    // Auto-marcar como feito ao completar séries
     if(se.series_feitas>=max&&se.status!=='feito'){
-      se.status='feito';
-      api.updateSessaoEx(se.id,{status:'feito'}).catch(()=>{});
-      const card=document.getElementById(`excard-${se.id}`);
-      if(card){
-        card.classList.remove('pendente','pulei');
-        card.classList.add('feito');
-        const btn=card.querySelector('.ex-status-btn');
-        btn.textContent='✓ Feito';
-        btn.className='ex-status-btn feito';
-      }
-      showToast(`${se.nome_snapshot} concluído! 💪`,'success');
+      setStatusById(se.id,'feito');
     }
   }
 }
 
-function cycleStatus(i){
-  const se=sessaoExs[i];
-  const cycle={pendente:'feito',feito:'pulei',pulei:'pendente'};
-  se.status=cycle[se.status];
-  api.updateSessaoEx(se.id,{status:se.status}).catch(()=>{});
-  const card=document.getElementById(`excard-${se.id}`);
-  if(card){
-    card.classList.remove('pendente','feito','pulei');
-    card.classList.add(se.status);
-    const btn=card.querySelector('.ex-status-btn');
-    btn.textContent={pendente:'Marcar',feito:'✓ Feito',pulei:'⏭ Pulei'}[se.status];
-    btn.className=`ex-status-btn ${se.status}`;
-  }
-}
-
-function changeSeries(i,delta){
-  const se=sessaoExs[i];const max=se._ex.series||99;
+function changeSeriesById(id,delta){
+  const se=sessaoExs.find(s=>s.id===id);
+  if(!se)return;
+  const max=se._ex.series||99;
   se.series_feitas=Math.max(0,Math.min(max,se.series_feitas+delta));
   api.updateSessaoEx(se.id,{series_feitas:se.series_feitas}).catch(()=>{});
   const el=document.getElementById(`sc-${se.id}`);
   if(el)el.textContent=`${se.series_feitas} / ${se._ex.series||'?'}`;
+  // Auto-feito ao completar via botao +
+  if(se._ex.series&&se.series_feitas>=se._ex.series&&se.status!=='feito'){
+    setStatusById(id,'feito');
+  }
 }
 
-function updateCarga(i,val){
-  const se=sessaoExs[i];se.carga_usada=val?parseFloat(val):null;
+function updateCargaById(id,val){
+  const se=sessaoExs.find(s=>s.id===id);
+  if(!se)return;
+  se.carga_usada=val?parseFloat(val):null;
   api.updateSessaoEx(se.id,{carga_usada:se.carga_usada}).catch(()=>{});
 }
 
@@ -880,7 +975,7 @@ function mostrarResultado(fim){
     <button class="voltar-btn" onclick="voltarParaHome()">Voltar ao Início</button>`;
   hideAll();
   const rs=document.getElementById('resultado-screen');rs.style.display='flex';rs.style.flexDirection='column';
-  sessaoAtiva=null;sessaoExs=[];exAtualIdx=null;
+  sessaoAtiva=null;sessaoExs=[];exAtualId=null;
 }
 
 async function voltarParaHome(){
