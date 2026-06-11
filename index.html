@@ -20,7 +20,7 @@
   --accent:#a78bfa;--accent2:#7c3aed;--text:#f0f0f0;--text2:#8a8a92;--text3:#46464d;
   --green:#4ade80;--red:#f87171;--orange:#fb923c;--yellow:#facc15;
   --radius:16px;
-  --safe-top:env(safe-area-inset-top,0px);--safe-bot:env(safe-area-inset-bottom,0px);
+  --safe-top:max(env(safe-area-inset-top,0px),42px);--safe-bot:max(env(safe-area-inset-bottom,0px),10px);
 }
 html[data-theme="light"]{
   --bg:#f4f3f8;--surface:#ffffff;--surface2:#eceaf3;--border:#dcd9e6;
@@ -60,7 +60,7 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 .header-actions{display:flex;gap:8px}
 .icon-btn{width:36px;height:36px;border-radius:10px;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer}
 .icon-btn svg{width:16px;height:16px;stroke:var(--text2)}
-.tabs{display:flex;gap:4px;padding:10px 20px 0;background:var(--bg);position:sticky;top:57px;z-index:99}
+.tabs{display:flex;gap:4px;padding:10px 20px 0;background:var(--bg);position:sticky;top:calc(var(--safe-top) + 62px);z-index:99}
 .tab{flex:1;padding:9px 0;border-radius:100px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;cursor:pointer;background:var(--surface);color:var(--text2);transition:all .2s}
 .tab.active{background:var(--accent);color:var(--bg)}
 .content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:16px 20px calc(60px + var(--safe-bot))}
