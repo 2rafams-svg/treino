@@ -111,8 +111,17 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 .timer-btn.running{background:#f8717122;color:var(--red);border-color:#f8717155}
 .timer-reset{padding:6px 10px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--text3);font-family:'DM Sans',sans-serif;font-size:12px;cursor:pointer}
 
-.sessao-footer{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;padding:12px 20px calc(12px + var(--safe-bot));background:var(--bg);border-top:1px solid var(--border);z-index:100}
+.sessao-footer{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;padding:10px 20px calc(12px + var(--safe-bot));background:var(--bg);border-top:1px solid var(--border);z-index:100}
+.footer-timer-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.footer-timer-info{flex:1;min-width:0}
+.footer-timer-exname{font-size:11px;color:var(--text3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px}
+.footer-timer-display{font-size:24px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--accent);line-height:1}
+.footer-timer-btn{width:52px;height:52px;border-radius:50%;border:1px solid #a78bfa55;background:#a78bfa18;color:var(--accent);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.footer-timer-btn:disabled{opacity:.3;cursor:not-allowed}
+.footer-timer-btn.running{background:#f8717122;color:var(--red);border-color:#f8717155}
 .concluir-btn{width:100%;padding:15px;border-radius:14px;border:none;background:var(--green);color:#0a0a0a;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer}
+.exercicio-card.atual{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.exercicio-card{cursor:pointer}
 
 /* RESULTADO */
 #resultado-screen{display:none;flex-direction:column;height:100vh;background:var(--bg)}
@@ -282,6 +291,13 @@ select.form-input{cursor:pointer}
   </div>
   <div class="sessao-content" id="sessao-content"></div>
   <div class="sessao-footer">
+    <div class="footer-timer-row">
+      <div class="footer-timer-info">
+        <div class="footer-timer-exname" id="footer-ex-name">Selecione um exercício</div>
+        <div class="footer-timer-display" id="footer-timer-display">--:--</div>
+      </div>
+      <button class="footer-timer-btn" id="footer-timer-btn" onclick="toggleGlobalTimer()" disabled>▶</button>
+    </div>
     <button class="concluir-btn" onclick="concluirTreino()">Concluir Treino</button>
   </div>
 </div>
@@ -353,6 +369,7 @@ const api={
   getSessoesAbertasHoje:()=>{const d=new Date();d.setHours(0,0,0,0);return sbFetch(`treinos_sessoes?finalizado_em=is.null&iniciado_em=gte.${d.toISOString()}&order=iniciado_em.desc`);},
   getSessoesAbertas:()=>sbFetch('treinos_sessoes?finalizado_em=is.null&order=iniciado_em.desc'),
   getUltimaSessaoTreino:(tid)=>sbFetch(`treinos_sessoes?treino_id=eq.${tid}&finalizado_em=not.is.null&order=iniciado_em.desc&limit=1`),
+  getSessoesFinalizadasTreino:(tid)=>sbFetch(`treinos_sessoes?treino_id=eq.${tid}&finalizado_em=not.is.null&select=id`),
   insertSessao:(d)=>sbFetch('treinos_sessoes',{method:'POST',body:JSON.stringify(d)}),
   updateSessao:(id,d)=>sbFetch(`treinos_sessoes?id=eq.${id}`,{method:'PATCH',body:JSON.stringify(d)}),
   deleteSessao:(id)=>sbFetch(`treinos_sessoes?id=eq.${id}`,{method:'DELETE',headers:{Prefer:'return=minimal'}}),
@@ -367,7 +384,9 @@ const api={
 const uid=()=>Math.random().toString(36).slice(2,9);
 const todayStr=()=>new Date().toISOString().split('T')[0];
 let grupos=[],grupoAtivo=null,treinos=[],currentTab='home',selectedTreinoId=null;
-let sessaoAtiva=null,sessaoExs=[],sessaoTimer=null,sessaoSecs=0,exTimers={};
+let sessaoAtiva=null,sessaoExs=[],sessaoTimer=null,sessaoSecs=0;
+let exAtualIdx=null;
+let globalTimer={secs:0,running:false,interval:null,fresh:true};
 
 function showApp(){const a=document.getElementById('app');a.style.display='flex';a.style.flexDirection='column';}
 function hideAll(){['app','sessao-screen','resultado-screen','gerenciar-screen'].forEach(id=>{const el=document.getElementById(id);el.style.display='none';});}
@@ -384,6 +403,8 @@ async function init(){
     for(const t of treinos){
       const s=await api.getUltimaSessaoTreino(t.id);
       t.ultima_vez=s&&s.length?s[0].iniciado_em:null;
+      const fs=await api.getSessoesFinalizadasTreino(t.id);
+      t.vezes_feito=fs?fs.length:0;
     }
 
     // Auto-select sugerido
@@ -463,7 +484,7 @@ async function renderHome(el){
         <div class="treino-card-name">${t.nome}</div>
         <div class="treino-card-badge${isSugerido?' sugerido':''}">${isSugerido?'✦ Sugerido':'–'}</div>
       </div>
-      <div class="treino-card-meta">Último: <strong>${ulv}</strong></div>
+      <div class="treino-card-meta">Último: <strong>${ulv}</strong> · Feito <strong>${t.vezes_feito||0}x</strong></div>
     </div>`;
   });
 
@@ -518,7 +539,7 @@ async function iniciarTreino(){
 
   sessaoAtiva={id:sessaoId,treino_id:selectedTreinoId,treino_nome:treino.nome,iniciado_em:agora};
   sessaoSecs=0;
-  exTimers={};
+  exAtualIdx=null;globalTimer={secs:0,running:false,interval:null,fresh:true};
   soundEnabled=true;
   abrirTela();
 }
@@ -536,7 +557,7 @@ async function continuarSessao(s){
   const inicio=new Date(s.iniciado_em);
   sessaoSecs=Math.floor((Date.now()-inicio.getTime())/1000);
   sessaoAtiva={id:s.id,treino_id:s.treino_id,treino_nome:treino?.nome||'Treino',iniciado_em:s.iniciado_em};
-  exTimers={};
+  exAtualIdx=null;globalTimer={secs:0,running:false,interval:null,fresh:true};
   soundEnabled=true;
   abrirTela();
 }
@@ -547,22 +568,30 @@ function abrirTela(){
   document.getElementById('sessao-timer-top').textContent=formatDur(sessaoSecs);
   hideAll();
   const ss=document.getElementById('sessao-screen');ss.style.display='flex';ss.style.flexDirection='column';
+  // Seleciona automaticamente o primeiro exercício pendente
+  const firstPending=sessaoExs.findIndex(se=>se.status==='pendente');
+  exAtualIdx=firstPending>=0?firstPending:(sessaoExs.length?0:null);
+  if(exAtualIdx!==null){
+    globalTimer.secs=sessaoExs[exAtualIdx]._ex.descanso_segundos||60;
+    globalTimer.fresh=true;
+  }
   renderSessao();
   sessaoTimer=setInterval(()=>{sessaoSecs++;document.getElementById('sessao-timer-top').textContent=formatDur(sessaoSecs);},1000);
 }
 
 function renderSessao(){
   document.getElementById('sessao-content').innerHTML=sessaoExs.map((se,i)=>buildExCard(se,i)).join('');
+  updateFooterTimer();
 }
 
 function buildExCard(se,i){
   const ex=se._ex;
   const labels={pendente:'Marcar',feito:'✓ Feito',pulei:'⏭ Pulei'};
-  const t=exTimers[se.id]||{secs:ex.descanso_segundos||60,running:false};
-  return `<div class="exercicio-card ${se.status}" id="excard-${se.id}">
+  const isAtual=exAtualIdx===i;
+  return `<div class="exercicio-card ${se.status}${isAtual?' atual':''}" id="excard-${se.id}" onclick="setExAtual(${i})">
     <div class="ex-top">
-      <div><div class="ex-name">${se.nome_snapshot}</div><div class="ex-cat">${ex.categoria||''}</div></div>
-      <button class="ex-status-btn ${se.status}" onclick="cycleStatus(${i})">${labels[se.status]}</button>
+      <div><div class="ex-name">${se.nome_snapshot}</div><div class="ex-cat">${ex.categoria||''}${isAtual?' · <span style="color:var(--accent)">atual</span>':''}</div></div>
+      <button class="ex-status-btn ${se.status}" onclick="event.stopPropagation();cycleStatus(${i})">${labels[se.status]}</button>
     </div>
     <div class="ex-details">
       ${ex.series?`<div class="ex-detail"><div class="ex-detail-label">Séries</div><div class="ex-detail-val">${ex.series}</div></div>`:''}
@@ -572,21 +601,110 @@ function buildExCard(se,i){
     ${ex.series?`<div class="ex-series-row">
       <div class="ex-series-label">Séries feitas</div>
       <div class="series-counter">
-        <button class="series-btn" onclick="changeSeries(${i},-1)">−</button>
+        <button class="series-btn" onclick="event.stopPropagation();changeSeries(${i},-1)">−</button>
         <div class="series-count" id="sc-${se.id}">${se.series_feitas} / ${ex.series}</div>
-        <button class="series-btn" onclick="changeSeries(${i},1)">+</button>
+        <button class="series-btn" onclick="event.stopPropagation();changeSeries(${i},1)">+</button>
       </div>
     </div>`:''}
-    <div class="ex-carga-row">
+    <div class="ex-carga-row" onclick="event.stopPropagation()">
       <span style="font-size:12px;color:var(--text2);white-space:nowrap">Carga (kg)</span>
       <input class="form-input" type="number" inputmode="decimal" placeholder="opcional" value="${se.carga_usada||''}" oninput="updateCarga(${i},this.value)" style="padding:8px 12px;font-size:14px"/>
     </div>
-    <div class="timer-row">
-      <div class="timer-display" id="td-${se.id}">${formatDur(t.secs)}</div>
-      <button class="timer-btn ${t.running?'running':''}" id="tb-${se.id}" onclick="toggleTimer('${se.id}',${ex.descanso_segundos||60})">${t.running?'Pausar':'▶ Timer'}</button>
-      <button class="timer-reset" onclick="resetTimer('${se.id}',${ex.descanso_segundos||60})">Reset</button>
-    </div>
   </div>`;
+}
+
+function setExAtual(i){
+  if(globalTimer.running){ showToast('Pause o timer antes de trocar de exercício.','error'); return; }
+  exAtualIdx=i;
+  const se=sessaoExs[i];
+  globalTimer.secs=se._ex.descanso_segundos||60;
+  globalTimer.fresh=true;
+  document.querySelectorAll('.exercicio-card').forEach((c,j)=>{c.classList.toggle('atual',j===i);});
+  renderSessao();
+}
+
+function updateFooterTimer(){
+  const nameEl=document.getElementById('footer-ex-name');
+  const dispEl=document.getElementById('footer-timer-display');
+  const btnEl=document.getElementById('footer-timer-btn');
+  if(exAtualIdx===null||!sessaoExs[exAtualIdx]){
+    nameEl.textContent='Selecione um exercício';
+    dispEl.textContent='--:--';
+    btnEl.disabled=true;
+    return;
+  }
+  const se=sessaoExs[exAtualIdx];
+  nameEl.textContent=se.nome_snapshot;
+  dispEl.textContent=formatDur(globalTimer.secs);
+  btnEl.disabled=false;
+  btnEl.textContent=globalTimer.running?'⏸':'▶';
+  btnEl.classList.toggle('running',globalTimer.running);
+}
+
+function toggleGlobalTimer(){
+  if(exAtualIdx===null) return;
+  const se=sessaoExs[exAtualIdx];
+  const def=se._ex.descanso_segundos||60;
+
+  if(globalTimer.running){
+    // Pausa
+    clearInterval(globalTimer.interval);
+    globalTimer.running=false;
+    releaseWakeLock();
+    updateFooterTimer();
+    return;
+  }
+
+  // Iniciando: se é um start "fresh" (timer cheio), conta uma série
+  if(globalTimer.fresh){
+    incrementSerieAtual();
+    globalTimer.fresh=false;
+  }
+
+  globalTimer.running=true;
+  requestWakeLock();
+  updateFooterTimer();
+  globalTimer.interval=setInterval(()=>{
+    globalTimer.secs--;
+    const dispEl=document.getElementById('footer-timer-display');
+    if(dispEl)dispEl.textContent=formatDur(globalTimer.secs);
+    if(globalTimer.secs<=0){
+      clearInterval(globalTimer.interval);
+      globalTimer.running=false;
+      playBeep();
+      showRestSplash();
+      // Reset automático
+      globalTimer.secs=def;
+      globalTimer.fresh=true;
+      updateFooterTimer();
+    }
+  },1000);
+}
+
+function incrementSerieAtual(){
+  const se=sessaoExs[exAtualIdx];
+  if(!se._ex.series) return;
+  const max=se._ex.series;
+  if(se.series_feitas<max){
+    se.series_feitas++;
+    api.updateSessaoEx(se.id,{series_feitas:se.series_feitas}).catch(()=>{});
+    const el=document.getElementById(`sc-${se.id}`);
+    if(el)el.textContent=`${se.series_feitas} / ${max}`;
+    // Auto-marcar como feito ao completar séries
+    if(se.series_feitas>=max&&se.status!=='feito'){
+      se.status='feito';
+      api.updateSessaoEx(se.id,{status:'feito'}).catch(()=>{});
+      const card=document.getElementById(`excard-${se.id}`);
+      if(card){
+        card.classList.remove('pendente','pulei');
+        card.classList.add('feito');
+        const btn=card.querySelector('.ex-status-btn');
+        btn.textContent='✓ Feito';
+        btn.className='ex-status-btn feito';
+      }
+      showToast(`${se.nome_snapshot} concluído! 💪`,'success');
+    }
+  }
 }
 
 function cycleStatus(i){
@@ -596,7 +714,8 @@ function cycleStatus(i){
   api.updateSessaoEx(se.id,{status:se.status}).catch(()=>{});
   const card=document.getElementById(`excard-${se.id}`);
   if(card){
-    card.className=`exercicio-card ${se.status}`;
+    card.classList.remove('pendente','feito','pulei');
+    card.classList.add(se.status);
     const btn=card.querySelector('.ex-status-btn');
     btn.textContent={pendente:'Marcar',feito:'✓ Feito',pulei:'⏭ Pulei'}[se.status];
     btn.className=`ex-status-btn ${se.status}`;
@@ -614,36 +733,6 @@ function changeSeries(i,delta){
 function updateCarga(i,val){
   const se=sessaoExs[i];se.carga_usada=val?parseFloat(val):null;
   api.updateSessaoEx(se.id,{carga_usada:se.carga_usada}).catch(()=>{});
-}
-
-function toggleTimer(seid,def){
-  if(!exTimers[seid])exTimers[seid]={secs:def,running:false,interval:null};
-  const t=exTimers[seid];
-  if(t.running){
-    clearInterval(t.interval);t.running=false;
-    releaseWakeLock();
-    const btn=document.getElementById(`tb-${seid}`);
-    if(btn){btn.textContent='▶ Timer';btn.classList.remove('running');}
-  }else{
-    t.running=true;
-    requestWakeLock();
-    const btn=document.getElementById(`tb-${seid}`);
-    if(btn){btn.textContent='Pausar';btn.classList.add('running');}
-    t.interval=setInterval(()=>{
-      t.secs--;
-      const td=document.getElementById(`td-${seid}`);
-      if(td)td.textContent=formatDur(t.secs);
-      if(t.secs<=0){clearInterval(t.interval);t.running=false;playBeep();showRestSplash();const b=document.getElementById(`tb-${seid}`);if(b){b.textContent='▶ Timer';b.classList.remove('running');}}
-    },1000);
-  }
-}
-
-function resetTimer(seid,def){
-  if(exTimers[seid])clearInterval(exTimers[seid].interval);
-  releaseWakeLock();
-  exTimers[seid]={secs:def,running:false,interval:null};
-  const td=document.getElementById(`td-${seid}`);if(td)td.textContent=formatDur(def);
-  const btn=document.getElementById(`tb-${seid}`);if(btn){btn.textContent='▶ Timer';btn.classList.remove('running');}
 }
 
 let soundEnabled=true;
@@ -737,17 +826,17 @@ document.head.appendChild(splashStyle);
 
 async function sairSessao(){
   clearInterval(sessaoTimer);
-  Object.values(exTimers).forEach(t=>clearInterval(t.interval));
+  if(globalTimer.interval)clearInterval(globalTimer.interval);globalTimer.running=false;
   // Salva progresso mas mantém sessão aberta
   await api.updateSessao(sessaoAtiva.id,{duracao_segundos:sessaoSecs}).catch(()=>{});
-  sessaoTimer=null;exTimers={};
+  sessaoTimer=null;
   hideAll();
   await init();
 }
 
 async function concluirTreino(){
   clearInterval(sessaoTimer);
-  Object.values(exTimers).forEach(t=>clearInterval(t.interval));
+  if(globalTimer.interval)clearInterval(globalTimer.interval);globalTimer.running=false;
   const fim=new Date().toISOString();
   await api.updateSessao(sessaoAtiva.id,{finalizado_em:fim,duracao_segundos:sessaoSecs});
   await api.updateTreino(sessaoAtiva.treino_id,{ultima_vez:new Date().toISOString().split('T')[0]});
@@ -791,7 +880,7 @@ function mostrarResultado(fim){
     <button class="voltar-btn" onclick="voltarParaHome()">Voltar ao Início</button>`;
   hideAll();
   const rs=document.getElementById('resultado-screen');rs.style.display='flex';rs.style.flexDirection='column';
-  sessaoAtiva=null;sessaoExs=[];exTimers={};
+  sessaoAtiva=null;sessaoExs=[];exAtualIdx=null;
 }
 
 async function voltarParaHome(){
