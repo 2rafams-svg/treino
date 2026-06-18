@@ -18,9 +18,14 @@
     <link rel="icon" type="image/png" href="icon-192.png" />
     <title>TreinoLog</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -31,15 +36,15 @@
         -webkit-tap-highlight-color: transparent;
       }
       :root {
-        --bg: #0a0a0c;
-        --surface: #161618;
-        --surface2: #1e1e21;
-        --border: #28282c;
+        --bg: #08080a;
+        --surface: #141417;
+        --surface2: #1d1d21;
+        --border: #2c2c32;
         --accent: #a78bfa;
         --accent2: #7c3aed;
-        --text: #f0f0f0;
-        --text2: #8a8a92;
-        --text3: #46464d;
+        --text: #fbfbfd;
+        --text2: #a0a0aa;
+        --text3: #5a5a64;
         --green: #4ade80;
         --red: #f87171;
         --orange: #fb923c;
@@ -49,27 +54,34 @@
         --safe-bot: max(env(safe-area-inset-bottom, 0px), 10px);
       }
       html[data-theme="light"] {
-        --bg: #f4f3f8;
+        --bg: #f2f1f7;
         --surface: #ffffff;
-        --surface2: #eceaf3;
-        --border: #dcd9e6;
-        --accent: #7c3aed;
-        --accent2: #6d28d9;
-        --text: #1a1a22;
-        --text2: #6b6b78;
-        --text3: #a7a7b4;
-        --green: #16a34a;
+        --surface2: #e7e5f0;
+        --border: #cfccdd;
+        --accent: #6d28d9;
+        --accent2: #5b21b6;
+        --text: #16161e;
+        --text2: #52525e;
+        --text3: #9090a0;
+        --green: #15803d;
         --red: #dc2626;
-        --orange: #ea580c;
-        --yellow: #ca8a04;
+        --orange: #c2410c;
+        --yellow: #a16207;
+      }
+      h1,
+      h2,
+      h3,
+      .font-title {
+        font-family: "Outfit", sans-serif;
       }
       html,
       body {
         height: 100%;
         background: var(--bg);
         color: var(--text);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 15px;
+        font-weight: 400;
         overscroll-behavior: none;
         transition:
           background 0.3s,
@@ -94,8 +106,10 @@
         overflow-y: auto;
       }
       .auth-logo {
-        font-family: "DM Serif Display", serif;
-        font-size: 38px;
+        font-family: "Outfit", sans-serif;
+        font-weight: 800;
+        letter-spacing: -1px;
+        font-size: 36px;
         margin-bottom: 6px;
         text-align: center;
       }
@@ -122,7 +136,7 @@
         padding: 10px;
         border-radius: 9px;
         border: none;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 14px;
         font-weight: 500;
         cursor: pointer;
@@ -142,8 +156,9 @@
         border-radius: 12px;
         padding: 14px 16px;
         color: var(--text);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 15px;
+        font-weight: 400;
         outline: none;
         margin-bottom: 12px;
         -webkit-appearance: none;
@@ -158,7 +173,7 @@
         border: none;
         background: var(--accent);
         color: var(--bg);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 15px;
         font-weight: 700;
         cursor: pointer;
@@ -227,10 +242,9 @@
         gap: 10px;
         cursor: pointer;
       }
-      .trial-banner svg {
-        width: 16px;
-        height: 16px;
-        stroke: var(--yellow);
+      .trial-banner i {
+        font-size: 14px;
+        color: var(--yellow);
         flex-shrink: 0;
       }
       .paywall-hero {
@@ -242,7 +256,8 @@
         margin-bottom: 10px;
       }
       .paywall-title {
-        font-family: "DM Serif Display", serif;
+        font-family: "Outfit", sans-serif;
+        font-weight: 700;
         font-size: 22px;
         margin-bottom: 6px;
       }
@@ -307,7 +322,7 @@
         border: none;
         background: var(--accent);
         color: var(--bg);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 15px;
         font-weight: 700;
         cursor: pointer;
@@ -377,7 +392,7 @@
         border: none;
         background: var(--accent);
         color: var(--bg);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 14px;
         font-weight: 600;
         cursor: pointer;
@@ -391,7 +406,7 @@
         border: 1px solid var(--border);
         background: var(--surface);
         color: var(--text2);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 14px;
         font-weight: 500;
         cursor: pointer;
@@ -399,10 +414,9 @@
         margin-top: 8px;
         justify-content: center;
       }
-      .export-btn svg {
-        width: 16px;
-        height: 16px;
-        stroke: var(--accent);
+      .export-btn i {
+        font-size: 14px;
+        color: var(--accent);
       }
       #export-canvas-container {
         position: fixed;
@@ -434,7 +448,9 @@
         gap: 10px;
       }
       .header-title {
-        font-family: "DM Serif Display", serif;
+        font-family: "Outfit", sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.3px;
         font-size: 19px;
       }
       .header-title span {
@@ -456,10 +472,9 @@
         cursor: pointer;
         flex-shrink: 0;
       }
-      .icon-btn svg {
-        width: 16px;
-        height: 16px;
-        stroke: var(--text2);
+      .icon-btn i {
+        font-size: 15px;
+        color: var(--text2);
       }
       .tabs {
         display: flex;
@@ -475,7 +490,7 @@
         padding: 9px 0;
         border-radius: 100px;
         border: none;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 13px;
         font-weight: 500;
         cursor: pointer;
@@ -550,7 +565,9 @@
         letter-spacing: 0.4px;
       }
       .hero-nome {
-        font-family: "DM Serif Display", serif;
+        font-family: "Outfit", sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.3px;
         font-size: 23px;
         line-height: 1.2;
         margin-bottom: 8px;
@@ -571,7 +588,7 @@
         border: none;
         background: var(--accent);
         color: var(--bg);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 15px;
         font-weight: 700;
         cursor: pointer;
@@ -624,10 +641,9 @@
         font-size: 13px;
         color: var(--accent);
       }
-      .continuar-banner svg {
-        width: 16px;
-        height: 16px;
-        stroke: var(--accent);
+      .continuar-banner i {
+        font-size: 14px;
+        color: var(--accent);
         flex-shrink: 0;
       }
       #sessao-screen {
@@ -659,17 +675,17 @@
         cursor: pointer;
         flex-shrink: 0;
       }
-      .sessao-back svg {
-        width: 16px;
-        height: 16px;
-        stroke: var(--text2);
+      .sessao-back i {
+        font-size: 15px;
+        color: var(--text2);
       }
       .sessao-info {
         flex: 1;
         min-width: 0;
       }
       .sessao-nome {
-        font-family: "DM Serif Display", serif;
+        font-family: "Outfit", sans-serif;
+        font-weight: 700;
         font-size: 16px;
         white-space: nowrap;
         overflow: hidden;
@@ -693,18 +709,16 @@
         cursor: pointer;
         flex-shrink: 0;
       }
-      .sound-btn svg {
-        width: 15px;
-        height: 15px;
-        stroke: var(--accent);
+      .sound-btn i {
+        font-size: 14px;
+        color: var(--accent);
       }
-      .sound-btn.muted svg {
-        stroke: var(--text3);
+      .sound-btn.muted i {
+        color: var(--text3);
       }
-      .foco-btn svg {
-        width: 15px;
-        height: 15px;
-        stroke: var(--accent);
+      .foco-btn i {
+        font-size: 14px;
+        color: var(--accent);
       }
       .sessao-content {
         flex: 1;
@@ -796,7 +810,7 @@
         padding: 5px 12px;
         border-radius: 100px;
         border: 1px solid var(--border);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 12px;
         font-weight: 500;
         cursor: pointer;
@@ -992,10 +1006,30 @@
         border: none;
         background: var(--green);
         color: var(--bg);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 15px;
         font-weight: 700;
         cursor: pointer;
+      }
+      .finalizar-ex-btn {
+        width: 100%;
+        padding: 14px;
+        border-radius: 14px;
+        border: none;
+        background: var(--accent);
+        color: var(--bg);
+        font-family: "Inter", sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .finalizar-ex-btn i {
+        font-size: 15px;
       }
       #foco-screen {
         display: none;
@@ -1023,10 +1057,9 @@
         justify-content: center;
         cursor: pointer;
       }
-      .foco-close svg {
-        width: 17px;
-        height: 17px;
-        stroke: var(--text2);
+      .foco-close i {
+        font-size: 16px;
+        color: var(--text2);
       }
       .foco-body {
         flex: 1;
@@ -1044,7 +1077,9 @@
         margin-bottom: 8px;
       }
       .foco-nome {
-        font-family: "DM Serif Display", serif;
+        font-family: "Outfit", sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.4px;
         font-size: 28px;
         line-height: 1.2;
         margin-bottom: 6px;
@@ -1162,7 +1197,9 @@
         margin-bottom: 10px;
       }
       .resultado-titulo {
-        font-family: "DM Serif Display", serif;
+        font-family: "Outfit", sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.3px;
         font-size: 25px;
         margin-bottom: 6px;
       }
@@ -1257,7 +1294,7 @@
         border: none;
         background: var(--accent);
         color: var(--bg);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 15px;
         font-weight: 700;
         cursor: pointer;
@@ -1270,7 +1307,8 @@
         margin-bottom: 14px;
       }
       .cal-month-label {
-        font-family: "DM Serif Display", serif;
+        font-family: "Outfit", sans-serif;
+        font-weight: 600;
         font-size: 18px;
       }
       .cal-nav-btn {
@@ -1386,7 +1424,8 @@
         line-height: 1.4;
       }
       .stats-section-title {
-        font-family: "DM Serif Display", serif;
+        font-family: "Outfit", sans-serif;
+        font-weight: 600;
         font-size: 17px;
         margin: 6px 0 12px;
         color: var(--text2);
@@ -1454,13 +1493,13 @@
         cursor: pointer;
         flex-shrink: 0;
       }
-      .ger-back svg {
-        width: 16px;
-        height: 16px;
-        stroke: var(--text2);
+      .ger-back i {
+        font-size: 15px;
+        color: var(--text2);
       }
       .ger-title {
-        font-family: "DM Serif Display", serif;
+        font-family: "Outfit", sans-serif;
+        font-weight: 700;
         font-size: 18px;
         flex: 1;
       }
@@ -1505,16 +1544,15 @@
         cursor: pointer;
         flex-shrink: 0;
       }
-      .ger-btn svg {
-        width: 13px;
-        height: 13px;
-        stroke: var(--text2);
+      .ger-btn i {
+        font-size: 13px;
+        color: var(--text2);
       }
       .ger-btn.danger {
         border-color: color-mix(in srgb, var(--red) 25%, transparent);
       }
-      .ger-btn.danger svg {
-        stroke: var(--red);
+      .ger-btn.danger i {
+        color: var(--red);
       }
       .ger-add-btn {
         width: 100%;
@@ -1523,7 +1561,7 @@
         border: 1px dashed var(--border);
         background: transparent;
         color: var(--text3);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 13px;
         cursor: pointer;
         margin-top: 4px;
@@ -1582,6 +1620,233 @@
         font-size: 11px;
         color: var(--text3);
       }
+      .ger-explainer {
+        background: color-mix(in srgb, var(--accent) 6%, transparent);
+        border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+        border-radius: 14px;
+        padding: 16px;
+        margin-bottom: 22px;
+      }
+      .ger-explainer-title {
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--accent);
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .ger-explainer-row {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        font-size: 13px;
+        color: var(--text2);
+        line-height: 1.5;
+        margin-bottom: 9px;
+      }
+      .ger-explainer-row:last-child {
+        margin-bottom: 0;
+      }
+      .ger-explainer-row strong {
+        color: var(--text);
+      }
+      .ger-explainer-step {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--accent);
+        color: var(--bg);
+        font-size: 11px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .ger-section-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 6px;
+        margin-top: 6px;
+      }
+      .ger-section-head span {
+        font-family: "Outfit", sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+        color: var(--text);
+      }
+      .ger-section-add {
+        background: color-mix(in srgb, var(--accent) 12%, transparent);
+        border: 1px solid color-mix(in srgb, var(--accent) 28%, transparent);
+        color: var(--accent);
+        font-family: "Inter", sans-serif;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 6px 12px;
+        border-radius: 100px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .ger-section-add i {
+        font-size: 10px;
+      }
+      .ger-empty {
+        text-align: center;
+        padding: 32px 20px;
+        color: var(--text3);
+        background: var(--surface);
+        border: 1px dashed var(--border);
+        border-radius: 14px;
+        margin: 8px 0;
+      }
+      .ger-empty i {
+        font-size: 30px;
+        margin-bottom: 12px;
+        display: block;
+        color: var(--text3);
+      }
+      .ger-empty div {
+        font-size: 14px;
+        line-height: 1.6;
+      }
+      .ger-rotina {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 14px;
+        margin: 12px 0 16px;
+      }
+      .ger-rotina.ativa {
+        border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 25%, transparent);
+      }
+      .ger-rotina-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .ger-rotina-info {
+        flex: 1;
+        min-width: 0;
+      }
+      .ger-rotina-nome {
+        font-family: "Outfit", sans-serif;
+        font-weight: 600;
+        font-size: 17px;
+        display: flex;
+        align-items: center;
+      }
+      .ger-rotina-sub {
+        font-size: 12px;
+        color: var(--text3);
+        margin-top: 2px;
+      }
+      .ger-rotina-hint {
+        font-size: 12px;
+        color: var(--text2);
+        background: var(--surface2);
+        border-radius: 8px;
+        padding: 7px 10px;
+        margin-top: 10px;
+      }
+      .ger-day {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 12px;
+        margin-top: 10px;
+      }
+      .ger-day-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+      .ger-day-nome {
+        font-weight: 600;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .ger-day-sub {
+        font-size: 11px;
+        color: var(--text3);
+        margin-top: 1px;
+      }
+      .ger-day-empty {
+        font-size: 13px;
+        color: var(--text3);
+        padding: 10px;
+        text-align: center;
+        margin-top: 8px;
+      }
+      .ger-day-empty span {
+        color: var(--accent);
+        cursor: pointer;
+        font-weight: 500;
+      }
+      .ger-add-inline {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px dashed var(--border);
+        background: transparent;
+        color: var(--accent);
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+      }
+      .ger-add-inline i {
+        font-size: 11px;
+      }
+      .ger-add-day {
+        border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+        margin-top: 12px;
+      }
+      .ger-cat-hint {
+        font-size: 12px;
+        color: var(--text3);
+        margin-bottom: 12px;
+      }
+      .ger-cat-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .ger-cat-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        padding: 8px 10px 8px 14px;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .ger-cat-chip i {
+        font-size: 13px;
+        color: var(--text3);
+        cursor: pointer;
+        padding: 2px;
+      }
+      .ger-cat-chip i:active {
+        color: var(--red);
+      }
       .tut-section {
         background: var(--surface);
         border: 1px solid var(--border);
@@ -1590,7 +1855,8 @@
         margin-bottom: 14px;
       }
       .tut-section-title {
-        font-family: "DM Serif Display", serif;
+        font-family: "Outfit", sans-serif;
+        font-weight: 600;
         font-size: 17px;
         margin-bottom: 10px;
         display: flex;
@@ -1686,7 +1952,8 @@
         margin: 0 auto 20px;
       }
       .modal-title {
-        font-family: "DM Serif Display", serif;
+        font-family: "Outfit", sans-serif;
+        font-weight: 700;
         font-size: 20px;
         margin-bottom: 20px;
       }
@@ -1709,8 +1976,9 @@
         border-radius: 10px;
         padding: 11px 14px;
         color: var(--text);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 15px;
+        font-weight: 400;
         outline: none;
         -webkit-appearance: none;
       }
@@ -1735,7 +2003,7 @@
         border: none;
         background: var(--accent);
         color: var(--bg);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 15px;
         font-weight: 600;
         cursor: pointer;
@@ -1752,8 +2020,9 @@
         border: 1px solid var(--border);
         background: transparent;
         color: var(--text2);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 15px;
+        font-weight: 400;
         cursor: pointer;
         margin-top: 8px;
       }
@@ -1776,7 +2045,7 @@
         border: 1px solid var(--border);
         background: var(--surface);
         color: var(--text2);
-        font-family: "DM Sans", sans-serif;
+        font-family: "Inter", sans-serif;
         font-size: 13px;
         font-weight: 500;
         cursor: pointer;
@@ -1852,6 +2121,28 @@
         to {
           transform: rotate(360deg);
         }
+      }
+      .sound-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+      .sound-opt {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 16px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        background: var(--surface2);
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .sound-opt.active {
+        border-color: var(--accent);
+        background: color-mix(in srgb, var(--accent) 8%, transparent);
       }
       .toast {
         position: fixed;
@@ -1959,7 +2250,7 @@
           class="auth-input"
           id="auth-name"
           type="text"
-          placeholder="Nome (opcional)"
+          placeholder="Como você quer ser chamado(a)?"
           autocomplete="name"
         />
       </div>
@@ -1973,6 +2264,79 @@
         id="auth-switch-btn"
       >
         Não tem conta? Criar agora
+      </button>
+    </div>
+
+    <div
+      id="otp-screen"
+      style="
+        position: fixed;
+        inset: 0;
+        background: var(--bg);
+        z-index: 1401;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 32px calc(40px + var(--safe-bot));
+      "
+    >
+      <div style="font-size: 46px; margin-bottom: 18px">📩</div>
+      <div
+        class="font-title"
+        style="
+          font-weight: 700;
+          font-size: 24px;
+          letter-spacing: -0.3px;
+          margin-bottom: 8px;
+          text-align: center;
+        "
+      >
+        Confirme seu e-mail
+      </div>
+      <div
+        style="
+          font-size: 14px;
+          color: var(--text2);
+          line-height: 1.6;
+          text-align: center;
+          margin-bottom: 28px;
+          max-width: 300px;
+        "
+      >
+        Enviamos um código de 6 dígitos para
+        <strong id="otp-email-label" style="color: var(--text)"></strong>.
+        Digite-o abaixo.
+      </div>
+      <input
+        class="auth-input"
+        id="otp-code"
+        type="text"
+        inputmode="numeric"
+        maxlength="6"
+        placeholder="000000"
+        style="
+          text-align: center;
+          font-size: 26px;
+          letter-spacing: 10px;
+          font-weight: 600;
+          font-family: &quot;Outfit&quot;, sans-serif;
+        "
+        autocomplete="one-time-code"
+      />
+      <div class="auth-error" id="otp-error"></div>
+      <button class="auth-btn" id="otp-submit" onclick="submitOtp()">
+        Confirmar
+      </button>
+      <button class="btn-secondary" id="otp-resend" onclick="resendOtp()">
+        Reenviar código
+      </button>
+      <button
+        class="btn-secondary"
+        onclick="backToAuth()"
+        style="border: none; color: var(--text3)"
+      >
+        Voltar
       </button>
     </div>
 
@@ -2028,29 +2392,16 @@
         </div>
         <div class="header-actions">
           <div class="icon-btn" onclick="toggleTheme()" id="theme-btn">
-            <svg
-              id="theme-icon"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke-width="2"
-            >
-              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-            </svg>
+            <i id="theme-icon" class="fa-solid fa-moon"></i>
           </div>
           <div class="icon-btn" onclick="showTutorial()">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" />
-              <line x1="12" y1="17" x2="12.01" y2="17" />
-            </svg>
+            <i class="fa-regular fa-circle-question"></i>
           </div>
           <div class="icon-btn" onclick="showGerenciar()">
-            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-              <circle cx="12" cy="12" r="3" />
-              <path
-                d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"
-              />
-            </svg>
+            <i class="fa-solid fa-sliders"></i>
+          </div>
+          <div class="icon-btn" onclick="confirmLogout()">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
           </div>
         </div>
       </div>
@@ -2070,33 +2421,22 @@
     <div id="sessao-screen">
       <div class="sessao-header">
         <div class="sessao-back" onclick="sairSessao()">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
+          <i class="fa-solid fa-chevron-left"></i>
         </div>
         <div class="sessao-info">
           <div class="sessao-nome" id="sessao-nome">Treino</div>
           <div class="sessao-timer-top" id="sessao-timer-top">00:00</div>
         </div>
         <div class="foco-btn" id="foco-btn-header" onclick="abrirFoco()">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-            <polyline points="15 3 21 3 21 9" />
-            <polyline points="9 21 3 21 3 15" />
-            <line x1="21" y1="3" x2="14" y2="10" />
-            <line x1="3" y1="21" x2="10" y2="14" />
-          </svg>
+          <i class="fa-solid fa-expand"></i>
         </div>
-        <div class="sound-btn" id="sound-btn" onclick="toggleSound()">
-          <svg id="sound-icon" viewBox="0 0 24 24" fill="none" stroke-width="2">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-            <path d="M19.07 4.93a10 10 0 010 14.14" />
-            <path d="M15.54 8.46a5 5 0 010 7.07" />
-          </svg>
+        <div class="sound-btn" id="sound-btn" onclick="openSoundPicker()">
+          <i id="sound-icon" class="fa-solid fa-volume-high"></i>
         </div>
       </div>
       <div class="sessao-content" id="sessao-content"></div>
       <div class="sessao-footer">
-        <div class="footer-timer-row">
+        <div class="footer-timer-row" id="footer-timer-row">
           <div class="footer-timer-info">
             <div class="footer-timer-exname" id="footer-ex-name">
               Selecione um exercício
@@ -2129,6 +2469,14 @@
             </button>
           </div>
         </div>
+        <button
+          class="finalizar-ex-btn"
+          id="finalizar-ex-btn"
+          onclick="finalizarExercicioAtual()"
+          style="display: none"
+        >
+          <i class="fa-solid fa-circle-check"></i> Concluir exercício
+        </button>
         <button class="concluir-btn" onclick="concluirTreino()">
           Concluir Treino
         </button>
@@ -2139,17 +2487,14 @@
       <div class="foco-header">
         <div
           style="
-            font-family: &quot;DM Serif Display&quot;, serif;
+            font-family: &quot;Outfit&quot;, sans-serif;
             font-size: 16px;
             color: var(--text2);
           "
           id="foco-treino-nome"
         ></div>
         <div class="foco-close" onclick="fecharFoco()">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
+          <i class="fa-solid fa-xmark"></i>
         </div>
       </div>
       <div class="foco-body">
@@ -2208,15 +2553,10 @@
     <div id="resultado-screen">
       <div class="resultado-header">
         <div class="sessao-back" onclick="voltarParaHome()">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
+          <i class="fa-solid fa-chevron-left"></i>
         </div>
         <div
-          style="
-            font-family: &quot;DM Serif Display&quot;, serif;
-            font-size: 18px;
-          "
+          style="font-family: &quot;Outfit&quot;, sans-serif; font-size: 18px"
         >
           Resultado
         </div>
@@ -2227,9 +2567,7 @@
     <div id="gerenciar-screen">
       <div class="ger-header">
         <div class="ger-back" onclick="hideOverlayScreen()">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
+          <i class="fa-solid fa-chevron-left"></i>
         </div>
         <div class="ger-title">Gerenciar</div>
       </div>
@@ -2239,9 +2577,7 @@
     <div id="tutorial-screen">
       <div class="ger-header">
         <div class="ger-back" onclick="hideOverlayScreen()">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
+          <i class="fa-solid fa-chevron-left"></i>
         </div>
         <div class="ger-title" id="tutorial-title">Como usar</div>
       </div>
@@ -2306,10 +2642,7 @@
         } catch (e) {}
         const icon = document.getElementById("theme-icon");
         if (!icon) return;
-        icon.innerHTML =
-          t === "dark"
-            ? '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>'
-            : '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+        icon.className = t === "dark" ? "fa-solid fa-moon" : "fa-solid fa-sun";
       }
       function toggleTheme() {
         applyTheme(
@@ -2423,6 +2756,8 @@
         document.getElementById("auth-error").textContent = "";
       }
 
+      let _pendingSignup = null; // {email, password, name}
+
       async function submitAuth() {
         const email = document.getElementById("auth-email").value.trim();
         const password = document.getElementById("auth-password").value;
@@ -2437,17 +2772,41 @@
           errEl.textContent = "A senha precisa ter pelo menos 6 caracteres.";
           return;
         }
+        if (
+          currentAuthTab === "signup" &&
+          !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)
+        ) {
+          errEl.textContent = "Digite um e-mail válido.";
+          return;
+        }
         btn.disabled = true;
         btn.textContent = "Aguarde...";
         errEl.textContent = "";
         try {
           if (currentAuthTab === "signup") {
+            // === OTP DESATIVADO TEMPORARIAMENTE ===
+            // Reativar junto com login Google. Para reativar, descomentar o bloco
+            // abaixo e remover o bloco "BYPASS" em seguida.
+            //
+            // await _authReq('signup',{email,password,data:{display_name:name||null}});
+            // _pendingSignup={email,password,name};
+            // abrirOtp(email);
+            //
+            // === BYPASS: cadastro entra direto (sem confirmação por código) ===
             const data = await _authReq("signup", {
               email,
               password,
               data: { display_name: name || null },
             });
-            _session = { access_token: data.access_token, user: data.user };
+            if (data.access_token) {
+              _session = { access_token: data.access_token, user: data.user };
+            } else {
+              const login = await _authReq("token?grant_type=password", {
+                email,
+                password,
+              });
+              _session = { access_token: login.access_token, user: login.user };
+            }
             await startApp();
             showToast(
               `Bem-vindo(a)! Você tem ${trialDays()} dias Pro grátis.`,
@@ -2462,13 +2821,140 @@
             await startApp();
           }
         } catch (e) {
-          errEl.textContent = e.message.includes("Invalid login credentials")
-            ? "E-mail ou senha incorretos."
-            : e.message;
+          const m = e.message || "";
+          if (m.includes("Invalid login credentials"))
+            errEl.textContent = "E-mail ou senha incorretos.";
+          else if (
+            m.includes("already registered") ||
+            m.includes("already been registered")
+          )
+            errEl.textContent = "Este e-mail já tem conta. Tente entrar.";
+          else if (m.includes("rate limit"))
+            errEl.textContent = "Muitas tentativas. Aguarde alguns minutos.";
+          else if (m.includes("Email not confirmed"))
+            errEl.textContent = "Confirme seu e-mail antes de entrar.";
+          else errEl.textContent = m;
           btn.disabled = false;
           btn.textContent =
             currentAuthTab === "login" ? "Entrar" : "Criar conta";
         }
+      }
+
+      function abrirOtp(email) {
+        document.getElementById("auth-submit").disabled = false;
+        document.getElementById("auth-submit").textContent = "Criar conta";
+        document.getElementById("otp-email-label").textContent = email;
+        document.getElementById("otp-code").value = "";
+        document.getElementById("otp-error").textContent = "";
+        document.getElementById("auth-screen").style.display = "none";
+        document.getElementById("otp-screen").style.display = "flex";
+        setTimeout(() => document.getElementById("otp-code").focus(), 200);
+      }
+      function backToAuth() {
+        document.getElementById("otp-screen").style.display = "none";
+        document.getElementById("auth-screen").style.display = "flex";
+      }
+
+      async function submitOtp() {
+        const code = document.getElementById("otp-code").value.trim();
+        const errEl = document.getElementById("otp-error");
+        const btn = document.getElementById("otp-submit");
+        if (code.length !== 6) {
+          errEl.textContent = "Digite os 6 dígitos.";
+          return;
+        }
+        if (!_pendingSignup) {
+          errEl.textContent = "Sessão expirada. Volte e cadastre de novo.";
+          return;
+        }
+        btn.disabled = true;
+        btn.textContent = "Confirmando...";
+        errEl.textContent = "";
+        try {
+          // verifica o código de confirmação de e-mail (signup OTP)
+          const data = await _authReq("verify", {
+            type: "signup",
+            email: _pendingSignup.email,
+            token: code,
+          });
+          _session = { access_token: data.access_token, user: data.user };
+          document.getElementById("otp-screen").style.display = "none";
+          await startApp();
+          showToast(
+            `Bem-vindo(a)! Você tem ${trialDays()} dias Pro grátis.`,
+            "success",
+          );
+          _pendingSignup = null;
+        } catch (e) {
+          const m = e.message || "";
+          errEl.textContent = m.includes("expired")
+            ? "Código expirado. Reenvie."
+            : m.includes("invalid") || m.includes("Token")
+              ? "Código inválido."
+              : m;
+          btn.disabled = false;
+          btn.textContent = "Confirmar";
+        }
+      }
+
+      async function resendOtp() {
+        if (!_pendingSignup) {
+          showToast("Cadastre-se novamente.", "error");
+          return;
+        }
+        const btn = document.getElementById("otp-resend");
+        btn.disabled = true;
+        btn.textContent = "Enviando...";
+        try {
+          await _authReq("resend", {
+            type: "signup",
+            email: _pendingSignup.email,
+          });
+          showToast("Código reenviado!", "success");
+        } catch (e) {
+          showToast(
+            e.message.includes("rate")
+              ? "Aguarde antes de reenviar."
+              : "Erro ao reenviar.",
+            "error",
+          );
+        }
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.textContent = "Reenviar código";
+        }, 3000);
+      }
+
+      // ── LOGOUT ────────────────────────────────────────────────────
+      function confirmLogout() {
+        openModal(
+          `<div class="modal-title">Sair da conta</div><div style="font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:20px">Tem certeza que deseja sair? Seus dados ficam salvos e voltam quando você entrar de novo.</div><button class="btn-primary" style="background:var(--red)" onclick="doLogout()">Sair</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`,
+        );
+      }
+      async function doLogout() {
+        try {
+          if (_session)
+            await fetch(`${_ep}/auth/v1/logout`, {
+              method: "POST",
+              headers: {
+                apikey: _ak,
+                Authorization: `Bearer ${_session.access_token}`,
+              },
+            });
+        } catch (e) {}
+        _session = null;
+        _sub = null;
+        _isPro = false;
+        _pendingSignup = null;
+        try {
+          localStorage.removeItem("_tl_session");
+        } catch (e) {}
+        _closeModal();
+        hideAll();
+        document.getElementById("auth-screen").style.display = "flex";
+        document.getElementById("auth-email").value = "";
+        document.getElementById("auth-password").value = "";
+        switchAuthTab("login");
       }
 
       // ── ENTITLEMENT ───────────────────────────────────────────────
@@ -2743,6 +3229,10 @@
 
       async function startApp() {
         document.getElementById("auth-screen").style.display = "none";
+        document.getElementById("otp-screen").style.display = "none";
+        try {
+          localStorage.setItem("_tl_session", JSON.stringify(_session));
+        } catch (e) {}
         showApp();
         await Promise.all([loadConfig(), loadSubscription(), loadCategorias()]);
         applyAppName();
@@ -2759,7 +3249,7 @@
           if (el.querySelector(".trial-banner")) return;
           const b = document.createElement("div");
           b.className = "trial-banner";
-          b.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Faltam ${_trialDaysLeft} dias do seu acesso completo.`;
+          b.innerHTML = `<i class="fa-solid fa-circle-info"></i>Faltam ${_trialDaysLeft} dias do seu acesso completo.`;
           b.onclick = showPaywall;
           el.insertBefore(b, el.firstChild);
         }
@@ -2836,11 +3326,11 @@
       // ── HOME ──────────────────────────────────────────────────────
       async function renderHome(el) {
         if (!grupoAtivo) {
-          el.innerHTML = `<div class="empty"><div class="empty-icon">💪</div><div class="empty-text">Nenhum grupo ativo.<br>Vá em ⚙️ Gerenciar para criar.</div></div>`;
+          el.innerHTML = `<div class="empty"><div class="empty-icon">💪</div><div class="empty-text">Vamos começar!<br>Crie sua primeira rotina de treino.</div><button class="upsell-btn" style="margin-top:16px" onclick="showGerenciar()">Criar rotina</button></div>`;
           return;
         }
         if (!treinos.length) {
-          el.innerHTML = `<div class="empty"><div class="empty-icon">📋</div><div class="empty-text">Nenhum treino em <strong>${grupoAtivo.nome}</strong>.</div></div>`;
+          el.innerHTML = `<div class="empty"><div class="empty-icon">📋</div><div class="empty-text">A rotina <strong>${grupoAtivo.nome}</strong> ainda não tem dias de treino.</div><button class="upsell-btn" style="margin-top:16px" onclick="showGerenciar()">Adicionar dia de treino</button></div>`;
           return;
         }
         const abertasHoje = await db.getSessoesAbertasHoje();
@@ -2867,9 +3357,9 @@
           sessaoHoje && sessaoHoje.treino_id === hero.id
             ? "Continuar Treino ▸"
             : "Iniciar Treino ▸";
-        let html = `<div class="grupo-badge" onclick="showGerenciar()">Grupo: <strong>${grupoAtivo.nome}</strong></div>`;
+        let html = `<div class="grupo-badge" onclick="showGerenciar()">Rotina: <strong>${grupoAtivo.nome}</strong></div>`;
         if (sessaoHoje)
-          html += `<div class="continuar-banner"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Treino de hoje em andamento</div>`;
+          html += `<div class="continuar-banner"><i class="fa-solid fa-clock-rotate-left"></i>Treino de hoje em andamento</div>`;
         html += `<div class="hero-card" onclick="iniciarTreino()">
     <div class="hero-tag">${sessaoHoje && sessaoHoje.treino_id === hero.id ? "⏱ EM ANDAMENTO" : isSugerido ? "✦ SUGERIDO" : "SELECIONADO"}</div>
     <div class="hero-nome">${hero.nome}</div>
@@ -3048,6 +3538,7 @@
         document.getElementById("foco-btn-header").style.display = _isPro
           ? "flex"
           : "none";
+        syncSoundIcon();
         hideAll();
         const ss = document.getElementById("sessao-screen");
         ss.style.display = "flex";
@@ -3309,20 +3800,38 @@
       function ringOffset(circ, pct) {
         return circ * (1 - pct);
       }
+      function isUltimaSerie(se) {
+        // true quando a próxima ação completaria o exercício (penúltima → última)
+        if (!se || !se._ex.series) return false;
+        return se.series_feitas >= se._ex.series - 1 && se.status !== "feito";
+      }
       function updateTimerUI() {
         const se = getAtual();
         const nameEl = document.getElementById("footer-ex-name");
         const dispEl = document.getElementById("footer-timer-display");
         const btnEl = document.getElementById("footer-timer-btn");
         const ring = document.getElementById("footer-ring");
+        const timerRow = document.getElementById("footer-timer-row");
+        const finBtn = document.getElementById("finalizar-ex-btn");
         if (!se) {
           nameEl.textContent = "Selecione um exercício";
           dispEl.textContent = "--:--";
           btnEl.disabled = true;
           btnEl.classList.remove("running");
           if (ring) ring.style.strokeDashoffset = 157;
+          timerRow.style.display = "flex";
+          finBtn.style.display = "none";
           return;
         }
+        // Última série e timer parado → mostra "Concluir exercício" no lugar do timer
+        if (isUltimaSerie(se) && !globalTimer.running) {
+          timerRow.style.display = "none";
+          finBtn.style.display = "flex";
+          syncFoco();
+          return;
+        }
+        timerRow.style.display = "flex";
+        finBtn.style.display = "none";
         nameEl.textContent = se.nome_snapshot;
         dispEl.textContent = formatDur(globalTimer.secs);
         btnEl.disabled = false;
@@ -3334,6 +3843,19 @@
           ring.style.strokeDashoffset = ringOffset(157, pct);
         }
         syncFoco();
+      }
+      // Conclui a última série + marca exercício como feito, sem iniciar descanso
+      function finalizarExercicioAtual() {
+        const se = getAtual();
+        if (!se) return;
+        if (se._ex.series) se.series_feitas = se._ex.series;
+        db.updateSessaoEx(se.id, { series_feitas: se.series_feitas }).catch(
+          () => {},
+        );
+        const el = document.getElementById(`sc-${se.id}`);
+        if (el) el.textContent = `${se.series_feitas} / ${se._ex.series}`;
+        // checa PR já que o exercício terminou
+        setStatusById(se.id, "feito");
       }
       function toggleGlobalTimer() {
         const se = getAtual();
@@ -3459,6 +3981,18 @@
           ? `Série <strong>${Math.min(se.series_feitas + 1, se._ex.series)}</strong> de ${se._ex.series}${se._ex.repeticoes ? ` · ${se._ex.repeticoes} reps` : ""}`
           : "";
         carga.textContent = se.carga_usada ? `Carga: ${se.carga_usada}kg` : "";
+        if (isUltimaSerie(se) && !globalTimer.running) {
+          timeVal.style.fontSize = "30px";
+          timeVal.textContent = "Última série";
+          playBtn.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+          playBtn.classList.remove("running");
+          playBtn.onclick = finalizarExercicioAtual;
+          ring.style.strokeDashoffset = 0;
+          hint.textContent = "Toque para concluir o exercício";
+          return;
+        }
+        timeVal.style.fontSize = "";
+        playBtn.onclick = toggleGlobalTimer;
         timeVal.textContent = formatDur(globalTimer.secs);
         playBtn.textContent = globalTimer.running ? "⏸" : "▶";
         playBtn.classList.toggle("running", globalTimer.running);
@@ -3507,21 +4041,113 @@
         },
         { passive: true },
       );
-      function toggleSound() {
-        soundEnabled = !soundEnabled;
+      // Catálogo de sons (sintetizados via WebAudio — "sons do sistema")
+      const SOUND_PROFILES = {
+        classico: {
+          nome: "Clássico",
+          tipo: "sine",
+          freqs: [880, 880, 880],
+          dur: 0.25,
+          gap: 150,
+        },
+        sino: {
+          nome: "Sino",
+          tipo: "triangle",
+          freqs: [1318, 1046],
+          dur: 0.5,
+          gap: 120,
+        },
+        digital: {
+          nome: "Digital",
+          tipo: "square",
+          freqs: [660, 880, 1100],
+          dur: 0.12,
+          gap: 90,
+        },
+        suave: {
+          nome: "Suave",
+          tipo: "sine",
+          freqs: [523, 659],
+          dur: 0.4,
+          gap: 180,
+        },
+        alarme: {
+          nome: "Alarme",
+          tipo: "sawtooth",
+          freqs: [440, 440, 440, 440],
+          dur: 0.15,
+          gap: 110,
+        },
+        none: { nome: "Silencioso", tipo: null, freqs: [], dur: 0, gap: 0 },
+      };
+      let soundProfile = "classico";
+      try {
+        soundProfile = localStorage.getItem("_tl_sound") || "classico";
+      } catch (e) {}
+
+      function syncSoundIcon() {
         const btn = document.getElementById("sound-btn");
         const icon = document.getElementById("sound-icon");
-        if (soundEnabled) {
-          btn.classList.remove("muted");
-          icon.innerHTML =
-            '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07"/>';
-          showToast("Som ativado", "success");
-        } else {
+        if (!btn || !icon) return;
+        if (soundProfile === "none") {
           btn.classList.add("muted");
-          icon.innerHTML =
-            '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
-          showToast("Som desativado", "");
+          icon.className = "fa-solid fa-volume-xmark";
+        } else {
+          btn.classList.remove("muted");
+          icon.className = "fa-solid fa-volume-high";
         }
+      }
+      function openSoundPicker() {
+        const opts = Object.entries(SOUND_PROFILES)
+          .map(([k, v]) => {
+            const right =
+              k === soundProfile
+                ? '<i class="fa-solid fa-check" style="color:var(--accent)"></i>'
+                : `<i class="fa-solid fa-play" style="color:var(--text3);font-size:12px" onclick="event.stopPropagation();previewSound(&quot;${k}&quot;)"></i>`;
+            return `<div class="sound-opt${k === soundProfile ? " active" : ""}" onclick="selectSound(&quot;${k}&quot;)"><span>${v.nome}</span>${right}</div>`;
+          })
+          .join("");
+        openModal(
+          `<div class="modal-title">Som do alerta</div><div style="font-size:13px;color:var(--text2);margin-bottom:16px">Tocado quando o descanso termina. Toque para ouvir.</div><div class="sound-list">${opts}</div><button class="btn-secondary" onclick="_closeModal()">Fechar</button>`,
+        );
+      }
+      function selectSound(k) {
+        soundProfile = k;
+        try {
+          localStorage.setItem("_tl_sound", k);
+        } catch (e) {}
+        syncSoundIcon();
+        if (k !== "none") previewSound(k);
+        openSoundPicker();
+      }
+      function previewSound(k) {
+        playProfile(SOUND_PROFILES[k]);
+      }
+
+      async function playProfile(prof) {
+        if (!prof || !prof.tipo || !prof.freqs.length) {
+          return;
+        }
+        try {
+          const ctx = getAudioCtx();
+          await ctx.resume();
+          prof.freqs.forEach((f, i) => {
+            const delay = (i * prof.gap) / 1000;
+            const o = ctx.createOscillator(),
+              g = ctx.createGain();
+            o.connect(g);
+            g.connect(ctx.destination);
+            o.frequency.value = f;
+            o.type = prof.tipo;
+            g.gain.setValueAtTime(0.3, ctx.currentTime + delay);
+            g.gain.exponentialRampToValueAtTime(
+              0.001,
+              ctx.currentTime + delay + prof.dur,
+            );
+            o.start(ctx.currentTime + delay);
+            o.stop(ctx.currentTime + delay + prof.dur);
+          });
+        } catch (e) {}
       }
       let wakeLock = null;
       async function requestWakeLock() {
@@ -3539,28 +4165,12 @@
         } catch (e) {}
       }
       async function playBeep() {
-        if (!soundEnabled) {
+        if (soundProfile === "none") {
           releaseWakeLock();
           return;
         }
         try {
-          const ctx = getAudioCtx();
-          await ctx.resume();
-          [0, 150, 300].forEach((delay) => {
-            const o = ctx.createOscillator(),
-              g = ctx.createGain();
-            o.connect(g);
-            g.connect(ctx.destination);
-            o.frequency.value = 880;
-            o.type = "sine";
-            g.gain.setValueAtTime(0.3, ctx.currentTime + delay / 1000);
-            g.gain.exponentialRampToValueAtTime(
-              0.001,
-              ctx.currentTime + delay / 1000 + 0.25,
-            );
-            o.start(ctx.currentTime + delay / 1000);
-            o.stop(ctx.currentTime + delay / 1000 + 0.25);
-          });
+          await playProfile(SOUND_PROFILES[soundProfile]);
           setTimeout(releaseWakeLock, 800);
         } catch (e) {
           releaseWakeLock();
@@ -3585,7 +4195,7 @@
         el.id = "rest-splash";
         el.style.cssText =
           "position:fixed;inset:0;z-index:1250;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;animation:splashIn .2s ease forwards;";
-        el.innerHTML = `<div style="font-size:52px;margin-bottom:20px">💪</div><div style="font-family:'DM Serif Display',serif;font-size:26px;color:var(--text);text-align:center;line-height:1.3;margin-bottom:10px">Descanso<br>concluído</div><div style="font-size:15px;color:var(--accent);font-weight:500">Toque para continuar</div>`;
+        el.innerHTML = `<div style="font-size:52px;margin-bottom:20px">💪</div><div style="font-family:'Outfit',sans-serif;font-size:26px;color:var(--text);text-align:center;line-height:1.3;margin-bottom:10px">Descanso<br>concluído</div><div style="font-size:15px;color:var(--accent);font-weight:500">Toque para continuar</div>`;
         el.onclick = () => el.remove();
         document.body.appendChild(el);
         setTimeout(() => {
@@ -3671,7 +4281,7 @@
     <div class="resultado-stats"><div class="res-stat"><div class="res-stat-val" style="color:var(--accent)">${dur}</div><div class="res-stat-label">Duração</div></div><div class="res-stat"><div class="res-stat-val" style="color:var(--green)">${feitos}</div><div class="res-stat-label">Feitos</div></div><div class="res-stat"><div class="res-stat-val" style="color:var(--orange)">${pulados}</div><div class="res-stat-label">Pulados</div></div></div>
     ${prHtml}<div style="font-size:12px;color:var(--text3);margin-bottom:16px;text-align:center">${inicio} → ${fimStr}</div>
     ${exHtml}
-    <button class="export-btn" onclick="exportarTreino()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>Compartilhar treino</button>
+    <button class="export-btn" onclick="exportarTreino()"><i class="fa-solid fa-share-nodes"></i>Compartilhar treino</button>
     <button class="voltar-btn" onclick="voltarParaHome()" style="margin-top:8px">Voltar ao Início</button>`;
         hideAll();
         const rs = document.getElementById("resultado-screen");
@@ -3693,7 +4303,7 @@
           const container = document.getElementById("export-canvas-container");
           const source = document.getElementById("resultado-content");
           const card = document.createElement("div");
-          card.style.cssText = `width:390px;background:var(--bg);padding:32px 28px 24px;font-family:'DM Sans',sans-serif;color:var(--text);`;
+          card.style.cssText = `width:390px;background:var(--bg);padding:32px 28px 24px;font-family:'Inter',sans-serif;color:var(--text);`;
           card.innerHTML = source.innerHTML;
           const wm = document.createElement("div");
           wm.style.cssText = `margin-top:20px;text-align:center;font-size:12px;color:var(--text3);font-weight:500;letter-spacing:.5px;`;
@@ -3744,7 +4354,7 @@
           const container = document.getElementById("export-canvas-container");
           const source = document.getElementById("content");
           const card = document.createElement("div");
-          card.style.cssText = `width:390px;background:var(--bg);padding:28px;font-family:'DM Sans',sans-serif;color:var(--text);`;
+          card.style.cssText = `width:390px;background:var(--bg);padding:28px;font-family:'Inter',sans-serif;color:var(--text);`;
           card.innerHTML = source.innerHTML;
           const wm = document.createElement("div");
           wm.style.cssText = `margin-top:16px;text-align:center;font-size:12px;color:var(--text3);font-weight:500;letter-spacing:.5px;`;
@@ -4094,7 +4704,7 @@
           } else {
             html += `<div class="empty" style="padding:24px"><div class="empty-text">Registre cargas para acumular recordes.</div></div>`;
           }
-          html += `<button class="export-btn" onclick="exportarStats()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>Compartilhar meus stats</button>`;
+          html += `<button class="export-btn" onclick="exportarStats()"><i class="fa-solid fa-share-nodes"></i>Compartilhar meus stats</button>`;
           el.innerHTML = html;
         } catch (e) {
           el.innerHTML = `<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-text">Erro ao calcular.<br><small>${e.message}</small></div></div>`;
@@ -4172,27 +4782,74 @@
         await loadCategorias();
         const atLimit = !_isPro && grupos.length >= freeMaxGrp();
         let html = "";
+
+        // Explicação no topo
+        html += `<div class="ger-explainer">
+    <div class="ger-explainer-title"><i class="fa-solid fa-circle-info"></i> Como funciona</div>
+    <div class="ger-explainer-row"><span class="ger-explainer-step">1</span><div><strong>Rotina</strong> é o seu plano (ex: "Treino ABC"). Você só treina uma rotina por vez — a marcada como <span style="color:var(--accent)">Ativa</span>.</div></div>
+    <div class="ger-explainer-row"><span class="ger-explainer-step">2</span><div>Dentro da rotina ficam os <strong>dias de treino</strong> (ex: "A — Peito e Tríceps").</div></div>
+    <div class="ger-explainer-row"><span class="ger-explainer-step">3</span><div>Cada dia tem seus <strong>exercícios</strong>. Arraste pelo <i class="fa-solid fa-grip-vertical" style="font-size:11px"></i> para reordenar.</div></div>
+  </div>`;
+
+        // Seção: Rotinas
+        html += `<div class="ger-section-head"><span>Minhas rotinas</span>${!atLimit ? `<button class="ger-section-add" onclick="openAddGrupo()"><i class="fa-solid fa-plus"></i> Nova rotina</button>` : ""}</div>`;
+
+        if (!grupos.length) {
+          html += `<div class="ger-empty"><i class="fa-solid fa-dumbbell"></i><div>Você ainda não tem nenhuma rotina.<br>Crie a primeira para começar a treinar.</div><button class="upsell-btn" style="margin-top:14px" onclick="openAddGrupo()">+ Criar primeira rotina</button></div>`;
+        }
+
         for (const g of grupos) {
           const ts = await db.getTreinos(g.id);
-          html += `<div class="ger-item"><div class="ger-item-header"><div style="flex:1"><div class="ger-item-name">${g.nome}${g.ativo ? '<span class="grupo-ativo-badge">Ativo</span>' : ""}</div><div class="ger-item-sub">${ts.length} treino(s)</div></div><div class="ger-item-actions">${!g.ativo ? `<div class="ger-btn" onclick="ativarGrupo('${g.id}')" title="Ativar"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg></div>` : ""}<div class="ger-btn" onclick="openAddTreino('${g.id}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="ger-btn danger" onclick="deleteGrupo('${g.id}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg></div></div></div>`;
+          html += `<div class="ger-rotina${g.ativo ? " ativa" : ""}">
+      <div class="ger-rotina-head">
+        <div class="ger-rotina-info">
+          <div class="ger-rotina-nome">${g.nome}${g.ativo ? '<span class="grupo-ativo-badge">Ativa</span>' : ""}</div>
+          <div class="ger-rotina-sub">${ts.length} ${ts.length === 1 ? "dia de treino" : "dias de treino"}</div>
+        </div>
+        <div class="ger-item-actions">
+          ${!g.ativo ? `<div class="ger-btn" onclick="ativarGrupo('${g.id}')" title="Tornar ativa"><i class="fa-solid fa-circle-check"></i></div>` : ""}
+          <div class="ger-btn" onclick="openEditGrupo('${g.id}',\`${g.nome.replace(/`/g, "")}\`)" title="Renomear"><i class="fa-solid fa-pen"></i></div>
+          <div class="ger-btn danger" onclick="deleteGrupo('${g.id}')" title="Excluir"><i class="fa-solid fa-trash-can"></i></div>
+        </div>
+      </div>`;
+          if (!g.ativo)
+            html += `<div class="ger-rotina-hint">Toque em <i class="fa-solid fa-circle-check" style="color:var(--accent)"></i> para treinar esta rotina</div>`;
+          // Dias de treino
+          if (!ts.length) {
+            html += `<div class="ger-day-empty">Nenhum dia de treino ainda. <span onclick="openAddTreino('${g.id}')">+ Adicionar dia</span></div>`;
+          }
           for (const t of ts) {
             const exs = await db.getExercicios(t.id);
-            html += `<div class="ger-treino-block"><div class="ger-item" style="background:var(--bg);margin-bottom:0"><div class="ger-item-header"><div style="flex:1;min-width:0"><div class="ger-item-name" style="font-size:14px">${t.nome}</div><div class="ger-item-sub">${exs.length} exercício(s)</div></div><div class="ger-item-actions"><div class="ger-btn" onclick="openAddExercicio('${t.id}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="ger-btn" onclick="openEditTreino('${t.id}',\`${t.nome.replace(/`/g, "")}\`)"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="ger-btn danger" onclick="deleteTreino('${t.id}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg></div></div></div></div><div id="exlist-${t.id}">${exs.map((ex) => `<div class="ger-ex-item" data-exid="${ex.id}" data-tid="${t.id}"><div class="ger-ex-handle">⠿</div><div class="ger-ex-info"><div class="ger-ex-name">${ex.nome}</div><div class="ger-ex-sub">${ex.categoria || ""}${ex.series ? ` · ${ex.series}x${ex.repeticoes || "?"}` : ""}${ex.carga_atual ? ` · ${ex.carga_atual}kg` : ""} · ${ex.descanso_segundos || 60}s</div></div><div class="ger-item-actions"><div class="ger-btn" onclick="openEditExercicio('${ex.id}','${t.id}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="ger-btn danger" onclick="deleteExercicio('${ex.id}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg></div></div></div>`).join("")}</div></div>`;
+            html += `<div class="ger-day">
+        <div class="ger-day-head">
+          <div style="flex:1;min-width:0"><div class="ger-day-nome">${t.nome}</div><div class="ger-day-sub">${exs.length} ${exs.length === 1 ? "exercício" : "exercícios"}</div></div>
+          <div class="ger-item-actions">
+            <div class="ger-btn" onclick="openEditTreino('${t.id}',\`${t.nome.replace(/`/g, "")}\`)" title="Renomear"><i class="fa-solid fa-pen"></i></div>
+            <div class="ger-btn danger" onclick="deleteTreino('${t.id}')" title="Excluir"><i class="fa-solid fa-trash-can"></i></div>
+          </div>
+        </div>
+        <div id="exlist-${t.id}">${exs.map((ex) => `<div class="ger-ex-item" data-exid="${ex.id}" data-tid="${t.id}"><div class="ger-ex-handle"><i class="fa-solid fa-grip-vertical"></i></div><div class="ger-ex-info"><div class="ger-ex-name">${ex.nome}</div><div class="ger-ex-sub">${ex.categoria || "sem categoria"}${ex.series ? ` · ${ex.series}×${ex.repeticoes || "?"}` : ""}${ex.carga_atual ? ` · ${ex.carga_atual}kg` : ""} · descanso ${ex.descanso_segundos || 60}s</div></div><div class="ger-item-actions"><div class="ger-btn" onclick="openEditExercicio('${ex.id}','${t.id}')"><i class="fa-solid fa-pen"></i></div><div class="ger-btn danger" onclick="deleteExercicio('${ex.id}')"><i class="fa-solid fa-trash-can"></i></div></div></div>`).join("")}</div>
+        <button class="ger-add-inline" onclick="openAddExercicio('${t.id}')"><i class="fa-solid fa-plus"></i> Adicionar exercício</button>
+      </div>`;
           }
+          html += `<button class="ger-add-inline ger-add-day" onclick="openAddTreino('${g.id}')"><i class="fa-solid fa-plus"></i> Adicionar dia de treino</button>`;
           html += `</div>`;
         }
-        // Categorias
-        html += `<div style="margin-top:24px;margin-bottom:8px;font-family:'DM Serif Display',serif;font-size:17px">Categorias</div>`;
+
+        if (atLimit) {
+          html += `<div class="upsell-block"><div class="upsell-lock">🔒</div><div class="upsell-title">Limite de ${freeMaxGrp()} rotinas</div><div class="upsell-sub">Faça upgrade para criar rotinas ilimitadas.</div><button class="upsell-btn" onclick="showUpsell('Rotinas ilimitadas','')">Ver planos</button></div>`;
+        }
+
+        // Seção: Categorias
+        html += `<div class="ger-section-head" style="margin-top:28px"><span>Categorias de exercício</span><button class="ger-section-add" onclick="openAddCategoria()"><i class="fa-solid fa-plus"></i> Nova</button></div>`;
+        html += `<div class="ger-cat-hint">Usadas para agrupar exercícios durante o treino.</div>`;
+        html += `<div class="ger-cat-wrap">`;
         html += CATEGORIAS.map(
           (c) =>
-            `<div class="ger-item" style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px"><span style="font-size:14px">${c.nome}</span><div class="ger-btn danger" onclick="deleteCategoria('${c.id}')"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg></div></div>`,
+            `<div class="ger-cat-chip">${c.nome}<i class="fa-solid fa-xmark" onclick="deleteCategoria('${c.id}')"></i></div>`,
         ).join("");
-        html += `<button class="ger-add-btn" onclick="openAddCategoria()" style="margin-bottom:16px">+ Nova Categoria</button>`;
-        if (atLimit) {
-          html += `<div class="upsell-block"><div class="upsell-lock">🔒</div><div class="upsell-title">Limite de grupos (${freeMaxGrp()})</div><div class="upsell-sub">Faça upgrade para criar grupos ilimitados.</div><button class="upsell-btn" onclick="showUpsell('Grupos ilimitados','')">Ver planos</button></div>`;
-        } else {
-          html += `<button class="ger-add-btn" onclick="openAddGrupo()">+ Novo Grupo</button>`;
-        }
+        html += `</div>`;
+
         el.innerHTML = html;
         setupExDrag();
       }
@@ -4269,19 +4926,20 @@
         for (const g of grupos)
           await db.updateGrupo(g.id, { ativo: g.id === id });
         await renderGerenciar();
-        showToast("Grupo ativado!", "success");
+        showToast("Rotina ativada!", "success");
       }
       async function deleteGrupo(id) {
-        if (!confirm("Deletar este grupo?")) return;
+        if (!confirm("Excluir esta rotina e todos os seus dias de treino?"))
+          return;
         await db.deleteGrupo(id);
         await renderGerenciar();
-        showToast("Grupo removido.", "success");
+        showToast("Rotina excluída.", "success");
       }
       async function deleteTreino(id) {
-        if (!confirm("Deletar este treino?")) return;
+        if (!confirm("Excluir este dia de treino e seus exercícios?")) return;
         await db.deleteTreino(id);
         await renderGerenciar();
-        showToast("Treino removido.", "success");
+        showToast("Dia de treino excluído.", "success");
       }
       async function deleteExercicio(id) {
         if (!confirm("Deletar este exercício?")) return;
@@ -4302,8 +4960,9 @@
       }
       function openAddCategoria() {
         openModal(
-          `<div class="modal-title">Nova Categoria</div><div class="form-group"><label class="form-label">Nome</label><input class="form-input" id="f-catNome" placeholder="Ex: Glúteo" autocomplete="off"/></div><button class="btn-primary" id="btn-sc" onclick="saveCategoria()">Salvar</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`,
+          `<div class="modal-title">Nova categoria</div><div class="form-group"><label class="form-label">Nome</label><input class="form-input" id="f-catNome" placeholder="Ex: Glúteo, Panturrilha, Cardio" autocomplete="off"/></div><button class="btn-primary" id="btn-sc" onclick="saveCategoria()">Salvar</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`,
         );
+        setTimeout(() => document.getElementById("f-catNome")?.focus(), 200);
       }
       async function saveCategoria() {
         const nome = document.getElementById("f-catNome").value.trim();
@@ -4346,8 +5005,15 @@
         });
       function openAddGrupo() {
         openModal(
-          `<div class="modal-title">Novo Grupo</div><div class="form-group"><label class="form-label">Nome</label><input class="form-input" id="f-gnome" placeholder="Ex: Semana A" autocomplete="off"/></div><button class="btn-primary" id="btn-sg" onclick="saveGrupo(null)">Salvar</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`,
+          `<div class="modal-title">Nova rotina</div><div style="font-size:13px;color:var(--text2);margin-bottom:14px">Uma rotina é o seu plano de treino (ex: "Treino ABC", "Push/Pull/Legs").</div><div class="form-group"><label class="form-label">Nome da rotina</label><input class="form-input" id="f-gnome" placeholder="Ex: Treino ABC" autocomplete="off"/></div><button class="btn-primary" id="btn-sg" onclick="saveGrupo(null)">Criar rotina</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`,
         );
+        setTimeout(() => document.getElementById("f-gnome")?.focus(), 200);
+      }
+      function openEditGrupo(id, nome) {
+        openModal(
+          `<div class="modal-title">Renomear rotina</div><div class="form-group"><label class="form-label">Nome da rotina</label><input class="form-input" id="f-gnome" value="${nome}" autocomplete="off"/></div><button class="btn-primary" id="btn-sg" onclick="saveGrupo('${id}')">Salvar</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`,
+        );
+        setTimeout(() => document.getElementById("f-gnome")?.focus(), 200);
       }
       async function saveGrupo(id) {
         const nome = document.getElementById("f-gnome").value.trim();
@@ -4368,7 +5034,7 @@
             });
           _closeModal();
           await renderGerenciar();
-          showToast("Grupo salvo!", "success");
+          showToast(id ? "Rotina renomeada!" : "Rotina criada!", "success");
         } catch {
           showToast("Erro.", "error");
           btn.disabled = false;
@@ -4377,13 +5043,15 @@
       }
       function openAddTreino(gid) {
         openModal(
-          `<div class="modal-title">Novo Treino</div><div class="form-group"><label class="form-label">Nome</label><input class="form-input" id="f-tnome" placeholder="Ex: Treino A" autocomplete="off"/></div><button class="btn-primary" id="btn-st" onclick="saveTreino(null,'${gid}')">Salvar</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`,
+          `<div class="modal-title">Novo dia de treino</div><div style="font-size:13px;color:var(--text2);margin-bottom:14px">Um dia de treino agrupa os exercícios de uma sessão (ex: "A — Peito e Tríceps").</div><div class="form-group"><label class="form-label">Nome do dia</label><input class="form-input" id="f-tnome" placeholder="Ex: A — Peito e Tríceps" autocomplete="off"/></div><button class="btn-primary" id="btn-st" onclick="saveTreino(null,'${gid}')">Criar dia</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`,
         );
+        setTimeout(() => document.getElementById("f-tnome")?.focus(), 200);
       }
       function openEditTreino(id, nome) {
         openModal(
-          `<div class="modal-title">Editar Treino</div><div class="form-group"><label class="form-label">Nome</label><input class="form-input" id="f-tnome" value="${nome}" autocomplete="off"/></div><button class="btn-primary" id="btn-st" onclick="saveTreino('${id}',null)">Salvar</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`,
+          `<div class="modal-title">Renomear dia de treino</div><div class="form-group"><label class="form-label">Nome do dia</label><input class="form-input" id="f-tnome" value="${nome}" autocomplete="off"/></div><button class="btn-primary" id="btn-st" onclick="saveTreino('${id}',null)">Salvar</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`,
         );
+        setTimeout(() => document.getElementById("f-tnome")?.focus(), 200);
       }
       async function saveTreino(id, gid) {
         const nome = document.getElementById("f-tnome").value.trim();
@@ -4399,7 +5067,7 @@
           else await db.insertTreino({ id: uid(), grupo_id: gid, nome });
           _closeModal();
           await renderGerenciar();
-          showToast("Treino salvo!", "success");
+          showToast(id ? "Dia renomeado!" : "Dia criado!", "success");
         } catch {
           showToast("Erro.", "error");
           btn.disabled = false;
@@ -4484,12 +5152,13 @@
       }
       function renderTutorial() {
         document.getElementById("tutorial-content").innerHTML = `
-  <div class="tut-section"><div class="tut-section-title">🏠 Hoje</div><div class="tut-text">O <strong>card grande</strong> é o treino sugerido — o que há mais tempo sem ser feito. Toque para iniciar.</div><div class="tut-text">Toque em outro treino abaixo para colocá-lo no destaque.</div></div>
-  <div class="tut-section"><div class="tut-section-title">🏋️ Durante o Treino</div><div class="tut-step"><div class="tut-step-num">1</div><div class="tut-step-text">Toque num card para torná-lo o exercício atual.</div></div><div class="tut-step"><div class="tut-step-num">2</div><div class="tut-step-text">Termine a série e aperte <strong>▶</strong> — conta +1 série e inicia o descanso.</div></div><div class="tut-step"><div class="tut-step-num">3</div><div class="tut-step-text">Timer zera → bip + aviso. Ao completar todas as séries, o exercício é marcado automaticamente.</div></div><div class="tut-tip">🔔 O sino liga/desliga o som. A tela fica acesa durante o descanso.</div></div>
-  <div class="tut-section"><div class="tut-section-title">👆 Gestos</div><div class="tut-text">➡️ Arraste para a <span style="color:var(--green);font-weight:500">direita</span>: <strong>Feito</strong>. ⬅️ Para a <span style="color:var(--orange);font-weight:500">esquerda</span>: <strong>Pular</strong>.</div><div class="tut-text">Deslize da <strong>borda esquerda</strong> para voltar de qualquer tela.</div></div>
-  <div class="tut-section"><div class="tut-section-title">⚡ Recursos Pro</div><div class="tut-text"><strong>Modo Foco</strong> · <strong>Referência de carga</strong> · <strong>Stats e gráficos</strong> · <strong>Calendário completo</strong> · <strong>Acervo de PRs</strong>. Durante o trial você tem acesso a tudo!</div></div>
-  <div class="tut-section"><div class="tut-section-title">⚙️ Gerenciar</div><div class="tut-step"><div class="tut-step-num">1</div><div class="tut-step-text"><strong>Grupos</strong> — conjunto de treinos.</div></div><div class="tut-step"><div class="tut-step-num">2</div><div class="tut-step-text"><strong>Treinos</strong> — dentro de cada grupo.</div></div><div class="tut-step"><div class="tut-step-num">3</div><div class="tut-step-text"><strong>Exercícios</strong> — arraste pelo ⠿ para reordenar.</div></div><div class="tut-step"><div class="tut-step-num">4</div><div class="tut-step-text"><strong>Categorias</strong> — adicione ou remova categorias de exercícios.</div></div></div>
-  <button class="btn-primary" onclick="hideOverlayScreen()" style="margin-top:4px">Voltar ao app</button><div style="height:20px"></div>`;
+  <div class="tut-section"><div class="tut-section-title"><i class="fa-solid fa-layer-group" style="color:var(--accent)"></i> A estrutura</div><div class="tut-text">O app se organiza em três níveis:</div><div class="tut-step"><div class="tut-step-num">1</div><div class="tut-step-text"><strong>Rotina</strong> — seu plano completo (ex: "Treino ABC"). Você treina uma rotina por vez.</div></div><div class="tut-step"><div class="tut-step-num">2</div><div class="tut-step-text"><strong>Dia de treino</strong> — cada sessão da rotina (ex: "A — Peito e Tríceps").</div></div><div class="tut-step"><div class="tut-step-num">3</div><div class="tut-step-text"><strong>Exercícios</strong> — o que você faz em cada dia.</div></div></div>
+  <div class="tut-section"><div class="tut-section-title">🏠 Tela Hoje</div><div class="tut-text">O <strong>card grande</strong> mostra o dia de treino sugerido — o que há mais tempo sem fazer. Toque para iniciar.</div><div class="tut-text">Toque em outro dia abaixo para colocá-lo em destaque.</div></div>
+  <div class="tut-section"><div class="tut-section-title">🏋️ Durante o treino</div><div class="tut-step"><div class="tut-step-num">1</div><div class="tut-step-text">Toque num exercício para torná-lo o <strong>atual</strong> (borda roxa).</div></div><div class="tut-step"><div class="tut-step-num">2</div><div class="tut-step-text">Terminou a série? Aperte <strong>▶</strong> — conta +1 série e começa o descanso.</div></div><div class="tut-step"><div class="tut-step-num">3</div><div class="tut-step-text">Na <strong>última série</strong>, o botão vira <span style="color:var(--accent);font-weight:600">Concluir exercício</span> — sem descanso, já marca como feito.</div></div><div class="tut-tip">🔔 Toque no ícone de som no topo para escolher o alerta de fim de descanso. A tela fica acesa durante o descanso.</div></div>
+  <div class="tut-section"><div class="tut-section-title">👆 Gestos</div><div class="tut-text">➡️ Arraste o exercício para a <span style="color:var(--green);font-weight:500">direita</span>: <strong>Feito</strong>.</div><div class="tut-text">⬅️ Arraste para a <span style="color:var(--orange);font-weight:500">esquerda</span>: <strong>Pular</strong>.</div><div class="tut-text">Deslize da <strong>borda esquerda da tela</strong> para voltar de qualquer lugar.</div></div>
+  <div class="tut-section"><div class="tut-section-title">⚙️ Gerenciar</div><div class="tut-text">Toque na engrenagem no topo para criar e organizar suas rotinas, dias de treino e exercícios.</div><div class="tut-text">Arraste os exercícios pelo <i class="fa-solid fa-grip-vertical" style="font-size:12px;color:var(--text3)"></i> para reordenar. Crie suas próprias <strong>categorias</strong> (Glúteo, Cardio, etc).</div></div>
+  <div class="tut-section"><div class="tut-section-title">⚡ Recursos Pro</div><div class="tut-text"><strong>Modo Foco</strong> (timer em tela cheia) · <strong>Referência de carga</strong> (últimas cargas de cada exercício) · <strong>Stats e gráficos</strong> · <strong>Calendário completo</strong> · <strong>Acervo de recordes</strong>.</div><div class="tut-text">Durante seu período de teste você tem acesso a tudo. Aproveite! 💪</div></div>
+  <button class="btn-primary" onclick="hideOverlayScreen()" style="margin-top:4px">Entendi, voltar ao app</button><div style="height:20px"></div>`;
       }
 
       // ── UTILS ─────────────────────────────────────────────────────
@@ -4581,10 +5250,28 @@
         }
       }
 
-      // Carrega config antes de exibir auth
+      // Carrega config antes de exibir auth + tenta restaurar sessão
       loadConfig().then(() => {
         applyAppName();
       });
+      (function restoreSession() {
+        try {
+          const raw = localStorage.getItem("_tl_session");
+          if (raw) {
+            const s = JSON.parse(raw);
+            if (s && s.access_token && s.user) {
+              _session = s;
+              startApp().catch(() => {
+                _session = null;
+                try {
+                  localStorage.removeItem("_tl_session");
+                } catch (e) {}
+                document.getElementById("auth-screen").style.display = "flex";
+              });
+            }
+          }
+        } catch (e) {}
+      })();
     </script>
   </body>
 </html>
