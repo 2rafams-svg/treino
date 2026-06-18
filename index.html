@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR" data-theme="light">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
 <meta name="apple-mobile-web-app-title" content="TreinoLog"/>
-<meta name="theme-color" content="#0a0a0c"/>
+<meta name="theme-color" content="#f2f1f7"/>
 <link rel="manifest" href="manifest.json"/>
 <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
 <link rel="icon" type="image/png" href="icon-192.png"/>
@@ -56,6 +56,7 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 .trial-banner i{font-size:14px;color:var(--yellow);flex-shrink:0}
 .paywall-hero{text-align:center;padding:8px 0 20px}
 .paywall-icon{font-size:42px;margin-bottom:10px}
+.paywall-icon i{color:var(--accent)}
 .paywall-title{font-family:'Outfit',sans-serif;font-weight:700;font-size:22px;margin-bottom:6px}
 .paywall-sub{font-size:13px;color:var(--text2);line-height:1.5}
 .plan-cards{display:flex;flex-direction:column;gap:10px;margin:20px 0}
@@ -74,7 +75,8 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 .pro-feature-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2)}
 .pro-feature-item::before{content:'✓';color:var(--accent);font-weight:700;flex-shrink:0}
 .upsell-block{background:color-mix(in srgb,var(--accent) 6%,transparent);border:1px dashed color-mix(in srgb,var(--accent) 35%,transparent);border-radius:14px;padding:20px 16px;text-align:center;margin:10px 0}
-.upsell-lock{font-size:28px;margin-bottom:8px}
+.upsell-lock{font-size:30px;margin-bottom:10px}
+.upsell-lock i{color:var(--accent)}
 .upsell-title{font-weight:600;font-size:15px;margin-bottom:5px}
 .upsell-sub{font-size:13px;color:var(--text2);margin-bottom:14px;line-height:1.5}
 .upsell-btn{display:inline-block;padding:11px 24px;border-radius:100px;border:none;background:var(--accent);color:var(--bg);font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer}
@@ -97,7 +99,7 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 .grupo-badge strong{color:var(--accent)}
 .hero-card{background:linear-gradient(135deg,var(--surface) 0%,var(--surface2) 100%);border:1px solid var(--border);border-radius:20px;padding:22px 20px;margin-bottom:18px;position:relative;overflow:hidden;cursor:pointer}
 .hero-card::before{content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--accent) 18%,transparent) 0%,transparent 70%)}
-.hero-tag{display:inline-block;font-size:11px;font-weight:600;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);border-radius:100px;padding:3px 10px;margin-bottom:10px;letter-spacing:.4px}
+.hero-tag{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--accent);background:color-mix(in srgb,var(--accent) 12%,transparent);border:1px solid color-mix(in srgb,var(--accent) 30%,transparent);border-radius:100px;padding:3px 10px;margin-bottom:10px;letter-spacing:.4px}
 .hero-nome{font-family:'Outfit',sans-serif;font-weight:700;letter-spacing:-.3px;font-size:23px;line-height:1.2;margin-bottom:8px;position:relative}
 .hero-meta{font-size:12px;color:var(--text2);margin-bottom:16px}
 .hero-meta strong{color:var(--text)}
@@ -192,7 +194,8 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 .resultado-header{padding:calc(var(--safe-top) + 14px) 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:var(--bg)}
 .resultado-content{flex:1;overflow-y:auto;padding:20px 20px calc(60px + var(--safe-bot))}
 .resultado-hero{text-align:center;padding:20px 0 26px}
-.resultado-icon{font-size:46px;margin-bottom:10px}
+.resultado-icon{font-size:44px;margin-bottom:10px}
+.resultado-icon i{color:var(--accent)}
 .resultado-titulo{font-family:'Outfit',sans-serif;font-weight:700;letter-spacing:-.3px;font-size:25px;margin-bottom:6px}
 .resultado-sub{font-size:13px;color:var(--text2)}
 .resultado-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
@@ -210,6 +213,9 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 .res-ex-status.pulei{color:var(--orange)}
 .res-ex-status.pendente{color:var(--text3)}
 .voltar-btn{width:100%;padding:15px;border-radius:14px;border:none;background:var(--accent);color:var(--bg);font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px}
+.prox-treino{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 16px;margin:14px 0 4px;display:flex;flex-direction:column;gap:4px}
+.prox-treino-label{font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.4px;display:flex;align-items:center;gap:6px}
+.prox-treino-nome{font-family:'Outfit',sans-serif;font-weight:600;font-size:17px}
 .cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .cal-month-label{font-family:'Outfit',sans-serif;font-weight:600;font-size:18px}
 .cal-nav-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:var(--surface);color:var(--text2);font-size:17px;cursor:pointer;display:flex;align-items:center;justify-content:center}
@@ -294,6 +300,54 @@ body{display:flex;flex-direction:column;max-width:430px;margin:0 auto}
 .ger-cat-chip{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:8px 10px 8px 14px;font-size:13px;font-weight:500}
 .ger-cat-chip i{font-size:13px;color:var(--text3);cursor:pointer;padding:2px}
 .ger-cat-chip i:active{color:var(--red)}
+#wizard-screen{display:none;flex-direction:column;height:100vh;background:var(--bg)}
+.wiz-header{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:calc(var(--safe-top) + 14px) 20px 12px}
+.wiz-back{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0}
+.wiz-back i{font-size:15px;color:var(--text2)}
+.wiz-progress{flex:1;height:6px;background:var(--surface2);border-radius:100px;overflow:hidden}
+.wiz-progress-bar{height:100%;background:var(--accent);border-radius:100px;width:20%;transition:width .35s cubic-bezier(.4,0,.2,1)}
+.wiz-content{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 24px calc(40px + var(--safe-bot))}
+.wiz-step-tag{font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px}
+.wiz-title{font-family:'Outfit',sans-serif;font-weight:700;font-size:26px;line-height:1.2;letter-spacing:-.4px;margin-bottom:10px}
+.wiz-sub{font-size:14px;color:var(--text2);line-height:1.6;margin-bottom:24px}
+.wiz-sub strong{color:var(--text)}
+.wiz-note{background:color-mix(in srgb,var(--accent) 7%,transparent);border:1px solid color-mix(in srgb,var(--accent) 22%,transparent);border-radius:12px;padding:12px 14px;font-size:13px;color:var(--accent);line-height:1.55;margin-bottom:20px;display:flex;gap:9px;align-items:flex-start}
+.wiz-note i{margin-top:2px;flex-shrink:0}
+.wiz-opt{background:var(--surface);border:1.5px solid var(--border);border-radius:14px;padding:16px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:all .15s}
+.wiz-opt.selected{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 7%,transparent)}
+.wiz-opt-icon{width:42px;height:42px;border-radius:11px;background:var(--surface2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.wiz-opt-icon i{font-size:18px;color:var(--accent)}
+.wiz-opt-info{flex:1;min-width:0}
+.wiz-opt-nome{font-weight:600;font-size:15px;margin-bottom:2px}
+.wiz-opt-desc{font-size:12px;color:var(--text3);line-height:1.4}
+.wiz-opt-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.wiz-opt.selected .wiz-opt-check{border-color:var(--accent);background:var(--accent)}
+.wiz-opt.selected .wiz-opt-check i{color:var(--bg);font-size:11px}
+.wiz-opt-check i{display:none}
+.wiz-opt.selected .wiz-opt-check i{display:block}
+.wiz-cat-chip{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:9px 12px 9px 15px;font-size:14px;font-weight:500;margin:0 8px 8px 0}
+.wiz-cat-chip i{font-size:13px;color:var(--text3);cursor:pointer;padding:2px}
+.wiz-freq-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px}
+.wiz-freq-btn{aspect-ratio:1;border-radius:12px;border:1.5px solid var(--border);background:var(--surface);font-family:'Outfit',sans-serif;font-weight:700;font-size:20px;color:var(--text);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.wiz-freq-btn span{font-size:10px;font-weight:500;color:var(--text3);font-family:'Inter',sans-serif}
+.wiz-freq-btn.selected{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent);color:var(--accent)}
+.wiz-freq-btn.selected span{color:var(--accent)}
+.wiz-footer{position:sticky;bottom:0;background:linear-gradient(to top,var(--bg) 70%,transparent);padding:14px 0 calc(8px + var(--safe-bot));margin-top:8px}
+.wiz-btn{width:100%;padding:16px;border-radius:14px;border:none;background:var(--accent);color:var(--bg);font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer}
+.wiz-btn:disabled{opacity:.4;cursor:not-allowed}
+.wiz-btn-ghost{width:100%;padding:14px;border-radius:14px;border:1px solid var(--border);background:transparent;color:var(--text2);font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer;margin-top:8px}
+.wiz-day-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:12px}
+.wiz-day-num{font-size:12px;font-weight:600;color:var(--accent);margin-bottom:8px}
+.wiz-ex-mini{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border)}
+.wiz-ex-mini:last-child{border-bottom:none}
+.wiz-ex-mini-info{flex:1;min-width:0}
+.wiz-ex-mini-nome{font-size:14px;font-weight:500}
+.wiz-ex-mini-sub{font-size:11px;color:var(--text3)}
+.wiz-ex-mini-del{color:var(--text3);cursor:pointer;font-size:13px;padding:4px}
+.wiz-toggle{display:flex;gap:10px;margin-bottom:18px}
+.wiz-toggle-btn{flex:1;padding:13px;border-radius:12px;border:1.5px solid var(--border);background:var(--surface);font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:var(--text2);cursor:pointer}
+.wiz-toggle-btn.selected{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent);color:var(--accent)}
+.wiz-add-ex{width:100%;padding:11px;border-radius:10px;border:1px dashed color-mix(in srgb,var(--accent) 35%,transparent);background:transparent;color:var(--accent);font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;margin-top:10px;display:flex;align-items:center;justify-content:center;gap:6px}
 .tut-section{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:18px 16px;margin-bottom:14px}
 .tut-section-title{font-family:'Outfit',sans-serif;font-weight:600;font-size:17px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
 .tut-text{font-size:14px;color:var(--text2);line-height:1.65;margin-bottom:8px}
@@ -333,7 +387,8 @@ select.form-input{cursor:pointer}
 .hist-ex-name{font-size:13px;font-weight:500;flex:1}
 .hist-ex-meta{font-size:11px;color:var(--text3);text-align:right;line-height:1.5}
 .empty{text-align:center;padding:48px 20px;color:var(--text3)}
-.empty-icon{font-size:40px;margin-bottom:12px}
+.empty-icon{font-size:38px;margin-bottom:14px}
+.empty-icon i{color:var(--text3)}
 .empty-text{font-size:14px;line-height:1.6}
 .loading{text-align:center;padding:60px 20px;color:var(--text3)}
 .spinner{width:30px;height:30px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 14px}
@@ -347,6 +402,19 @@ select.form-input{cursor:pointer}
 .toast.error{border-color:var(--red);color:var(--red)}
 .toast.pr{border-color:var(--yellow);color:var(--yellow)}
 @keyframes splashIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+#coach-overlay{position:fixed;inset:0;z-index:1600;display:none;pointer-events:none}
+#coach-overlay.active{display:block}
+#coach-hole{position:absolute;border-radius:14px;box-shadow:0 0 0 9999px rgba(0,0,0,.78);transition:all .35s cubic-bezier(.4,0,.2,1);pointer-events:none;border:2px solid var(--accent)}
+#coach-tip{position:absolute;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;width:min(320px,calc(100vw - 40px));box-shadow:0 12px 40px rgba(0,0,0,.4);pointer-events:auto;transition:all .35s cubic-bezier(.4,0,.2,1)}
+#coach-tip-text{font-size:14px;line-height:1.6;color:var(--text);margin-bottom:16px}
+#coach-tip-text strong{color:var(--accent)}
+.coach-tip-foot{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#coach-dots{display:flex;gap:6px}
+.coach-dot{width:7px;height:7px;border-radius:50%;background:var(--border)}
+.coach-dot.active{background:var(--accent);width:18px;border-radius:100px}
+.coach-tip-actions{display:flex;gap:8px}
+#coach-skip{background:transparent;border:none;color:var(--text3);font-family:'Inter',sans-serif;font-size:13px;font-weight:500;cursor:pointer;padding:8px 10px}
+#coach-next{background:var(--accent);border:none;color:var(--bg);font-family:'Inter',sans-serif;font-size:13px;font-weight:700;cursor:pointer;padding:8px 18px;border-radius:100px}
 </style>
 </head>
 <body>
@@ -368,12 +436,12 @@ select.form-input{cursor:pointer}
     <button class="auth-tab" id="tab-signup" onclick="switchAuthTab('signup')">Criar conta</button>
   </div>
   <div id="auth-trial-box" class="auth-trial-box" style="display:none">
-    <strong id="auth-trial-msg">🎉 14 dias de acesso completo, grátis</strong>
+    <strong id="auth-trial-msg"><i class="fa-solid fa-gift" style="margin-right:6px"></i>14 dias de acesso completo, grátis</strong>
     Experimente todos os recursos Pro. Sem cartão, sem cobrança.
   </div>
   <input class="auth-input" id="auth-email" type="email" placeholder="seu@email.com" autocomplete="email" inputmode="email"/>
   <input class="auth-input" id="auth-password" type="password" placeholder="Senha (mín. 6 caracteres)" autocomplete="current-password"/>
-  <div id="auth-name-wrap" style="display:none">
+  <div id="auth-name-wrap" style="display:none;width:100%">
     <input class="auth-input" id="auth-name" type="text" placeholder="Nome/apelido" autocomplete="name"/>
   </div>
   <div class="auth-error" id="auth-error"></div>
@@ -382,7 +450,7 @@ select.form-input{cursor:pointer}
 </div>
 
 <div id="otp-screen" style="position:fixed;inset:0;background:var(--bg);z-index:1401;display:none;flex-direction:column;align-items:center;justify-content:center;padding:40px 32px calc(40px + var(--safe-bot))">
-  <div style="font-size:46px;margin-bottom:18px">📩</div>
+  <div style="font-size:42px;margin-bottom:18px;color:var(--accent)"><i class="fa-regular fa-envelope"></i></div>
   <div class="font-title" style="font-weight:700;font-size:24px;letter-spacing:-.3px;margin-bottom:8px;text-align:center">Confirme seu e-mail</div>
   <div style="font-size:14px;color:var(--text2);line-height:1.6;text-align:center;margin-bottom:28px;max-width:300px">Enviamos um código de 6 dígitos para <strong id="otp-email-label" style="color:var(--text)"></strong>. Digite-o abaixo.</div>
   <input class="auth-input" id="otp-code" type="text" inputmode="numeric" maxlength="6" placeholder="000000" style="text-align:center;font-size:26px;letter-spacing:10px;font-weight:600;font-family:'Outfit',sans-serif" autocomplete="one-time-code"/>
@@ -407,7 +475,7 @@ select.form-input{cursor:pointer}
     </div>
     <div class="header-actions">
       <div class="icon-btn" onclick="toggleTheme()" id="theme-btn">
-        <i id="theme-icon" class="fa-solid fa-moon"></i>
+        <i id="theme-icon" class="fa-solid fa-sun"></i>
       </div>
       <div class="icon-btn" onclick="showTutorial()">
         <i class="fa-regular fa-circle-question"></i>
@@ -504,6 +572,29 @@ select.form-input{cursor:pointer}
   <div class="ger-content" id="tutorial-content"></div>
 </div>
 
+<div id="wizard-screen">
+  <div class="wiz-header">
+    <div class="wiz-back" id="wiz-back" onclick="wizBack()" style="visibility:hidden"><i class="fa-solid fa-chevron-left"></i></div>
+    <div class="wiz-progress"><div class="wiz-progress-bar" id="wiz-progress-bar"></div></div>
+    <div style="width:38px"></div>
+  </div>
+  <div class="wiz-content" id="wiz-content"></div>
+</div>
+
+<div id="coach-overlay">
+  <div id="coach-hole"></div>
+  <div id="coach-tip">
+    <div id="coach-tip-text"></div>
+    <div class="coach-tip-foot">
+      <div id="coach-dots"></div>
+      <div class="coach-tip-actions">
+        <button id="coach-skip" onclick="coachSkip()">Pular</button>
+        <button id="coach-next" onclick="coachNext()">Próximo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="toast" id="toast"></div>
 <div class="modal-overlay" id="modal-overlay">
   <div class="modal"><div class="modal-handle"></div><div id="modal-content"></div></div>
@@ -542,12 +633,12 @@ function applyTheme(t){
   icon.className=t==='dark'?'fa-solid fa-moon':'fa-solid fa-sun';
 }
 function toggleTheme(){applyTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');}
-try{applyTheme(localStorage.getItem('_tl_theme')||'dark');}catch(e){}
+try{applyTheme(localStorage.getItem('_tl_theme')||'light');}catch(e){}
 
 // ── CLIENTE DE DADOS (genérico — sem mencionar provider) ───────
 let _session = null; // { access_token, user }
 
-async function _req(path, opts={}, useSession=true){
+async function _req(path, opts={}, useSession=true, _retry=false){
   const headers = {
     'apikey': _ak,
     'Content-Type': 'application/json',
@@ -556,8 +647,29 @@ async function _req(path, opts={}, useSession=true){
     ...(opts.headers||{})
   };
   const res = await fetch(`${_ep}/rest/v1/${path}`, {...opts, headers});
-  if(!res.ok){ const e=await res.text(); throw new Error(e); }
+  if(!res.ok){
+    // JWT expirado → tenta refresh uma vez e repete
+    if(res.status===401 && useSession && _session && _session.refresh_token && !_retry){
+      const ok=await _refreshSession();
+      if(ok) return _req(path, opts, useSession, true);
+    }
+    const e=await res.text(); throw new Error(e);
+  }
   const t=await res.text(); return t?JSON.parse(t):null;
+}
+
+async function _refreshSession(){
+  try{
+    const res=await fetch(`${_ep}/auth/v1/token?grant_type=refresh_token`,{
+      method:'POST',headers:{apikey:_ak,'Content-Type':'application/json'},
+      body:JSON.stringify({refresh_token:_session.refresh_token})
+    });
+    if(!res.ok)return false;
+    const data=await res.json();
+    _session={access_token:data.access_token,refresh_token:data.refresh_token,user:data.user};
+    try{localStorage.setItem('_tl_session',JSON.stringify(_session));}catch(e){}
+    return true;
+  }catch(e){ return false; }
 }
 
 async function _authReq(path, body){
@@ -600,16 +712,25 @@ const CATEGORIAS_PADRAO=['Peito','Costas','Ombro','Bíceps','Tríceps','Perna','
 async function loadCategorias(){
   try{
     let rows = await _req('treinos_categorias?order=posicao.asc');
-    // Se o usuário não tem categorias (trigger falhou no cadastro), semeia as padrões
     if(!rows || !rows.length){
-      const novas = CATEGORIAS_PADRAO.map((nome,i)=>({id:uid(),user_id:uid_(),nome,posicao:i}));
-      try{
-        await _req('treinos_categorias',{method:'POST',body:JSON.stringify(novas)});
-        rows = await _req('treinos_categorias?order=posicao.asc');
-      }catch(e){ rows=novas; }
+      // Semeia padrões no banco (uma a uma para evitar problema com insert em lote)
+      const criadas=[];
+      for(let i=0;i<CATEGORIAS_PADRAO.length;i++){
+        const novo={id:uid(),user_id:uid_(),nome:CATEGORIAS_PADRAO[i],posicao:i};
+        try{
+          await _req('treinos_categorias',{method:'POST',body:JSON.stringify(novo)});
+          criadas.push(novo);
+        }catch(e){ criadas.push(novo); }
+      }
+      rows = criadas;
     }
-    CATEGORIAS = rows ? rows.map(r=>({id:r.id,nome:r.nome})) : [];
-  }catch(e){ CATEGORIAS=CATEGORIAS_PADRAO.map((nome,i)=>({id:'tmp'+i,nome})); }
+    CATEGORIAS = rows.map(r=>({id:r.id,nome:r.nome}));
+  }catch(e){
+    // último recurso: padrões só em memória (combo nunca fica vazio)
+    CATEGORIAS = CATEGORIAS_PADRAO.map((nome,i)=>({id:'tmp'+i,nome}));
+  }
+  // Garantia final: nunca deixar vazio
+  if(!CATEGORIAS.length) CATEGORIAS = CATEGORIAS_PADRAO.map((nome,i)=>({id:'tmp'+i,nome}));
 }
 
 // ── AUTH ───────────────────────────────────────────────────────
@@ -622,7 +743,7 @@ function switchAuthTab(tab){
   trialBox.style.display=tab==='signup'?'block':'none';
   if(tab==='signup'){
     const msg=document.getElementById('auth-trial-msg');
-    if(msg) msg.textContent=`🎉 ${trialDays()} dias de acesso completo, grátis`;
+    if(msg) msg.innerHTML=`<i class="fa-solid fa-gift" style="margin-right:6px"></i>${trialDays()} dias de acesso completo, grátis`;
   }
   document.getElementById('auth-name-wrap').style.display=tab==='signup'?'block':'none';
   document.getElementById('auth-submit').textContent=tab==='login'?'Entrar':'Criar conta';
@@ -655,16 +776,16 @@ async function submitAuth(){
       // === BYPASS: cadastro entra direto (sem confirmação por código) ===
       const data=await _authReq('signup',{email,password,data:{display_name:name||null}});
       if(data.access_token){
-        _session={access_token:data.access_token,user:data.user};
+        _session={access_token:data.access_token,refresh_token:data.refresh_token,user:data.user};
       }else{
         const login=await _authReq('token?grant_type=password',{email,password});
-        _session={access_token:login.access_token,user:login.user};
+        _session={access_token:login.access_token,refresh_token:login.refresh_token,user:login.user};
       }
       await startApp();
       showToast(`Bem-vindo(a)! Você tem ${trialDays()} dias Pro grátis.`,'success');
     } else {
       const data=await _authReq('token?grant_type=password',{email,password});
-      _session={access_token:data.access_token,user:data.user};
+      _session={access_token:data.access_token,refresh_token:data.refresh_token,user:data.user};
       await startApp();
     }
   }catch(e){
@@ -703,7 +824,7 @@ async function submitOtp(){
   try{
     // verifica o código de confirmação de e-mail (signup OTP)
     const data=await _authReq('verify',{type:'signup',email:_pendingSignup.email,token:code});
-    _session={access_token:data.access_token,user:data.user};
+    _session={access_token:data.access_token,refresh_token:data.refresh_token,user:data.user};
     document.getElementById('otp-screen').style.display='none';
     await startApp();
     showToast(`Bem-vindo(a)! Você tem ${trialDays()} dias Pro grátis.`,'success');
@@ -774,12 +895,12 @@ function updateStatusBadge(){
   else{el.className='status-badge free';el.textContent='Free';}
 }
 function showUpsell(title,sub){
-  openModal(`<div class="paywall-hero"><div class="paywall-icon">⚡</div><div class="paywall-title">${title||'Recurso Pro'}</div><div class="paywall-sub">${sub||'Disponível no plano Pro.'}</div></div><div class="pro-features-list"><div class="pro-feature-item">Histórico completo</div><div class="pro-feature-item">Calendário ilimitado</div><div class="pro-feature-item">Referência da última carga</div><div class="pro-feature-item">Stats e gráficos</div><div class="pro-feature-item">Acervo de recordes pessoais</div><div class="pro-feature-item">Modo foco</div><div class="pro-feature-item">Exportar stats</div></div><button class="plan-btn" onclick="_closeModal();showPaywall()">Ver planos</button><button class="btn-secondary" onclick="_closeModal()">Agora não</button>`);
+  openModal(`<div class="paywall-hero"><div class="paywall-icon"><i class="fa-solid fa-bolt"></i></div><div class="paywall-title">${title||'Recurso Pro'}</div><div class="paywall-sub">${sub||'Disponível no plano Pro.'}</div></div><div class="pro-features-list"><div class="pro-feature-item">Histórico completo</div><div class="pro-feature-item">Calendário ilimitado</div><div class="pro-feature-item">Referência da última carga</div><div class="pro-feature-item">Stats e gráficos</div><div class="pro-feature-item">Acervo de recordes pessoais</div><div class="pro-feature-item">Modo foco</div><div class="pro-feature-item">Exportar stats</div></div><button class="plan-btn" onclick="_closeModal();showPaywall()">Ver planos</button><button class="btn-secondary" onclick="_closeModal()">Agora não</button>`);
 }
 function showPaywall(){
-  openModal(`<div class="paywall-hero"><div class="paywall-icon">🏆</div><div class="paywall-title">Upgrade para Pro</div><div class="paywall-sub">Desbloqueie todo o potencial do ${appName()}</div></div>
+  openModal(`<div class="paywall-hero"><div class="paywall-icon"><i class="fa-solid fa-trophy"></i></div><div class="paywall-title">Upgrade para Pro</div><div class="paywall-sub">Desbloqueie todo o potencial do ${appName()}</div></div>
   <div class="plan-cards">
-    <div class="plan-card featured"><div class="plan-tag">⭐ Mais popular</div><div class="plan-name">Anual</div><div class="plan-price">R$ --,--<span>/ano</span></div><div class="plan-desc">2 meses grátis · cancele quando quiser</div><button class="plan-btn" style="margin-top:14px" disabled>Em breve na Play Store</button></div>
+    <div class="plan-card featured"><div class="plan-tag"><i class="fa-solid fa-star"></i> Mais popular</div><div class="plan-name">Anual</div><div class="plan-price">R$ --,--<span>/ano</span></div><div class="plan-desc">2 meses grátis · cancele quando quiser</div><button class="plan-btn" style="margin-top:14px" disabled>Em breve na Play Store</button></div>
     <div class="plan-card"><div class="plan-name">Mensal</div><div class="plan-price">R$ --,--<span>/mês</span></div><button class="plan-btn secondary" style="margin-top:12px" disabled>Em breve na Play Store</button></div>
     <div class="plan-card"><div class="plan-name">Vitalício</div><div class="plan-price">R$ ---,--<span> único</span></div><button class="plan-btn secondary" style="margin-top:12px" disabled>Em breve na Play Store</button></div>
   </div>
@@ -795,6 +916,11 @@ const uid_=()=>_session.user.id;
 
 const db={
   getCategorias:  ()=>_req('treinos_categorias?order=posicao.asc'),
+  // Catálogo (global, leitura pública — sem sessão)
+  getCatModelos:  ()=>_req('catalogo_modelos?ativo=eq.true&order=ordem.asc',{},false),
+  getCatModeloDias:(mid)=>_req(`catalogo_modelo_dias?modelo_id=eq.${mid}&order=ordem.asc`,{},false),
+  getCatDiaExercicios:(did)=>_req(`catalogo_dia_exercicios?modelo_dia_id=eq.${did}&order=ordem.asc&select=*,catalogo_exercicios(nome,categoria)`,{},false),
+  getCatExercicios:()=>_req('catalogo_exercicios?order=categoria.asc,nome.asc',{},false),
   insertCategoria:(d)=>_req('treinos_categorias',{method:'POST',body:JSON.stringify({...d,user_id:uid_()})}),
   deleteCategoria:(id)=>_req(`treinos_categorias?id=eq.${id}`,{method:'DELETE',headers:{Prefer:'return=minimal'}}),
   getGrupos:      ()=>_req('treinos_grupos?order=nome.asc'),
@@ -837,7 +963,7 @@ let soundEnabled=true,focoAberto=false;
 
 // ── APP START ─────────────────────────────────────────────────
 function showApp(){const a=document.getElementById('app');a.style.display='flex';a.style.flexDirection='column';}
-function hideAll(){['app','sessao-screen','resultado-screen','gerenciar-screen','tutorial-screen'].forEach(id=>{document.getElementById(id).style.display='none';});document.getElementById('foco-screen').style.display='none';}
+function hideAll(){['app','sessao-screen','resultado-screen','gerenciar-screen','tutorial-screen','wizard-screen'].forEach(id=>{document.getElementById(id).style.display='none';});document.getElementById('foco-screen').style.display='none';}
 function hideOverlayScreen(){hideAll();showApp();init();}
 
 async function startApp(){
@@ -848,6 +974,12 @@ async function startApp(){
   await Promise.all([loadConfig(), loadSubscription(), loadCategorias()]);
   applyAppName();
   updateStatusBadge();
+  // Primeira vez (sem rotinas) → wizard de onboarding
+  const gruposIniciais = await db.getGrupos();
+  if(!gruposIniciais || !gruposIniciais.length){
+    startWizard();
+    return;
+  }
   await init();
   checkTrialBanner();
 }
@@ -887,7 +1019,7 @@ async function init(){
     render();
     checkTrialBanner();
   }catch(e){
-    el.innerHTML=`<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-text">Erro ao conectar.<br><small>${e.message}</small></div></div>`;
+    el.innerHTML=`<div class="empty"><div class="empty-icon"><i class="fa-solid fa-triangle-exclamation"></i></div><div class="empty-text">Erro ao conectar.<br><small>${e.message}</small></div></div>`;
   }
 }
 
@@ -920,8 +1052,8 @@ function render(){
 
 // ── HOME ──────────────────────────────────────────────────────
 async function renderHome(el){
-  if(!grupoAtivo){el.innerHTML=`<div class="empty"><div class="empty-icon">💪</div><div class="empty-text">Vamos começar!<br>Crie sua primeira rotina de treino.</div><button class="upsell-btn" style="margin-top:16px" onclick="showGerenciar()">Criar rotina</button></div>`;return;}
-  if(!treinos.length){el.innerHTML=`<div class="empty"><div class="empty-icon">📋</div><div class="empty-text">A rotina <strong>${grupoAtivo.nome}</strong> ainda não tem dias de treino.</div><button class="upsell-btn" style="margin-top:16px" onclick="showGerenciar()">Adicionar dia de treino</button></div>`;return;}
+  if(!grupoAtivo){el.innerHTML=`<div class="empty"><div class="empty-icon"><i class="fa-solid fa-dumbbell"></i></div><div class="empty-text">Vamos começar!<br>Crie sua primeira rotina de treino.</div><button class="upsell-btn" style="margin-top:16px" onclick="showGerenciar()">Criar rotina</button></div>`;return;}
+  if(!treinos.length){el.innerHTML=`<div class="empty"><div class="empty-icon"><i class="fa-solid fa-clipboard-list"></i></div><div class="empty-text">A rotina <strong>${grupoAtivo.nome}</strong> ainda não tem dias de treino.</div><button class="upsell-btn" style="margin-top:16px" onclick="showGerenciar()">Adicionar dia de treino</button></div>`;return;}
   const abertasHoje=await db.getSessoesAbertasHoje();
   const sessaoHoje=abertasHoje&&abertasHoje.length?abertasHoje[0]:null;
   if(sessaoHoje)selectedTreinoId=sessaoHoje.treino_id;
@@ -933,7 +1065,7 @@ async function renderHome(el){
   let html=`<div class="grupo-badge" onclick="showGerenciar()">Rotina: <strong>${grupoAtivo.nome}</strong></div>`;
   if(sessaoHoje)html+=`<div class="continuar-banner"><i class="fa-solid fa-clock-rotate-left"></i>Treino de hoje em andamento</div>`;
   html+=`<div class="hero-card" onclick="iniciarTreino()">
-    <div class="hero-tag">${sessaoHoje&&sessaoHoje.treino_id===hero.id?'⏱ EM ANDAMENTO':isSugerido?'✦ SUGERIDO':'SELECIONADO'}</div>
+    <div class="hero-tag">${sessaoHoje&&sessaoHoje.treino_id===hero.id?'<i class="fa-solid fa-clock"></i> EM ANDAMENTO':isSugerido?'<i class="fa-solid fa-star"></i> SUGERIDO':'SELECIONADO'}</div>
     <div class="hero-nome">${hero.nome}</div>
     <div class="hero-meta">Último: <strong>${ulv}</strong> · Feito <strong>${hero.vezes_feito||0}x</strong></div>
     <button class="hero-btn">${heroBtn}</button>
@@ -948,35 +1080,43 @@ async function renderHome(el){
   }
   el.innerHTML=html;
   checkTrialBanner();
+  maybeStartCoach();
 }
 function selecionarHero(id){selectedTreinoId=id;render();}
 
 // ── SESSÃO ────────────────────────────────────────────────────
 async function iniciarTreino(){
   if(!selectedTreinoId)return;
-  const abertasHoje=await db.getSessoesAbertasHoje();
-  const sessaoHoje=abertasHoje&&abertasHoje.length?abertasHoje[0]:null;
-  if(sessaoHoje){
-    if(sessaoHoje.treino_id===selectedTreinoId){await continuarSessao(sessaoHoje);return;}
-    await db.deleteSessaoExsBySessao(sessaoHoje.id);await db.deleteSessao(sessaoHoje.id);
+  const heroBtn=document.querySelector('.hero-btn');
+  if(heroBtn){heroBtn.disabled=true;heroBtn.dataset.orig=heroBtn.textContent;heroBtn.textContent='Preparando...';}
+  try{
+    const abertasHoje=await db.getSessoesAbertasHoje();
+    const sessaoHoje=abertasHoje&&abertasHoje.length?abertasHoje[0]:null;
+    if(sessaoHoje){
+      if(sessaoHoje.treino_id===selectedTreinoId){await continuarSessao(sessaoHoje);return;}
+      await db.deleteSessaoExsBySessao(sessaoHoje.id);await db.deleteSessao(sessaoHoje.id);
+    }
+    const treino=treinos.find(t=>t.id===selectedTreinoId);
+    const exercicios=await db.getExercicios(selectedTreinoId);
+    if(!exercicios||!exercicios.length){showToast('Adicione exercícios a este treino.','error');if(heroBtn){heroBtn.disabled=false;heroBtn.textContent=heroBtn.dataset.orig;}return;}
+    await carregarCargaHist();
+    const sessaoId=uid();const agora=new Date().toISOString();
+    await db.insertSessao({id:sessaoId,treino_id:selectedTreinoId,iniciado_em:agora});
+    sessaoExs=[];
+    for(const ex of exercicios){
+      const seid=uid();const hist=cargaHist[ex.id]||[];
+      const carga=hist.length?hist[0].carga:(ex.carga_atual||null);
+      await db.insertSessaoEx({id:seid,sessao_id:sessaoId,exercicio_id:ex.id,nome_snapshot:ex.nome,status:'pendente',series_feitas:0,carga_usada:carga});
+      sessaoExs.push({id:seid,exercicio_id:ex.id,nome_snapshot:ex.nome,status:'pendente',series_feitas:0,carga_usada:carga,_ex:ex});
+    }
+    sessaoAtiva={id:sessaoId,treino_id:selectedTreinoId,treino_nome:treino.nome,iniciado_em:agora};
+    sessaoSecs=0;prsDaSessao=[];prAvisado={};
+    exAtualId=null;globalTimer={secs:0,def:60,running:false,interval:null,fresh:true,endsAt:null};soundEnabled=true;
+    abrirTelaSessao();
+  }catch(e){
+    showToast('Erro ao iniciar treino.','error');
+    if(heroBtn){heroBtn.disabled=false;heroBtn.textContent=heroBtn.dataset.orig||'Iniciar Treino ▸';}
   }
-  const treino=treinos.find(t=>t.id===selectedTreinoId);
-  const exercicios=await db.getExercicios(selectedTreinoId);
-  if(!exercicios||!exercicios.length){showToast('Adicione exercícios a este treino.','error');return;}
-  await carregarCargaHist();
-  const sessaoId=uid();const agora=new Date().toISOString();
-  await db.insertSessao({id:sessaoId,treino_id:selectedTreinoId,iniciado_em:agora});
-  sessaoExs=[];
-  for(const ex of exercicios){
-    const seid=uid();const hist=cargaHist[ex.id]||[];
-    const carga=hist.length?hist[0].carga:(ex.carga_atual||null);
-    await db.insertSessaoEx({id:seid,sessao_id:sessaoId,exercicio_id:ex.id,nome_snapshot:ex.nome,status:'pendente',series_feitas:0,carga_usada:carga});
-    sessaoExs.push({id:seid,exercicio_id:ex.id,nome_snapshot:ex.nome,status:'pendente',series_feitas:0,carga_usada:carga,_ex:ex});
-  }
-  sessaoAtiva={id:sessaoId,treino_id:selectedTreinoId,treino_nome:treino.nome,iniciado_em:agora};
-  sessaoSecs=0;prsDaSessao=[];prAvisado={};
-  exAtualId=null;globalTimer={secs:0,def:60,running:false,interval:null,fresh:true,endsAt:null};soundEnabled=true;
-  abrirTelaSessao();
 }
 
 async function continuarSessao(s){
@@ -1021,7 +1161,7 @@ function abrirTelaSessao(){
   exAtualId=firstPending?firstPending.id:(sessaoExs.length?sessaoExs[0].id:null);
   if(exAtualId){const se=getAtual();globalTimer.def=se._ex.descanso_segundos||60;globalTimer.secs=globalTimer.def;globalTimer.fresh=true;}
   renderSessao();
-  sessaoTimer=setInterval(()=>{sessaoSecs=Math.floor((Date.now()-new Date(sessaoAtiva.iniciado_em).getTime())/1000);const el=document.getElementById('sessao-timer-top');if(el)el.textContent=formatDur(sessaoSecs);},1000);
+  sessaoTimer=setInterval(()=>{sessaoSecs=Math.floor((Date.now()-new Date(sessaoAtiva.iniciado_em).getTime())/1000);const el=document.getElementById('sessao-timer-top');if(el){const total=sessaoExs.length;const cn=sessaoExs.filter(se=>se.status!=='pendente').length;el.innerHTML=`${formatDur(sessaoSecs)} · <span style="color:var(--accent)">${cn}/${total}</span> exercícios`;}},1000);
 }
 
 function getAtual(){return sessaoExs.find(se=>se.id===exAtualId)||null;}
@@ -1043,6 +1183,11 @@ function renderSessao(){
   if(concluidos.length){html+=`<div class="ex-group-title" style="margin-top:18px">Concluídos</div>`;html+=concluidos.map(se=>buildExCard(se)).join('');}
   if(!html)html='<div class="empty"><div class="empty-text">Nenhum exercício.</div></div>';
   document.getElementById('sessao-content').innerHTML=html;
+  // Contador X de Y (feitos+pulados de total)
+  const total=sessaoExs.length;
+  const concluidosN=sessaoExs.filter(se=>se.status!=='pendente').length;
+  const topEl=document.getElementById('sessao-timer-top');
+  if(topEl)topEl.innerHTML=`${formatDur(sessaoSecs)} · <span style="color:var(--accent)">${concluidosN}/${total}</span> exercícios`;
   setupSwipeCards();updateTimerUI();
 }
 
@@ -1055,7 +1200,7 @@ function buildExCard(se){
     const ultimas=[...hist].reverse().map(h=>h.carga+'kg').join(' → ');
     ultimasHtml=`<div class="ex-ultimas">Últimas: <strong>${ultimas}</strong>${prAntes[se.exercicio_id]?` · Recorde: <strong>${prAntes[se.exercicio_id]}kg</strong>`:''}</div>`;
   }else if(!_isPro&&hist.length){
-    ultimasHtml=`<div class="ex-carga-locked">🔒 Referência da última carga <span onclick="event.stopPropagation();showUpsell('Referência de carga','Veja a carga anterior para treinar com mais precisão.')">Desbloquear</span></div>`;
+    ultimasHtml=`<div class="ex-carga-locked"><i class="fa-solid fa-lock" style="font-size:11px"></i> Referência da última carga <span onclick="event.stopPropagation();showUpsell('Referência de carga','Veja a carga anterior para treinar com mais precisão.')">Desbloquear</span></div>`;
   }
   return `<div class="exercicio-swipe-wrap" id="exwrap-${se.id}">
     <div class="swipe-bg swipe-bg-left">⏭ Pular</div>
@@ -1140,9 +1285,11 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden){if(global
 function incrementSerieAtual(){const se=getAtual();if(!se||!se._ex.series)return;const max=se._ex.series;if(se.series_feitas<max){se.series_feitas++;db.updateSessaoEx(se.id,{series_feitas:se.series_feitas}).catch(()=>{});const el=document.getElementById(`sc-${se.id}`);if(el)el.textContent=`${se.series_feitas} / ${max}`;if(se.series_feitas>=max&&se.status!=='feito')setStatusById(se.id,'feito');}syncFoco();}
 
 // Foco (Pro)
-function abrirFoco(){if(!_isPro){showUpsell('Modo Foco','Treine sem distrações, com o timer em tela cheia.');return;}focoAberto=true;document.getElementById('foco-treino-nome').textContent=sessaoAtiva?.treino_nome||'';document.getElementById('foco-screen').style.display='flex';syncFoco();}
+function abrirFoco(){if(!_isPro){showUpsell('Modo Foco','Treine sem distrações, com o timer em tela cheia.');return;}focoAberto=true;const tot=sessaoExs.length;const cn=sessaoExs.filter(se=>se.status!=='pendente').length;document.getElementById('foco-treino-nome').innerHTML=`${sessaoAtiva?.treino_nome||''} <span style="color:var(--accent);font-size:13px">${cn}/${tot}</span>`;document.getElementById('foco-screen').style.display='flex';syncFoco();}
 function fecharFoco(){focoAberto=false;document.getElementById('foco-screen').style.display='none';renderSessao();}
-function syncFoco(){if(!focoAberto)return;const se=getAtual();const nome=document.getElementById('foco-nome');const cat=document.getElementById('foco-cat');const serie=document.getElementById('foco-serie');const carga=document.getElementById('foco-carga');const timeVal=document.getElementById('foco-time-val');const playBtn=document.getElementById('foco-play');const ring=document.getElementById('foco-ring');const hint=document.getElementById('foco-hint');if(!se){nome.textContent='Treino concluído!';cat.textContent='';serie.textContent='';carga.textContent='';timeVal.textContent='✓';hint.textContent='Feche e conclua o treino.';playBtn.style.display='none';return;}playBtn.style.display='flex';nome.textContent=se.nome_snapshot;cat.textContent=se._ex.categoria||'';serie.innerHTML=se._ex.series?`Série <strong>${Math.min(se.series_feitas+1,se._ex.series)}</strong> de ${se._ex.series}${se._ex.repeticoes?` · ${se._ex.repeticoes} reps`:''}`:'';carga.textContent=se.carga_usada?`Carga: ${se.carga_usada}kg`:'';
+function syncFoco(){if(!focoAberto)return;const se=getAtual();
+  const ftn=document.getElementById('foco-treino-nome');if(ftn){const tot=sessaoExs.length;const cn=sessaoExs.filter(s=>s.status!=='pendente').length;ftn.innerHTML=`${sessaoAtiva?.treino_nome||''} <span style="color:var(--accent);font-size:13px">${cn}/${tot}</span>`;}
+  const nome=document.getElementById('foco-nome');const cat=document.getElementById('foco-cat');const serie=document.getElementById('foco-serie');const carga=document.getElementById('foco-carga');const timeVal=document.getElementById('foco-time-val');const playBtn=document.getElementById('foco-play');const ring=document.getElementById('foco-ring');const hint=document.getElementById('foco-hint');if(!se){nome.textContent='Treino concluído!';cat.textContent='';serie.textContent='';carga.textContent='';timeVal.textContent='✓';hint.textContent='Feche e conclua o treino.';playBtn.style.display='none';return;}playBtn.style.display='flex';nome.textContent=se.nome_snapshot;cat.textContent=se._ex.categoria||'';serie.innerHTML=se._ex.series?`Série <strong>${Math.min(se.series_feitas+1,se._ex.series)}</strong> de ${se._ex.series}${se._ex.repeticoes?` · ${se._ex.repeticoes} reps`:''}`:'';carga.textContent=se.carga_usada?`Carga: ${se.carga_usada}kg`:'';
   if(isUltimaSerie(se)&&!globalTimer.running){
     timeVal.style.fontSize='30px';timeVal.textContent='Última série';
     playBtn.innerHTML='<i class="fa-solid fa-circle-check"></i>';playBtn.classList.remove('running');
@@ -1227,13 +1374,22 @@ function mostrarResultado(fim){
   const feitos=sessaoExs.filter(e=>e.status==='feito').length;const pulados=sessaoExs.filter(e=>e.status==='pulei').length;const dur=formatDur(sessaoSecs);
   const inicio=new Date(sessaoAtiva.iniciado_em).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
   const fimStr=new Date(fim).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-  const prHtml=prsDaSessao.length?`<div class="pr-banner">🏆 <strong>Novos recordes!</strong><br>${prsDaSessao.map(p=>`${p.nome}: <strong>${p.carga}kg</strong> (antes ${p.anterior}kg)`).join('<br>')}</div>`:'';
-  const exHtml=sessaoExs.map(se=>{const icons={feito:'✅',pulei:'⏭',pendente:'⬜'};const labels={feito:'Feito',pulei:'Pulei',pendente:'Não marcado'};return `<div class="res-ex-item"><div class="res-ex-icon">${icons[se.status]}</div><div class="res-ex-info"><div class="res-ex-name">${se.nome_snapshot}</div><div class="res-ex-detail">${se.series_feitas>0?`${se.series_feitas} séries`:''}${se.carga_usada?` · ${se.carga_usada}kg`:''}</div></div><div class="res-ex-status ${se.status}">${labels[se.status]}</div></div>`;}).join('');
+  const prHtml=prsDaSessao.length?`<div class="pr-banner"><i class="fa-solid fa-trophy" style="margin-right:5px"></i><strong>Novos recordes!</strong><br>${prsDaSessao.map(p=>`${p.nome}: <strong>${p.carga}kg</strong> (antes ${p.anterior}kg)`).join('<br>')}</div>`:'';
+  // Próximo treino sugerido (o que está há mais tempo sem fazer, exceto o atual)
+  let proxHtml='';
+  const concluidoId=sessaoAtiva.treino_id;
+  const candidatos=treinos.filter(t=>t.id!==concluidoId);
+  if(candidatos.length){
+    const prox=[...candidatos].sort((a,b)=>{if(!a.ultima_vez)return -1;if(!b.ultima_vez)return 1;return new Date(a.ultima_vez)-new Date(b.ultima_vez);})[0];
+    proxHtml=`<div class="prox-treino"><div class="prox-treino-label"><i class="fa-solid fa-forward-step"></i> Próximo sugerido</div><div class="prox-treino-nome">${prox.nome}</div></div>`;
+  }
+  const exHtml=sessaoExs.map(se=>{const icons={feito:'<i class="fa-solid fa-circle-check" style="color:var(--green)"></i>',pulei:'<i class="fa-solid fa-forward" style="color:var(--orange)"></i>',pendente:'<i class="fa-regular fa-circle" style="color:var(--text3)"></i>'};const labels={feito:'Feito',pulei:'Pulei',pendente:'Não marcado'};return `<div class="res-ex-item"><div class="res-ex-icon">${icons[se.status]}</div><div class="res-ex-info"><div class="res-ex-name">${se.nome_snapshot}</div><div class="res-ex-detail">${se.series_feitas>0?`${se.series_feitas} séries`:''}${se.carga_usada?` · ${se.carga_usada}kg`:''}</div></div><div class="res-ex-status ${se.status}">${labels[se.status]}</div></div>`;}).join('');
   document.getElementById('resultado-content').innerHTML=`
-    <div class="resultado-hero"><div class="resultado-icon">${feitos===sessaoExs.length?'🏆':'💪'}</div><div class="resultado-titulo">${sessaoAtiva.treino_nome}</div><div class="resultado-sub">${new Date(sessaoAtiva.iniciado_em).toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long'})}</div></div>
+    <div class="resultado-hero"><div class="resultado-icon"><i class="fa-solid ${feitos===sessaoExs.length?'fa-trophy':'fa-dumbbell'}"></i></div><div class="resultado-titulo">${sessaoAtiva.treino_nome}</div><div class="resultado-sub">${new Date(sessaoAtiva.iniciado_em).toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long'})}</div></div>
     <div class="resultado-stats"><div class="res-stat"><div class="res-stat-val" style="color:var(--accent)">${dur}</div><div class="res-stat-label">Duração</div></div><div class="res-stat"><div class="res-stat-val" style="color:var(--green)">${feitos}</div><div class="res-stat-label">Feitos</div></div><div class="res-stat"><div class="res-stat-val" style="color:var(--orange)">${pulados}</div><div class="res-stat-label">Pulados</div></div></div>
     ${prHtml}<div style="font-size:12px;color:var(--text3);margin-bottom:16px;text-align:center">${inicio} → ${fimStr}</div>
     ${exHtml}
+    ${proxHtml}
     <button class="export-btn" onclick="exportarTreino()"><i class="fa-solid fa-share-nodes"></i>Compartilhar treino</button>
     <button class="voltar-btn" onclick="voltarParaHome()" style="margin-top:8px">Voltar ao Início</button>`;
   hideAll();const rs=document.getElementById('resultado-screen');rs.style.display='flex';rs.style.flexDirection='column';
@@ -1282,7 +1438,7 @@ async function renderCalendario(el){
   const canNavBack=_isPro||(calAno===now.getFullYear()&&calMes===now.getMonth());
   const canNavFwd=calAno<now.getFullYear()||(calAno===now.getFullYear()&&calMes<now.getMonth());
   let html=`<div class="cal-header"><button class="cal-nav-btn" onclick="${canNavBack?'calNav(-1)':'showUpsell(\"Calendário completo\",\"Acesse qualquer período no Pro.\")'}">‹</button><div class="cal-month-label">${MESES[calMes]} ${calAno}</div><button class="cal-nav-btn" onclick="${canNavFwd?'calNav(1)':''}">›</button></div>`;
-  if(!_isPro)html+=`<div class="upsell-block" style="margin-bottom:14px;padding:14px"><div class="upsell-title">🔒 Calendário limitado</div><div class="upsell-sub" style="font-size:12px;margin-bottom:10px">Veja apenas os últimos ${freeCalDays()} dias no plano básico.</div><button class="upsell-btn" style="font-size:13px;padding:9px 18px" onclick="showUpsell('Calendário completo','')">Desbloquear</button></div>`;
+  if(!_isPro)html+=`<div class="upsell-block" style="margin-bottom:14px;padding:14px"><div class="upsell-title"><i class="fa-solid fa-lock" style="margin-right:5px"></i>Calendário limitado</div><div class="upsell-sub" style="font-size:12px;margin-bottom:10px">Veja apenas os últimos ${freeCalDays()} dias no plano básico.</div><button class="upsell-btn" style="font-size:13px;padding:9px 18px" onclick="showUpsell('Calendário completo','')">Desbloquear</button></div>`;
   html+=`<div class="cal-grid">${cells}</div><div class="cal-legenda">Toque em um dia treinado para ver os detalhes</div><div class="cal-resumo"><div class="cal-resumo-item"><strong>${treinosNoMes}</strong><span>dias no mês</span></div><div class="cal-resumo-item"><strong>${semana}</strong><span>esta semana</span></div></div>`;
   el.innerHTML=html;
 }
@@ -1311,7 +1467,7 @@ async function salvarEdicaoSessao(sid){const exs=window._editandoExs||[];const b
 // ── STATS (Pro) ───────────────────────────────────────────────
 async function renderStats(el){
   el.innerHTML='<div class="loading"><div class="spinner"></div>Calculando...</div>';
-  if(!_isPro){el.innerHTML=`<div class="upsell-block"><div class="upsell-lock">📊</div><div class="upsell-title">Stats — Plano Pro</div><div class="upsell-sub">Acompanhe evolução de carga, frequência, recordes e muito mais.</div><button class="upsell-btn" onclick="showUpsell('Stats completo','')">Ver planos</button></div>`;return;}
+  if(!_isPro){el.innerHTML=`<div class="upsell-block"><div class="upsell-lock"><i class="fa-solid fa-chart-line"></i></div><div class="upsell-title">Stats — Plano Pro</div><div class="upsell-sub">Acompanhe evolução de carga, frequência, recordes e muito mais.</div><button class="upsell-btn" onclick="showUpsell('Stats completo','')">Ver planos</button></div>`;return;}
   try{
     const sessoes=(await db.getSessoes()||[]).filter(s=>s.finalizado_em);
     const allExs=await db.getAllSessaoExs();const finExs=(allExs||[]).filter(r=>r.treinos_sessoes&&r.treinos_sessoes.finalizado_em);
@@ -1333,17 +1489,339 @@ async function renderStats(el){
     const chartOpts=Object.entries(chartData).filter(([,v])=>v.pontos.length>=2);
     if(!statsExSelecionado&&chartOpts.length)statsExSelecionado=chartOpts[0][0];
     let html=`<div class="stat-grid"><div class="stat-card"><div class="stat-val">${mesAtual}</div><div class="stat-label">Treinos este mês</div></div><div class="stat-card"><div class="stat-val">${freqSemanal}</div><div class="stat-label">Freq. semanal média</div></div><div class="stat-card"><div class="stat-val">${streak}</div><div class="stat-label">Semanas seguidas</div></div><div class="stat-card"><div class="stat-val">${tempoMedio}</div><div class="stat-label">Tempo médio</div></div><div class="stat-card"><div class="stat-val" style="font-size:14px;line-height:1.3">${maisPulado?maisPulado[0]:'–'}</div><div class="stat-label">Mais pulado${maisPulado?` (${maisPulado[1]}x)`:''}</div></div><div class="stat-card"><div class="stat-val" style="font-size:16px">${diaTop?DOW[diaTop[0]]:'–'}</div><div class="stat-label">Dia preferido</div></div></div>`;
-    html+=`<div class="stats-section-title">📈 Evolução de carga</div><div class="chart-card">`;
+    html+=`<div class="stats-section-title"><i class="fa-solid fa-chart-line" style="color:var(--accent);margin-right:6px"></i>Evolução de carga</div><div class="chart-card">`;
     if(chartOpts.length){html+=`<select class="form-input" style="margin-bottom:14px" onchange="statsExSelecionado=this.value;render()">${chartOpts.map(([id,v])=>`<option value="${id}"${id===statsExSelecionado?' selected':''}>${v.nome}</option>`).join('')}</select>${buildChart(chartData[statsExSelecionado])}`;}
     else{html+=`<div class="chart-empty">Registre cargas em pelo menos 2 treinos do mesmo exercício.</div>`;}
-    html+=`</div><div class="stats-section-title">🏆 Recordes pessoais</div>`;
+    html+=`</div><div class="stats-section-title"><i class="fa-solid fa-trophy" style="color:var(--accent);margin-right:6px"></i>Recordes pessoais</div>`;
     if(prList.length){html+=prList.map(p=>`<div class="pr-item"><div class="pr-item-name">${p.nome}</div><div class="pr-item-val">${p.carga}kg</div></div>`).join('');}
     else{html+=`<div class="empty" style="padding:24px"><div class="empty-text">Registre cargas para acumular recordes.</div></div>`;}
     html+=`<button class="export-btn" onclick="exportarStats()"><i class="fa-solid fa-share-nodes"></i>Compartilhar meus stats</button>`;
     el.innerHTML=html;
-  }catch(e){el.innerHTML=`<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-text">Erro ao calcular.<br><small>${e.message}</small></div></div>`;}
+  }catch(e){el.innerHTML=`<div class="empty"><div class="empty-icon"><i class="fa-solid fa-triangle-exclamation"></i></div><div class="empty-text">Erro ao calcular.<br><small>${e.message}</small></div></div>`;}
 }
 function buildChart(cd){if(!cd||cd.pontos.length<2)return '<div class="chart-empty">Sem dados suficientes.</div>';const W=320,H=160,P=28;const pts=cd.pontos;const cs=pts.map(p=>p.c);let min=Math.min(...cs),max=Math.max(...cs);if(min===max){min-=1;max+=1;}const pad=(max-min)*0.15;min-=pad;max+=pad;const x=i=>P+((W-2*P)*(pts.length===1?0.5:i/(pts.length-1)));const y=c=>H-P-((c-min)/(max-min))*(H-2*P);const line=pts.map((p,i)=>`${i===0?'M':'L'}${x(i).toFixed(1)},${y(p.c).toFixed(1)}`).join(' ');const dots=pts.map((p,i)=>`<circle cx="${x(i).toFixed(1)}" cy="${y(p.c).toFixed(1)}" r="4" fill="var(--accent)"/>`).join('');const labels=pts.map((p,i)=>{if(pts.length>6&&i!==0&&i!==pts.length-1&&i%Math.ceil(pts.length/4)!==0)return '';return `<text x="${x(i).toFixed(1)}" y="${(y(p.c)-9).toFixed(1)}" text-anchor="middle" font-size="10" fill="var(--text2)">${p.c}</text>`;}).join('');const d1=pts[0].d.toLocaleDateString('pt-BR',{day:'2-digit',month:'short'});const d2=pts[pts.length-1].d.toLocaleDateString('pt-BR',{day:'2-digit',month:'short'});return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto"><path d="${line}" stroke="var(--accent)" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>${dots}${labels}<text x="${P}" y="${H-8}" font-size="10" fill="var(--text3)">${d1}</text><text x="${W-P}" y="${H-8}" text-anchor="end" font-size="10" fill="var(--text3)">${d2}</text></svg><div style="font-size:12px;color:var(--text3);text-align:center;margin-top:8px">${pts.length} registros · ${pts[0].c}kg → ${pts[pts.length-1].c}kg</div>`;}
+
+// ── WIZARD DE ONBOARDING (catálogo no banco) ──────────────────
+let CAT_MODELOS=[];      // catálogo carregado do banco
+let CAT_EX_BY_CAT={};    // exercícios do catálogo agrupados por categoria (fallback p/ "do zero")
+const OBJETIVOS=[
+  {k:'hipertrofia',nome:'Hipertrofia',desc:'Ganhar massa muscular',icon:'fa-dumbbell'},
+  {k:'forca',nome:'Força',desc:'Levantar mais peso',icon:'fa-weight-hanging'},
+  {k:'emagrecimento',nome:'Emagrecimento',desc:'Perder gordura',icon:'fa-fire-flame-curved'},
+  {k:'condicionamento',nome:'Condicionamento',desc:'Saúde e resistência',icon:'fa-heart-pulse'},
+];
+const NIVEIS=[
+  {k:'iniciante',nome:'Iniciante',desc:'Começando agora'},
+  {k:'intermediario',nome:'Intermediário',desc:'Já treino há meses'},
+  {k:'avancado',nome:'Avançado',desc:'Treino há anos'},
+];
+
+async function loadCatalogo(){
+  try{
+    CAT_MODELOS=await db.getCatModelos()||[];
+    const exs=await db.getCatExercicios()||[];
+    CAT_EX_BY_CAT={};
+    exs.forEach(e=>{(CAT_EX_BY_CAT[e.categoria]=CAT_EX_BY_CAT[e.categoria]||[]).push(e);});
+  }catch(e){CAT_MODELOS=[];CAT_EX_BY_CAT={};}
+}
+
+let wiz=null;
+async function startWizard(){
+  wiz={step:1,maxStep:5,categorias:JSON.parse(JSON.stringify(CATEGORIAS)),
+       objetivo:null,nivel:null,modeloId:null,modeloDias:null,
+       nomeRotina:'',freq:3,dias:[],diaAtual:0,exsTemp:[]};
+  hideAll();
+  const ws=document.getElementById('wizard-screen');ws.style.display='flex';ws.style.flexDirection='column';
+  if(!CAT_MODELOS.length){
+    document.getElementById('wiz-content').innerHTML='<div class="loading" style="padding-top:120px"><div class="spinner"></div>Carregando catálogo...</div>';
+    await loadCatalogo();
+  }
+  renderWizard();
+}
+function setWizProgress(){
+  const pct=Math.round((wiz.step/wiz.maxStep)*100);
+  document.getElementById('wiz-progress-bar').style.width=pct+'%';
+  document.getElementById('wiz-back').style.visibility=wiz.step>1?'visible':'hidden';
+}
+function wizBack(){
+  if(wiz.step>1){
+    if(wiz.step===5&&wiz.diaAtual>0){wiz.diaAtual--;wiz.exsTemp=wiz.dias[wiz.diaAtual]?.exercicios||[];renderWizard();return;}
+    wiz.step--;renderWizard();
+  }
+}
+function renderWizard(){
+  setWizProgress();
+  const c=document.getElementById('wiz-content');
+  if(wiz.step===1)c.innerHTML=wizStepCategorias();
+  else if(wiz.step===2)c.innerHTML=wizStepObjetivo();
+  else if(wiz.step===3)c.innerHTML=wizStepModelo();
+  else if(wiz.step===4)c.innerHTML=wizStepNome();
+  else if(wiz.step===5)c.innerHTML=wizStepDias();
+}
+
+// PASSO 1 — Categorias
+function wizStepCategorias(){
+  return `<div class="wiz-step-tag">Passo 1 de 5</div>
+  <div class="wiz-title">Suas categorias</div>
+  <div class="wiz-sub">Categorias agrupam seus exercícios (ex: Peito, Perna). Já deixamos as principais — ajuste como quiser.</div>
+  <div id="wiz-cat-list">${wiz.categorias.map(c=>`<span class="wiz-cat-chip">${c.nome}<i class="fa-solid fa-xmark" onclick="wizDelCat('${c.id}')"></i></span>`).join('')}</div>
+  <button class="wiz-add-ex" onclick="wizAddCat()" style="margin-top:14px"><i class="fa-solid fa-plus"></i> Adicionar categoria</button>
+  <div class="wiz-footer"><button class="wiz-btn" onclick="wizGoObjetivo()">Continuar</button></div>`;
+}
+function wizDelCat(id){wiz.categorias=wiz.categorias.filter(c=>c.id!==id);renderWizard();}
+function wizAddCat(){
+  openModal(`<div class="modal-title">Nova categoria</div><div class="form-group"><input class="form-input" id="wiz-cat-nome" placeholder="Ex: Glúteo, Cardio" autocomplete="off"/></div><button class="btn-primary" onclick="wizSaveCat()">Adicionar</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`);
+  setTimeout(()=>document.getElementById('wiz-cat-nome')?.focus(),200);
+}
+function wizSaveCat(){
+  const nome=document.getElementById('wiz-cat-nome').value.trim();
+  if(!nome)return;
+  if(wiz.categorias.some(c=>c.nome.toLowerCase()===nome.toLowerCase())){showToast('Já existe.','error');return;}
+  wiz.categorias.push({id:uid(),nome,_novo:true});_closeModal();renderWizard();
+}
+function wizGoObjetivo(){wiz.step=2;renderWizard();}
+
+// PASSO 2 — Objetivo + nível
+function wizStepObjetivo(){
+  return `<div class="wiz-step-tag">Passo 2 de 5</div>
+  <div class="wiz-title">Qual seu objetivo?</div>
+  <div class="wiz-sub">Usamos isso para sugerir os melhores modelos de treino para você.</div>
+  ${OBJETIVOS.map(o=>`<div class="wiz-opt${wiz.objetivo===o.k?' selected':''}" onclick="wizSelObjetivo('${o.k}')"><div class="wiz-opt-icon"><i class="fa-solid ${o.icon}"></i></div><div class="wiz-opt-info"><div class="wiz-opt-nome">${o.nome}</div><div class="wiz-opt-desc">${o.desc}</div></div><div class="wiz-opt-check"><i class="fa-solid fa-check"></i></div></div>`).join('')}
+  <div class="wiz-sub" style="margin-top:22px;margin-bottom:12px">E seu nível de experiência?</div>
+  <div class="wiz-toggle" style="flex-wrap:wrap">${NIVEIS.map(n=>`<button class="wiz-toggle-btn${wiz.nivel===n.k?' selected':''}" onclick="wizSelNivel('${n.k}')" style="flex:1 1 30%">${n.nome}</button>`).join('')}</div>
+  <div class="wiz-footer"><button class="wiz-btn" onclick="wizGoModelo()">Continuar</button></div>`;
+}
+function wizSelObjetivo(k){wiz.objetivo=k;renderWizard();}
+function wizSelNivel(k){wiz.nivel=k;renderWizard();}
+function wizGoModelo(){
+  if(!wiz.objetivo){showToast('Escolha um objetivo.','error');return;}
+  if(!wiz.nivel){showToast('Escolha seu nível.','error');return;}
+  wiz.step=3;renderWizard();
+}
+
+// PASSO 3 — Modelo (filtrado por objetivo/nível, mas mostra todos com recomendados no topo)
+function wizStepModelo(){
+  // ordenar: recomendados (match objetivo+nível) primeiro
+  const ranked=[...CAT_MODELOS].map(m=>{
+    let score=0;
+    if(m.objetivo===wiz.objetivo)score+=2;
+    if(m.nivel===wiz.nivel)score+=1;
+    if(m.nivel==='todos')score+=1;
+    return {...m,_score:score};
+  }).sort((a,b)=>b._score-a._score);
+  let html=`<div class="wiz-step-tag">Passo 3 de 5</div>
+  <div class="wiz-title">Escolha um modelo</div>
+  <div class="wiz-sub">Modelos prontos com exercícios sugeridos. Os <strong>recomendados</strong> para seu perfil aparecem primeiro.</div>`;
+  // opção do zero sempre disponível
+  html+=`<div class="wiz-opt${wiz.modeloId==='zero'?' selected':''}" onclick="wizSelModelo('zero')"><div class="wiz-opt-icon"><i class="fa-solid fa-pen-ruler"></i></div><div class="wiz-opt-info"><div class="wiz-opt-nome">Começar do zero</div><div class="wiz-opt-desc">Monto minha rotina manualmente</div></div><div class="wiz-opt-check"><i class="fa-solid fa-check"></i></div></div>`;
+  ranked.forEach(m=>{
+    const rec=m._score>=2;
+    html+=`<div class="wiz-opt${wiz.modeloId===m.id?' selected':''}" onclick="wizSelModelo('${m.id}')"><div class="wiz-opt-icon"><i class="fa-solid ${m.icon||'fa-layer-group'}"></i></div><div class="wiz-opt-info"><div class="wiz-opt-nome">${m.nome}${rec?' <span style="color:var(--accent);font-size:11px;font-weight:700">★ recomendado</span>':''}</div><div class="wiz-opt-desc">${m.descricao||''}</div></div><div class="wiz-opt-check"><i class="fa-solid fa-check"></i></div></div>`;
+  });
+  html+=`<div class="wiz-footer"><button class="wiz-btn" onclick="wizGoNome()">Continuar</button></div>`;
+  return html;
+}
+function wizSelModelo(id){wiz.modeloId=id;renderWizard();}
+async function wizGoNome(){
+  if(!wiz.modeloId){showToast('Escolha um modelo ou "do zero".','error');return;}
+  wiz.step=4;renderWizard();
+}
+
+// PASSO 4 — Nome + frequência
+function wizStepNome(){
+  const modelo=wiz.modeloId==='zero'?null:CAT_MODELOS.find(m=>m.id===wiz.modeloId);
+  const sugestaoNome=modelo?modelo.nome:'';
+  const freqSug=modelo&&modelo.dias_sugeridos?modelo.dias_sugeridos:wiz.freq;
+  if(modelo&&!wiz._freqTouched)wiz.freq=freqSug;
+  return `<div class="wiz-step-tag">Passo 4 de 5</div>
+  <div class="wiz-title">Nome da rotina</div>
+  <div class="wiz-note"><i class="fa-solid fa-circle-info"></i><div>Este é só o <strong>nome do plano</strong> — ainda não é o treino em si. Ex: "Treino ABC", "Hipertrofia 2025".</div></div>
+  <div class="form-group"><label class="form-label">Nome</label><input class="form-input" id="wiz-nome" value="${wiz.nomeRotina||sugestaoNome}" placeholder="Ex: Treino ABC" autocomplete="off"/></div>
+  <div class="form-group" style="margin-top:18px"><label class="form-label">Quantos treinos por semana?</label>
+    <div class="wiz-freq-grid">${[2,3,4,5].map(n=>`<button class="wiz-freq-btn${wiz.freq===n?' selected':''}" onclick="wizSelFreq(${n})">${n}<span>dias</span></button>`).join('')}</div>
+    <div class="wiz-freq-grid" style="grid-template-columns:repeat(2,1fr)">${[6,7].map(n=>`<button class="wiz-freq-btn${wiz.freq===n?' selected':''}" onclick="wizSelFreq(${n})">${n}<span>dias</span></button>`).join('')}</div>
+  </div>
+  <div class="wiz-footer"><button class="wiz-btn" onclick="wizGoDias()">Continuar</button></div>`;
+}
+function wizSelFreq(n){wiz.freq=n;wiz._freqTouched=true;document.getElementById('wiz-nome')&&(wiz.nomeRotina=document.getElementById('wiz-nome').value);renderWizard();}
+async function wizGoDias(){
+  const nome=document.getElementById('wiz-nome').value.trim();
+  if(!nome){showToast('Dê um nome à rotina.','error');return;}
+  wiz.nomeRotina=nome;
+  if(wiz.modeloId==='zero'){
+    wiz.dias=[{nome:'',foco:[],exercicios:[]}];
+  } else {
+    // carregar dias do modelo do catálogo
+    const c=document.getElementById('wiz-content');
+    c.innerHTML='<div class="loading" style="padding-top:120px"><div class="spinner"></div>Montando seu treino...</div>';
+    try{
+      const dias=await db.getCatModeloDias(wiz.modeloId)||[];
+      wiz.dias=[];
+      for(const d of dias){
+        const diaExs=await db.getCatDiaExercicios(d.id)||[];
+        const exercicios=diaExs.map(de=>({
+          id:uid(),
+          nome:de.catalogo_exercicios?.nome||de.nome||'Exercício',
+          categoria:de.catalogo_exercicios?.categoria||'Outros',
+          series:de.series,repeticoes:de.reps,descanso_segundos:de.descanso
+        }));
+        wiz.dias.push({nome:d.nome,foco:d.foco?(Array.isArray(d.foco)?d.foco:String(d.foco).split(',')):[],exercicios,_temSugestao:exercicios.length>0});
+      }
+      if(!wiz.dias.length)wiz.dias=[{nome:'',foco:[],exercicios:[]}];
+    }catch(e){wiz.dias=[{nome:'',foco:[],exercicios:[]}];}
+  }
+  wiz.diaAtual=0;
+  // no modelo, exercícios já vêm prontos; mostra direto a lista (não pergunta sugestão)
+  wiz.exsTemp=wiz.dias[0].exercicios||[];
+  wiz.step=5;renderWizard();
+}
+
+// PASSO 5 — Cadastro dos dias
+function wizStepDias(){
+  const dia=wiz.dias[wiz.diaAtual];
+  const ehModelo=wiz.modeloId!=='zero';
+  const total=wiz.dias.length;
+  const exs=wiz.exsTemp||[];
+  let html=`<div class="wiz-step-tag">Passo 5 de 5 · Dia ${wiz.diaAtual+1}${ehModelo?` de ${total}`:''}</div>
+  <div class="wiz-title">${ehModelo?dia.nome:'Novo dia de treino'}</div>`;
+  if(!ehModelo){
+    html+=`<div class="wiz-sub">Dê um nome para este dia (ex: "Treino de Perna", "Peito e Ombro").</div>
+    <div class="form-group"><label class="form-label">Nome do dia</label><input class="form-input" id="wiz-dia-nome" value="${dia.nome||''}" placeholder="Ex: Treino de Perna" autocomplete="off" oninput="wiz.dias[wiz.diaAtual].nome=this.value"/></div>`;
+  } else if(dia.foco&&dia.foco.length){
+    html+=`<div class="wiz-sub">Foco: <strong>${dia.foco.join(', ')}</strong></div>`;
+  }
+  // "Do zero" e dia sem decisão → pergunta sugestão. Modelo já vem pronto.
+  const precisaPerguntar=!ehModelo && dia.exercicios===null;
+  if(precisaPerguntar){
+    html+=`<div class="wiz-note" style="background:color-mix(in srgb,var(--accent) 7%,transparent)"><i class="fa-solid fa-wand-magic-sparkles"></i><div>Quer um treino sugerido para este dia? Preenchemos exercícios com base nas suas categorias — você ajusta depois.</div></div>
+    <div class="wiz-toggle"><button class="wiz-toggle-btn" onclick="wizSugestao(true)">Sim, sugerir</button><button class="wiz-toggle-btn" onclick="wizSugestao(false)">Não, eu monto</button></div>`;
+  } else {
+    html+=`<div class="wiz-day-card">`;
+    if(exs.length){
+      html+=exs.map((e,i)=>`<div class="wiz-ex-mini"><div class="wiz-ex-mini-info"><div class="wiz-ex-mini-nome">${e.nome}</div><div class="wiz-ex-mini-sub">${e.categoria} · ${e.series}×${e.repeticoes} · ${e.descanso_segundos}s</div></div><i class="fa-solid fa-xmark wiz-ex-mini-del" onclick="wizDelEx(${i})"></i></div>`).join('');
+    } else {
+      html+=`<div style="text-align:center;color:var(--text3);font-size:13px;padding:14px">Nenhum exercício ainda.</div>`;
+    }
+    html+=`<button class="wiz-add-ex" onclick="wizAddEx()"><i class="fa-solid fa-plus"></i> Adicionar exercício</button></div>`;
+  }
+  const ehUltimo=ehModelo?(wiz.diaAtual>=total-1):false;
+  html+=`<div class="wiz-footer">`;
+  if(ehModelo){
+    if(!ehUltimo)html+=`<button class="wiz-btn" onclick="wizProximoDia()">Próximo dia ›</button>`;
+    else html+=`<button class="wiz-btn" onclick="wizFinalizar()">Finalizar e começar a treinar</button>`;
+  } else {
+    html+=`<button class="wiz-btn" onclick="wizSalvarDiaNovo(true)">Salvar e adicionar outro dia</button>`;
+    html+=`<button class="wiz-btn-ghost" onclick="wizSalvarDiaNovo(false)">Salvar e finalizar</button>`;
+  }
+  html+=`</div>`;
+  return html;
+}
+function wizSugestao(sim){
+  const dia=wiz.dias[wiz.diaAtual];
+  if(sim){
+    const cats=wiz.categorias.map(c=>c.nome);
+    const gerados=[];
+    cats.forEach(cat=>{
+      const lib=CAT_EX_BY_CAT[cat]||[];
+      lib.slice(0,3).forEach(e=>gerados.push({id:uid(),nome:e.nome,categoria:cat,series:e.series_padrao||4,repeticoes:e.reps_padrao||12,descanso_segundos:e.descanso_padrao||60}));
+    });
+    wiz.exsTemp=gerados;dia.exercicios=gerados;
+    if(!gerados.length)showToast('Sem sugestões no catálogo. Adicione manualmente.','');
+  } else {
+    wiz.exsTemp=[];dia.exercicios=[];
+  }
+  renderWizard();
+}
+function wizDelEx(i){wiz.exsTemp.splice(i,1);wiz.dias[wiz.diaAtual].exercicios=wiz.exsTemp;renderWizard();}
+function wizAddEx(){
+  const cats=wiz.categorias.length?wiz.categorias:CATEGORIAS;
+  openModal(`<div class="modal-title">Adicionar exercício</div>
+  <div class="form-group"><label class="form-label">Nome</label><input class="form-input" id="wz-en" placeholder="Ex: Supino Reto" autocomplete="off"/></div>
+  <div class="form-group"><label class="form-label">Categoria</label><select class="form-input" id="wz-ec">${cats.map(c=>`<option value="${c.nome}">${c.nome}</option>`).join('')}</select></div>
+  <div class="form-row"><div class="form-group"><label class="form-label">Séries</label><input class="form-input" id="wz-es" type="number" inputmode="numeric" value="4"/></div><div class="form-group"><label class="form-label">Reps</label><input class="form-input" id="wz-er" type="number" inputmode="numeric" value="12"/></div></div>
+  <div class="form-group"><label class="form-label">Descanso (s)</label><input class="form-input" id="wz-ed" type="number" inputmode="numeric" value="60"/></div>
+  <button class="btn-primary" onclick="wizSaveEx()">Adicionar</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`);
+  setTimeout(()=>document.getElementById('wz-en')?.focus(),200);
+}
+function wizSaveEx(){
+  const nome=document.getElementById('wz-en').value.trim();
+  if(!nome){showToast('Digite um nome.','error');return;}
+  const ex={id:uid(),nome,categoria:document.getElementById('wz-ec').value,series:parseInt(document.getElementById('wz-es').value)||null,repeticoes:parseInt(document.getElementById('wz-er').value)||null,descanso_segundos:parseInt(document.getElementById('wz-ed').value)||60};
+  if(!wiz.exsTemp)wiz.exsTemp=[];
+  wiz.exsTemp.push(ex);wiz.dias[wiz.diaAtual].exercicios=wiz.exsTemp;
+  _closeModal();renderWizard();
+}
+function wizProximoDia(){
+  wiz.dias[wiz.diaAtual].exercicios=wiz.exsTemp;
+  wiz.diaAtual++;
+  wiz.exsTemp=wiz.dias[wiz.diaAtual].exercicios||null;
+  if(wiz.exsTemp===null)wiz.dias[wiz.diaAtual].exercicios=null;
+  renderWizard();
+}
+function wizSalvarDiaNovo(adicionarOutro){
+  const dia=wiz.dias[wiz.diaAtual];
+  if(!dia.nome||!dia.nome.trim()){showToast('Dê um nome ao dia.','error');return;}
+  dia.exercicios=wiz.exsTemp||[];
+  if(adicionarOutro){
+    wiz.dias.push({nome:'',foco:[],exercicios:[]});
+    wiz.diaAtual++;wiz.exsTemp=[];
+    wiz.dias[wiz.diaAtual].exercicios=null; // força a pergunta de sugestão de novo
+    renderWizard();
+  } else {
+    wizFinalizar();
+  }
+}
+
+async function wizFinalizar(){
+  // salvar exercícios do dia atual em modelo
+  if(wiz.modeloId!=='zero')wiz.dias[wiz.diaAtual].exercicios=wiz.exsTemp;
+  const c=document.getElementById('wiz-content');
+  c.innerHTML=`<div class="loading" style="padding-top:120px"><div class="spinner"></div>Criando sua rotina...</div>`;
+  document.getElementById('wiz-back').style.visibility='hidden';
+  try{
+    // 1. sincronizar categorias (novas / removidas) com o banco
+    await wizSyncCategorias();
+    // 2. criar grupo (rotina) ativo
+    const grupoId=uid();
+    await db.insertGrupo({id:grupoId,nome:wiz.nomeRotina,ativo:true,freq_semanal:wiz.freq});
+    // 3. criar dias + exercícios
+    for(const dia of wiz.dias){
+      if(!dia.nome||!dia.nome.trim())continue;
+      const treinoId=uid();
+      await db.insertTreino({id:treinoId,grupo_id:grupoId,nome:dia.nome.trim()});
+      const exs=dia.exercicios||[];
+      for(let i=0;i<exs.length;i++){
+        const e=exs[i];
+        await db.insertExercicio({id:uid(),treino_id:treinoId,nome:e.nome,categoria:e.categoria,series:e.series,repeticoes:e.repeticoes,carga_atual:null,descanso_segundos:e.descanso_segundos,posicao:i});
+      }
+    }
+    wiz=null;
+    document.getElementById('wizard-screen').style.display='none';
+    showApp();
+    await loadCategorias();
+    await init();
+    showToast('Tudo pronto! Bora treinar 💪','success');
+  }catch(e){
+    c.innerHTML=`<div class="empty"><div class="empty-icon"><i class="fa-solid fa-triangle-exclamation"></i></div><div class="empty-text">Erro ao criar a rotina.<br><small>${e.message}</small></div><button class="wiz-btn" style="margin-top:20px" onclick="renderWizard()">Tentar de novo</button></div>`;
+  }
+}
+async function wizSyncCategorias(){
+  // categorias novas adicionadas no wizard
+  const atuaisNomes=CATEGORIAS.map(c=>c.nome.toLowerCase());
+  for(const c of wiz.categorias){
+    if(!atuaisNomes.includes(c.nome.toLowerCase())){
+      try{await db.insertCategoria({id:uid(),nome:c.nome,posicao:CATEGORIAS.length});}catch(e){}
+    }
+  }
+  // categorias removidas no wizard
+  const wizNomes=wiz.categorias.map(c=>c.nome.toLowerCase());
+  for(const c of CATEGORIAS){
+    if(!wizNomes.includes(c.nome.toLowerCase())&&!String(c.id).startsWith('tmp')){
+      try{await db.deleteCategoria(c.id);}catch(e){}
+    }
+  }
+}
+
 
 // ── GERENCIAR ─────────────────────────────────────────────────
 async function showGerenciar(){hideAll();const gs=document.getElementById('gerenciar-screen');gs.style.display='flex';gs.style.flexDirection='column';await renderGerenciar();}
@@ -1406,7 +1884,7 @@ async function renderGerenciar(){
     html+=`</div>`;
   }
 
-  if(atLimit){html+=`<div class="upsell-block"><div class="upsell-lock">🔒</div><div class="upsell-title">Limite de ${freeMaxGrp()} rotinas</div><div class="upsell-sub">Faça upgrade para criar rotinas ilimitadas.</div><button class="upsell-btn" onclick="showUpsell('Rotinas ilimitadas','')">Ver planos</button></div>`;}
+  if(atLimit){html+=`<div class="upsell-block"><div class="upsell-lock"><i class="fa-solid fa-lock"></i></div><div class="upsell-title">Limite de ${freeMaxGrp()} rotinas</div><div class="upsell-sub">Faça upgrade para criar rotinas ilimitadas.</div><button class="upsell-btn" onclick="showUpsell('Rotinas ilimitadas','')">Ver planos</button></div>`;}
 
   // Seção: Categorias
   html+=`<div class="ger-section-head" style="margin-top:28px"><span>Categorias de exercício</span><button class="ger-section-add" onclick="openAddCategoria()"><i class="fa-solid fa-plus"></i> Nova</button></div>`;
@@ -1466,10 +1944,13 @@ async function saveGrupo(id){const nome=document.getElementById('f-gnome').value
 function openAddTreino(gid){openModal(`<div class="modal-title">Novo dia de treino</div><div style="font-size:13px;color:var(--text2);margin-bottom:14px">Um dia de treino agrupa os exercícios de uma sessão (ex: "A — Peito e Tríceps").</div><div class="form-group"><label class="form-label">Nome do dia</label><input class="form-input" id="f-tnome" placeholder="Ex: A — Peito e Tríceps" autocomplete="off"/></div><button class="btn-primary" id="btn-st" onclick="saveTreino(null,'${gid}')">Criar dia</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`);setTimeout(()=>document.getElementById('f-tnome')?.focus(),200);}
 function openEditTreino(id,nome){openModal(`<div class="modal-title">Renomear dia de treino</div><div class="form-group"><label class="form-label">Nome do dia</label><input class="form-input" id="f-tnome" value="${nome}" autocomplete="off"/></div><button class="btn-primary" id="btn-st" onclick="saveTreino('${id}',null)">Salvar</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`);setTimeout(()=>document.getElementById('f-tnome')?.focus(),200);}
 async function saveTreino(id,gid){const nome=document.getElementById('f-tnome').value.trim();if(!nome){showToast('Digite um nome.','error');return;}const btn=document.getElementById('btn-st');btn.disabled=true;btn.textContent='Salvando...';try{if(id)await db.updateTreino(id,{nome});else await db.insertTreino({id:uid(),grupo_id:gid,nome});_closeModal();await renderGerenciar();showToast(id?'Dia renomeado!':'Dia criado!','success');}catch{showToast('Erro.','error');btn.disabled=false;btn.textContent='Salvar';}}
-function catSelect(sel){return `<select class="form-input" id="f-ecat">${CATEGORIAS.map(c=>`<option${sel===c.nome?' selected':''}>${c.nome}</option>`).join('')}</select>`;}
+function catSelect(sel){
+  const lista = CATEGORIAS.length?CATEGORIAS:CATEGORIAS_PADRAO.map((nome,i)=>({id:'tmp'+i,nome}));
+  return `<select class="form-input" id="f-ecat">${lista.map(c=>`<option value="${c.nome}"${sel===c.nome?' selected':''}>${c.nome}</option>`).join('')}</select>`;
+}
 function exercicioFormHtml(ex){return `<div class="form-group"><label class="form-label">Nome</label><input class="form-input" id="f-enome" value="${ex?.nome||''}" placeholder="Ex: Supino Reto" autocomplete="off"/></div><div class="form-group"><label class="form-label">Categoria</label>${catSelect(ex?.categoria||'')}</div><div class="form-row"><div class="form-group"><label class="form-label">Séries</label><input class="form-input" id="f-eser" type="number" inputmode="numeric" value="${ex?.series||''}" placeholder="4"/></div><div class="form-group"><label class="form-label">Reps</label><input class="form-input" id="f-erep" type="number" inputmode="numeric" value="${ex?.repeticoes||''}" placeholder="12"/></div></div><div class="form-row"><div class="form-group"><label class="form-label">Carga (kg)</label><input class="form-input" id="f-ecarga" type="number" inputmode="decimal" value="${ex?.carga_atual||''}" placeholder="opcional"/></div><div class="form-group"><label class="form-label">Descanso (s)</label><input class="form-input" id="f-edes" type="number" inputmode="numeric" value="${ex?.descanso_segundos||''}" placeholder="60"/></div></div>`;}
-function openAddExercicio(tid){openModal(`<div class="modal-title">Novo Exercício</div>${exercicioFormHtml(null)}<button class="btn-primary" id="btn-se" onclick="saveExercicio(null,'${tid}')">Salvar</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`);}
-async function openEditExercicio(exId,tid){const exs=await db.getExercicios(tid);const ex=exs.find(e=>e.id===exId);if(!ex)return;openModal(`<div class="modal-title">Editar Exercício</div>${exercicioFormHtml(ex)}<button class="btn-primary" id="btn-se" onclick="saveExercicio('${exId}','${tid}')">Salvar</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`);}
+async function openAddExercicio(tid){if(!CATEGORIAS.length)await loadCategorias();openModal(`<div class="modal-title">Novo Exercício</div>${exercicioFormHtml(null)}<button class="btn-primary" id="btn-se" onclick="saveExercicio(null,'${tid}')">Salvar</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`);}
+async function openEditExercicio(exId,tid){if(!CATEGORIAS.length)await loadCategorias();const exs=await db.getExercicios(tid);const ex=exs.find(e=>e.id===exId);if(!ex)return;openModal(`<div class="modal-title">Editar Exercício</div>${exercicioFormHtml(ex)}<button class="btn-primary" id="btn-se" onclick="saveExercicio('${exId}','${tid}')">Salvar</button><button class="btn-secondary" onclick="_closeModal()">Cancelar</button>`);}
 async function saveExercicio(id,tid){const nome=document.getElementById('f-enome').value.trim();const cat=document.getElementById('f-ecat').value;const series=parseInt(document.getElementById('f-eser').value)||null;const reps=parseInt(document.getElementById('f-erep').value)||null;const carga=parseFloat(document.getElementById('f-ecarga').value)||null;const desc=parseInt(document.getElementById('f-edes').value)||60;if(!nome){showToast('Digite um nome.','error');return;}const btn=document.getElementById('btn-se');btn.disabled=true;btn.textContent='Salvando...';try{const exs=await db.getExercicios(tid);if(id)await db.updateExercicio(id,{nome,categoria:cat,series,repeticoes:reps,carga_atual:carga,descanso_segundos:desc});else await db.insertExercicio({id:uid(),treino_id:tid,nome,categoria:cat,series,repeticoes:reps,carga_atual:carga,descanso_segundos:desc,posicao:exs.length});_closeModal();await renderGerenciar();showToast('Exercício salvo!','success');}catch{showToast('Erro.','error');btn.disabled=false;btn.textContent='Salvar';}}
 
 // ── TUTORIAL ──────────────────────────────────────────────────
@@ -1477,15 +1958,72 @@ function showTutorial(){hideAll();const ts=document.getElementById('tutorial-scr
 function renderTutorial(){
   document.getElementById('tutorial-content').innerHTML=`
   <div class="tut-section"><div class="tut-section-title"><i class="fa-solid fa-layer-group" style="color:var(--accent)"></i> A estrutura</div><div class="tut-text">O app se organiza em três níveis:</div><div class="tut-step"><div class="tut-step-num">1</div><div class="tut-step-text"><strong>Rotina</strong> — seu plano completo (ex: "Treino ABC"). Você treina uma rotina por vez.</div></div><div class="tut-step"><div class="tut-step-num">2</div><div class="tut-step-text"><strong>Dia de treino</strong> — cada sessão da rotina (ex: "A — Peito e Tríceps").</div></div><div class="tut-step"><div class="tut-step-num">3</div><div class="tut-step-text"><strong>Exercícios</strong> — o que você faz em cada dia.</div></div></div>
-  <div class="tut-section"><div class="tut-section-title">🏠 Tela Hoje</div><div class="tut-text">O <strong>card grande</strong> mostra o dia de treino sugerido — o que há mais tempo sem fazer. Toque para iniciar.</div><div class="tut-text">Toque em outro dia abaixo para colocá-lo em destaque.</div></div>
-  <div class="tut-section"><div class="tut-section-title">🏋️ Durante o treino</div><div class="tut-step"><div class="tut-step-num">1</div><div class="tut-step-text">Toque num exercício para torná-lo o <strong>atual</strong> (borda roxa).</div></div><div class="tut-step"><div class="tut-step-num">2</div><div class="tut-step-text">Terminou a série? Aperte <strong>▶</strong> — conta +1 série e começa o descanso.</div></div><div class="tut-step"><div class="tut-step-num">3</div><div class="tut-step-text">Na <strong>última série</strong>, o botão vira <span style="color:var(--accent);font-weight:600">Concluir exercício</span> — sem descanso, já marca como feito.</div></div><div class="tut-tip">🔔 Toque no ícone de som no topo para escolher o alerta de fim de descanso. A tela fica acesa durante o descanso.</div></div>
-  <div class="tut-section"><div class="tut-section-title">👆 Gestos</div><div class="tut-text">➡️ Arraste o exercício para a <span style="color:var(--green);font-weight:500">direita</span>: <strong>Feito</strong>.</div><div class="tut-text">⬅️ Arraste para a <span style="color:var(--orange);font-weight:500">esquerda</span>: <strong>Pular</strong>.</div><div class="tut-text">Deslize da <strong>borda esquerda da tela</strong> para voltar de qualquer lugar.</div></div>
-  <div class="tut-section"><div class="tut-section-title">⚙️ Gerenciar</div><div class="tut-text">Toque na engrenagem no topo para criar e organizar suas rotinas, dias de treino e exercícios.</div><div class="tut-text">Arraste os exercícios pelo <i class="fa-solid fa-grip-vertical" style="font-size:12px;color:var(--text3)"></i> para reordenar. Crie suas próprias <strong>categorias</strong> (Glúteo, Cardio, etc).</div></div>
-  <div class="tut-section"><div class="tut-section-title">⚡ Recursos Pro</div><div class="tut-text"><strong>Modo Foco</strong> (timer em tela cheia) · <strong>Referência de carga</strong> (últimas cargas de cada exercício) · <strong>Stats e gráficos</strong> · <strong>Calendário completo</strong> · <strong>Acervo de recordes</strong>.</div><div class="tut-text">Durante seu período de teste você tem acesso a tudo. Aproveite! 💪</div></div>
+  <div class="tut-section"><div class="tut-section-title"><i class="fa-solid fa-house" style="color:var(--accent)"></i> Tela Hoje</div><div class="tut-text">O <strong>card grande</strong> mostra o dia de treino sugerido — o que há mais tempo sem fazer. Toque para iniciar.</div><div class="tut-text">Toque em outro dia abaixo para colocá-lo em destaque.</div></div>
+  <div class="tut-section"><div class="tut-section-title"><i class="fa-solid fa-dumbbell" style="color:var(--accent)"></i> Durante o treino</div><div class="tut-step"><div class="tut-step-num">1</div><div class="tut-step-text">Toque num exercício para torná-lo o <strong>atual</strong> (borda roxa).</div></div><div class="tut-step"><div class="tut-step-num">2</div><div class="tut-step-text">Terminou a série? Aperte <strong>▶</strong> — conta +1 série e começa o descanso.</div></div><div class="tut-step"><div class="tut-step-num">3</div><div class="tut-step-text">Na <strong>última série</strong>, o botão vira <span style="color:var(--accent);font-weight:600">Concluir exercício</span> — sem descanso, já marca como feito.</div></div><div class="tut-tip">🔔 Toque no ícone de som no topo para escolher o alerta de fim de descanso. A tela fica acesa durante o descanso.</div></div>
+  <div class="tut-section"><div class="tut-section-title"><i class="fa-solid fa-hand-pointer" style="color:var(--accent)"></i> Gestos</div><div class="tut-text">➡️ Arraste o exercício para a <span style="color:var(--green);font-weight:500">direita</span>: <strong>Feito</strong>.</div><div class="tut-text">⬅️ Arraste para a <span style="color:var(--orange);font-weight:500">esquerda</span>: <strong>Pular</strong>.</div><div class="tut-text">Deslize da <strong>borda esquerda da tela</strong> para voltar de qualquer lugar.</div></div>
+  <div class="tut-section"><div class="tut-section-title"><i class="fa-solid fa-sliders" style="color:var(--accent)"></i> Gerenciar</div><div class="tut-text">Toque na engrenagem no topo para criar e organizar suas rotinas, dias de treino e exercícios.</div><div class="tut-text">Arraste os exercícios pelo <i class="fa-solid fa-grip-vertical" style="font-size:12px;color:var(--text3)"></i> para reordenar. Crie suas próprias <strong>categorias</strong> (Glúteo, Cardio, etc).</div></div>
+  <div class="tut-section"><div class="tut-section-title"><i class="fa-solid fa-bolt" style="color:var(--accent)"></i> Recursos Pro</div><div class="tut-text"><strong>Modo Foco</strong> (timer em tela cheia) · <strong>Referência de carga</strong> (últimas cargas de cada exercício) · <strong>Stats e gráficos</strong> · <strong>Calendário completo</strong> · <strong>Acervo de recordes</strong>.</div><div class="tut-text">Durante seu período de teste você tem acesso a tudo. Aproveite! 💪</div></div>
   <button class="btn-primary" onclick="hideOverlayScreen()" style="margin-top:4px">Entendi, voltar ao app</button><div style="height:20px"></div>`;
 }
 
 // ── UTILS ─────────────────────────────────────────────────────
+// Coach-mark tutorial (overlay na primeira visita à Home)
+const COACH_STEPS=[
+  {sel:'.hero-card',text:'Este é o seu <strong>treino sugerido</strong> — o que está há mais tempo sem fazer. Toque nele para começar a treinar.',pos:'bottom'},
+  {sel:'.tabs',text:'Navegue entre <strong>Hoje</strong> (seu treino), <strong>Calendário</strong> (histórico) e <strong>Stats</strong> (sua evolução).',pos:'bottom'},
+  {sel:'#header-status-badge',text:'Aqui aparece seu plano. Durante o <strong>período de teste</strong> você tem acesso a tudo.',pos:'bottom'},
+  {sel:'.header-actions',text:'Tema claro/escuro, este tutorial, <strong>gerenciar</strong> suas rotinas e sair da conta.',pos:'bottom'},
+  {sel:null,text:'Pronto! Toque no treino sugerido para começar. Bons treinos! 💪',pos:'center'},
+];
+let coachIdx=0;
+function maybeStartCoach(){
+  try{ if(localStorage.getItem('_tl_coach_done'))return; }catch(e){}
+  if(!grupoAtivo||!treinos.length)return; // só com home preenchida
+  coachIdx=0;
+  setTimeout(()=>{document.getElementById('coach-overlay').classList.add('active');renderCoach();},400);
+}
+function renderCoach(){
+  const step=COACH_STEPS[coachIdx];
+  const hole=document.getElementById('coach-hole');
+  const tip=document.getElementById('coach-tip');
+  const txt=document.getElementById('coach-tip-text');
+  txt.innerHTML=step.text;
+  // dots
+  document.getElementById('coach-dots').innerHTML=COACH_STEPS.map((_,i)=>`<div class="coach-dot${i===coachIdx?' active':''}"></div>`).join('');
+  document.getElementById('coach-next').textContent=coachIdx>=COACH_STEPS.length-1?'Concluir':'Próximo';
+  const vw=window.innerWidth,vh=window.innerHeight;
+  if(!step.sel){
+    hole.style.opacity='0';hole.style.width='0';hole.style.height='0';
+    hole.style.left=(vw/2)+'px';hole.style.top=(vh/2)+'px';
+    tip.style.left=Math.max(20,(vw-Math.min(320,vw-40))/2)+'px';
+    tip.style.top=(vh/2-80)+'px';
+    return;
+  }
+  const el=document.querySelector(step.sel);
+  if(!el){coachNext();return;}
+  const r=el.getBoundingClientRect();
+  const pad=8;
+  hole.style.opacity='1';
+  hole.style.left=(r.left-pad)+'px';hole.style.top=(r.top-pad)+'px';
+  hole.style.width=(r.width+pad*2)+'px';hole.style.height=(r.height+pad*2)+'px';
+  // posicionar tip: abaixo do alvo, ou acima se não couber
+  const tipW=Math.min(320,vw-40);
+  let tipLeft=Math.min(Math.max(20,r.left),vw-tipW-20);
+  let tipTop=r.bottom+16;
+  if(tipTop+180>vh)tipTop=Math.max(20,r.top-180);
+  tip.style.left=tipLeft+'px';tip.style.top=tipTop+'px';
+}
+function coachNext(){
+  if(coachIdx>=COACH_STEPS.length-1){coachFinish();return;}
+  coachIdx++;renderCoach();
+}
+function coachSkip(){coachFinish();}
+function coachFinish(){
+  document.getElementById('coach-overlay').classList.remove('active');
+  try{localStorage.setItem('_tl_coach_done','1');}catch(e){}
+}
+window.addEventListener('resize',()=>{if(document.getElementById('coach-overlay').classList.contains('active'))renderCoach();});
+
 function formatDur(s){const m=Math.floor(Math.abs(s)/60),sec=Math.abs(s)%60;return `${String(m).padStart(2,'0')}:${String(sec).padStart(2,'0')}`;}
 function showToast(msg,type=''){const t=document.getElementById('toast');t.textContent=msg;t.className=`toast ${type} show`;setTimeout(()=>t.classList.remove('show'),2500);}
 
@@ -1498,7 +2036,7 @@ let edgeSwipe=null;
 document.addEventListener('touchstart',e=>{if(e.touches.length===1&&e.touches[0].clientX<=28)edgeSwipe={x:e.touches[0].clientX,y:e.touches[0].clientY};else edgeSwipe=null;},{passive:true});
 document.addEventListener('touchend',e=>{if(!edgeSwipe)return;const dx=e.changedTouches[0].clientX-edgeSwipe.x;const dy=Math.abs(e.changedTouches[0].clientY-edgeSwipe.y);edgeSwipe=null;if(dx>70&&dy<70)goBack();},{passive:true});
 function isVisible(id){const el=document.getElementById(id);return el&&el.style.display&&el.style.display!=='none';}
-function goBack(){const splash=document.getElementById('rest-splash');if(splash){splash.remove();return;}if(document.getElementById('modal-overlay').classList.contains('open')){_closeModal();return;}if(focoAberto){fecharFoco();return;}if(isVisible('tutorial-screen')||isVisible('gerenciar-screen')){hideOverlayScreen();return;}if(isVisible('resultado-screen')){voltarParaHome();return;}if(isVisible('sessao-screen')){sairSessao();return;}}
+function goBack(){const splash=document.getElementById('rest-splash');if(splash){splash.remove();return;}if(document.getElementById('modal-overlay').classList.contains('open')){_closeModal();return;}if(focoAberto){fecharFoco();return;}if(isVisible('wizard-screen')){if(wiz&&wiz.step>1)wizBack();return;}if(isVisible('tutorial-screen')||isVisible('gerenciar-screen')){hideOverlayScreen();return;}if(isVisible('resultado-screen')){voltarParaHome();return;}if(isVisible('sessao-screen')){sairSessao();return;}}
 
 // Carrega config antes de exibir auth + tenta restaurar sessão
 loadConfig().then(()=>{applyAppName();});
