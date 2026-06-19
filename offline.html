@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="theme-color" content="#f2f1f7"/>
+<title>TreinoLog — Sem conexão</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f2f1f7;--surface:#ffffff;--border:#cfccdd;
+  --accent:#6d28d9;--text:#16161e;--text2:#52525e;--text3:#9090a0;
+  --safe-top:max(env(safe-area-inset-top,0px),44px);
+  --safe-bot:max(env(safe-area-inset-bottom,0px),24px);
+}
+@media(prefers-color-scheme:dark){
+  :root{--bg:#08080a;--surface:#141417;--border:#2c2c32;--accent:#a78bfa;--text:#fbfbfd;--text2:#a0a0aa;--text3:#5a5a64}
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:15px}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:calc(var(--safe-top) + 24px) 32px calc(var(--safe-bot) + 24px);text-align:center;max-width:430px;margin:0 auto}
+.icon{width:72px;height:72px;border-radius:20px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.icon svg{opacity:.5}
+h1{font-family:'Outfit',sans-serif;font-weight:800;font-size:26px;letter-spacing:-.4px;margin-bottom:10px}
+.subtitle{font-size:15px;color:var(--text2);line-height:1.65;margin-bottom:32px;max-width:300px}
+.subtitle strong{color:var(--text);font-weight:600}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:20px;margin-bottom:24px;width:100%;text-align:left}
+.card-title{font-weight:600;font-size:14px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.step{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;font-size:13px;color:var(--text2);line-height:1.5}
+.step:last-child{margin-bottom:0}
+.step-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:5px}
+.btn{width:100%;padding:15px;border-radius:14px;border:none;background:var(--accent);color:#fff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-bottom:10px}
+.hint{font-size:12px;color:var(--text3);line-height:1.6}
+</style>
+</head>
+<body>
+  <div class="icon">
+    <svg width="36" height="36" viewBox="0 0 64 64" fill="none">
+      <rect x="19" y="29.5" width="26" height="5" rx="2.5" fill="var(--accent)"/>
+      <rect x="15" y="22" width="6" height="20" rx="2.6" fill="var(--accent)"/>
+      <rect x="43" y="22" width="6" height="20" rx="2.6" fill="var(--accent)"/>
+      <rect x="9.5" y="25.5" width="5" height="13" rx="2.3" fill="var(--accent)"/>
+      <rect x="49.5" y="25.5" width="5" height="13" rx="2.3" fill="var(--accent)"/>
+    </svg>
+  </div>
+
+  <h1>Você está offline</h1>
+  <p class="subtitle">O <strong>TreinoLog</strong> precisa de conexão com a internet para carregar seus treinos e sincronizar seus dados.</p>
+
+  <div class="card">
+    <div class="card-title">O que você pode fazer agora</div>
+    <div class="step"><div class="step-dot"></div><span>Verifique se o Wi-Fi ou os dados móveis estão ligados</span></div>
+    <div class="step"><div class="step-dot"></div><span>Se estiver em modo avião, desative-o</span></div>
+    <div class="step"><div class="step-dot"></div><span>Tente se aproximar do roteador ou mudar de local</span></div>
+  </div>
+
+  <button class="btn" onclick="location.reload()">Tentar novamente</button>
+  <p class="hint">Seus dados ficam salvos na nuvem e estarão disponíveis assim que a conexão for restabelecida.</p>
+</body>
+</html>
