@@ -1,4 +1,7 @@
-﻿const _ep = atob('aHR0cHM6Ly9qamRtZ3luam5iYnh4Z3RjZGVybC5zdXBhYmFzZS5jbw==');
+﻿if(!navigator.onLine){ location.replace('./offline.html'); }
+window.addEventListener('offline', () => location.replace('./offline.html'));
+
+const _ep = atob('aHR0cHM6Ly9qamRtZ3luam5iYnh4Z3RjZGVybC5zdXBhYmFzZS5jbw==');
 const _ak = atob('c2JfcHVibGlzaGFibGVfOEVFYnJ6THVRY19ncGdqZU5BVXJFd19RRm1uWVZBYw==');
 
 let CFG = {
@@ -1387,4 +1390,11 @@ loadConfig().then(()=>{applyAppName();});
 
 if('serviceWorker' in navigator){
   navigator.serviceWorker.register('./sw.js').catch(()=>{});
+  navigator.serviceWorker.addEventListener('message', e => {
+    if(e.data?.type !== 'SW_UPDATED') return;
+    const t = document.getElementById('toast');
+    if(!t) return;
+    t.innerHTML = 'Nova versão disponível. <span style="text-decoration:underline;cursor:pointer" onclick="location.reload()">Atualizar</span>';
+    t.className = 'toast show';
+  });
 }
