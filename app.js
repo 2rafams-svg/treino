@@ -900,7 +900,15 @@ function wizBack(){
   if(wiz.step>1){
     if(wiz.step===5&&wiz.diaAtual>0){wiz.diaAtual--;wiz.exsTemp=wiz.dias[wiz.diaAtual]?.exercicios||[];renderWizard();return;}
     wiz.step--;renderWizard();
+  } else {
+    cancelWizard();
   }
+}
+function cancelWizard(){
+  document.getElementById('wizard-screen').style.display='none';
+  hideAll();
+  document.getElementById('app').style.display='flex';
+  init();
 }
 function renderWizard(){
   setWizProgress();
@@ -1368,7 +1376,7 @@ let edgeSwipe=null;
 document.addEventListener('touchstart',e=>{if(e.touches.length===1&&e.touches[0].clientX<=28)edgeSwipe={x:e.touches[0].clientX,y:e.touches[0].clientY};else edgeSwipe=null;},{passive:true});
 document.addEventListener('touchend',e=>{if(!edgeSwipe)return;const dx=e.changedTouches[0].clientX-edgeSwipe.x;const dy=Math.abs(e.changedTouches[0].clientY-edgeSwipe.y);edgeSwipe=null;if(dx>70&&dy<70)goBack();},{passive:true});
 function isVisible(id){const el=document.getElementById(id);return el&&el.style.display&&el.style.display!=='none';}
-function goBack(){const splash=document.getElementById('rest-splash');if(splash){splash.remove();return;}if(document.getElementById('modal-overlay').classList.contains('open')){_closeModal();return;}if(focoAberto){fecharFoco();return;}if(isVisible('wizard-screen')){if(wiz&&wiz.step>1)wizBack();return;}if(isVisible('tutorial-screen')||isVisible('gerenciar-screen')){hideOverlayScreen();return;}if(isVisible('resultado-screen')){voltarParaHome();return;}if(isVisible('sessao-screen')){sairSessao();return;}}
+function goBack(){const splash=document.getElementById('rest-splash');if(splash){splash.remove();return;}if(document.getElementById('modal-overlay').classList.contains('open')){_closeModal();return;}if(focoAberto){fecharFoco();return;}if(isVisible('wizard-screen')){wizBack();return;}if(isVisible('tutorial-screen')||isVisible('gerenciar-screen')){hideOverlayScreen();return;}if(isVisible('resultado-screen')){voltarParaHome();return;}if(isVisible('sessao-screen')){sairSessao();return;}}
 
 loadConfig().then(()=>{applyAppName();});
 (function restoreSession(){
