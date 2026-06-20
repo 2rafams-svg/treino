@@ -1,5 +1,5 @@
 const CACHE = 'tl-v1';
-const SHELL = ['/', '/index.html', '/app.js', '/app.css', '/offline.html', '/manifest.json', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'];
+const SHELL = ['/index.html', '/app.js', '/app.css', '/offline.html', '/manifest.json', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)));
@@ -12,9 +12,13 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
+  const url = new URL(e.request.url);
+  if(url.origin !== location.origin) return;
+
   if(e.request.mode === 'navigate'){
     e.respondWith(fetch(e.request).catch(() => caches.match('/offline.html')));
     return;
   }
+
   e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
 });
