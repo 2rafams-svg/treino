@@ -1,8 +1,19 @@
 const CACHE = 'tl-v1';
-const SHELL = ['/index.html', '/app.js', '/app.css', '/offline.html', '/manifest.json', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)));
+  const base = self.registration.scope;
+  const shell = [
+    base,
+    base + 'index.html',
+    base + 'app.js',
+    base + 'app.css',
+    base + 'offline.html',
+    base + 'manifest.json',
+    base + 'icon-192.png',
+    base + 'icon-512.png',
+    base + 'apple-touch-icon.png',
+  ];
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(shell)));
   self.skipWaiting();
 });
 
@@ -23,15 +34,23 @@ self.addEventListener('fetch', e => {
   if(e.request.mode === 'navigate'){
     e.respondWith(
       fetch(e.request)
-        .then(res => { caches.open(CACHE).then(c => c.put(e.request, res.clone())); return res; })
-        .catch(() => caches.match(e.request).then(r => r || caches.match('/offline.html')))
+        .then(res => {
+          caches.open(CACHE).then(c => c.put(e.request, res.clone()));
+          return res;
+        })
+        .catch(() => caches.match(e.request)
+          .then(r => r || caches.match(self.registration.scope + 'offline.html'))
+        )
     );
     return;
   }
 
   e.respondWith(
     fetch(e.request)
-      .then(res => { caches.open(CACHE).then(c => c.put(e.request, res.clone())); return res; })
+      .then(res => {
+        caches.open(CACHE).then(c => c.put(e.request, res.clone()));
+        return res;
+      })
       .catch(() => caches.match(e.request))
   );
 });
