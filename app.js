@@ -1,4 +1,4 @@
-?if(!navigator.onLine){ location.replace('./offline.html'); }
+if(!navigator.onLine){ location.replace('./offline.html'); }
 window.addEventListener('offline', () => location.replace('./offline.html'));
 
 const _ep = atob('aHR0cHM6Ly9qamRtZ3luam5iYnh4Z3RjZGVybC5zdXBhYmFzZS5jbw==');
