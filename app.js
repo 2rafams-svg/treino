@@ -1379,22 +1379,38 @@ function isVisible(id){const el=document.getElementById(id);return el&&el.style.
 function goBack(){const splash=document.getElementById('rest-splash');if(splash){splash.remove();return;}if(document.getElementById('modal-overlay').classList.contains('open')){_closeModal();return;}if(focoAberto){fecharFoco();return;}if(isVisible('wizard-screen')){wizBack();return;}if(isVisible('tutorial-screen')||isVisible('gerenciar-screen')){hideOverlayScreen();return;}if(isVisible('resultado-screen')){voltarParaHome();return;}if(isVisible('sessao-screen')){sairSessao();return;}}
 
 loadConfig().then(()=>{applyAppName();});
-(function restoreSession(){
+(async function restoreSession(){
+  let raw;
+  try{ raw=localStorage.getItem('_tl_session'); }catch(e){ return; }
+  if(!raw) return;
+  let s;
+  try{ s=JSON.parse(raw); }catch(e){ return; }
+  if(!s||!s.access_token||!s.user) return;
+  _session=s;
   try{
-    const raw=localStorage.getItem('_tl_session');
-    if(raw){
-      const s=JSON.parse(raw);
-      if(s&&s.access_token&&s.user){
-        _session=s;
-        startApp().catch(()=>{
-          _session=null;
-          try{localStorage.removeItem('_tl_session');}catch(e){}
-          document.getElementById('auth-screen').style.display='flex';
-        });
-      }
+    await startApp();
+  }catch(e){
+    if(_session&&_session.refresh_token&&await _refreshSession()){
+      try{ await startApp(); return; }catch(e2){}
     }
-  }catch(e){}
+    if(_sessionInvalid(e)){
+      _session=null;
+      try{localStorage.removeItem('_tl_session');}catch(e3){}
+      document.getElementById('auth-screen').style.display='flex';
+    }else{
+      _showSessionRetry();
+    }
+  }
 })();
+function _sessionInvalid(e){
+  const m=(e&&e.message||'').toLowerCase();
+  return m.includes('401')||m.includes('jwt')||m.includes('invalid')||m.includes('expired')||m.includes('token');
+}
+function _showSessionRetry(){
+  const el=document.getElementById('content');
+  if(el)el.innerHTML=`<div class="empty"><div class="empty-icon"><i class="fa-solid fa-wifi"></i></div><div class="empty-text">Não foi possível conectar.<br>Verifique sua internet.</div><button class="upsell-btn" style="margin-top:16px" onclick="location.reload()">Tentar novamente</button></div>`;
+  document.getElementById('app').style.display='flex';
+}
 
 if('serviceWorker' in navigator){
   let _swReg;
